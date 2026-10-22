@@ -1,0 +1,1085 @@
+fileFormatVersion: 2
+guid: C3xK4Cv4U3ztaIaWNlTV3J9DH5oQPuWBJ+tRyLHHel0tKs5/B+D+PNc=
+ModelImporter:
+  serializedVersion: 22361
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boli_053
+    second: {fileID: 2100000, guid: 9e5d3c253597e2c488ed958f35fefd0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boli_084
+    second: {fileID: 2100000, guid: 479894044a628684ca1cf734a7a9444a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boli_119
+    second: {fileID: 2100000, guid: b644f85d914d9314d996b710b47c6ed9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boli_120
+    second: {fileID: 2100000, guid: 63ccaeb299866214faceadad8f6e2ff2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boli_121
+    second: {fileID: 2100000, guid: 16dd67bfa254a9e449f4cba615347a48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boli_122
+    second: {fileID: 2100000, guid: 023184969797aa74492f47cc6fffacea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boli_132
+    second: {fileID: 2100000, guid: 4bfb4b0efe31675469c9adf394d953bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boli_146
+    second: {fileID: 2100000, guid: 7e8d7ee0e10026e4ca4ee3c45507fed2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boli_149
+    second: {fileID: 2100000, guid: d7bd2dc0c60058b4ba56a18fb836a4da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_000
+    second: {fileID: 2100000, guid: 8a892e4cf1dc47f41b7427e1dbe36289, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_001
+    second: {fileID: 2100000, guid: bb89741bb29eae3488e3492a1899b520, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_002
+    second: {fileID: 2100000, guid: e59dd9113894a994a904845167ff9252, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_003
+    second: {fileID: 2100000, guid: 5b2490c240856fb4284e24b09c168393, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_004
+    second: {fileID: 2100000, guid: 0c032d3c72ed27b47a14b11ff1a9a29f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_005
+    second: {fileID: 2100000, guid: e11a81835ad07014884cf8438829218b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_006
+    second: {fileID: 2100000, guid: 1335a05941afb0f428a2a947c844c42e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_007
+    second: {fileID: 2100000, guid: 5ff6eab1571d3da4ea99b46e51035707, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_008
+    second: {fileID: 2100000, guid: e226d8ffbeca83d49ae4697dd4144878, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_009
+    second: {fileID: 2100000, guid: 00ba521e63a77a445b6857b550081f66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_010
+    second: {fileID: 2100000, guid: 7aa9a1d798b1a604f9a696607812d68f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_011
+    second: {fileID: 2100000, guid: 031d43c15d9161b49978e549937de8e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_012
+    second: {fileID: 2100000, guid: 9d69903f9fd947946b07b46277769071, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_013
+    second: {fileID: 2100000, guid: 8522f1b0e6fd8ac47a3c852146d80e3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_014
+    second: {fileID: 2100000, guid: 3f411beefe15aea4581ffa748148b9aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_015
+    second: {fileID: 2100000, guid: 2ed2067bc89bfb8438fa55d7fcd9339c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_016
+    second: {fileID: 2100000, guid: 13faccc094d2e284c89bf415f35fd9b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_017
+    second: {fileID: 2100000, guid: e9120a1b6dfbeef47b6be5b240a150f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_018
+    second: {fileID: 2100000, guid: 8a93ff802669c78449c33c24e1b5f7ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_019
+    second: {fileID: 2100000, guid: a1ec22d11b9e48c4b957fc9d5bd4a2a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_020
+    second: {fileID: 2100000, guid: 129bca4369c76334d90f33f2c1454e92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_021
+    second: {fileID: 2100000, guid: a5f8748333d20064bb29791e2a8be291, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_022
+    second: {fileID: 2100000, guid: d4aa279b6e6547a4c8ce7ec47f3d8701, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_023
+    second: {fileID: 2100000, guid: bf1e636ba231c504da2c572549f00e93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_024
+    second: {fileID: 2100000, guid: 556eef4f09ff13747a7bb3070791937c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_025
+    second: {fileID: 2100000, guid: d9bb80dd229eb7e448fc549b7809ee82, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_026
+    second: {fileID: 2100000, guid: 891924b559d7b4544ad815d55793c5c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_027
+    second: {fileID: 2100000, guid: c6e3874beb582714eb1ba9107a585f19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_028
+    second: {fileID: 2100000, guid: 9495236381690984aa42e68e3cc28f97, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_029
+    second: {fileID: 2100000, guid: 138fcb63b6018604cadf1f2777ced2ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_030
+    second: {fileID: 2100000, guid: 1abaaa886116f58418e8b17ebd84e0e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_031
+    second: {fileID: 2100000, guid: 48d31c6972603a44090b633a31ec7f7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_032
+    second: {fileID: 2100000, guid: f5f12bed0c6039945ad8c906ffbce331, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_033
+    second: {fileID: 2100000, guid: 4cc432596d48de847b0d3867a62b3726, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_034
+    second: {fileID: 2100000, guid: 85128f64d5246c94ca5bc6756c84c46f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_035
+    second: {fileID: 2100000, guid: 391f5d10a13ddad43addb5f8739edcb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_036
+    second: {fileID: 2100000, guid: c4217e1f1d48ffe40be263de28654157, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_037
+    second: {fileID: 2100000, guid: 7bb5e8f85f50c774b9b2d9ab45825aee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_038
+    second: {fileID: 2100000, guid: c92ae6599c9af2f479cc09eca7753fb9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_039
+    second: {fileID: 2100000, guid: 72cb078fcc157ca4bb42c60fdc7a6af1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_040
+    second: {fileID: 2100000, guid: 6ff5f96d66b84bb42bbed390d818abfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_041
+    second: {fileID: 2100000, guid: 0dbf0d4d9f691e346a7b7902fd4aaf43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_042
+    second: {fileID: 2100000, guid: 008eaf89390ed3942a950aea6c5c625e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_043
+    second: {fileID: 2100000, guid: b96b4d12692952244a6f3decca57e4a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_044
+    second: {fileID: 2100000, guid: 0b9fb31a9b8a3274e8294b1c0b9fe62f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_045
+    second: {fileID: 2100000, guid: dd74063007c81b44c9d71c5c28bcc988, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_046
+    second: {fileID: 2100000, guid: cf7f52872f9baaa42ade898991c86006, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_047
+    second: {fileID: 2100000, guid: bc0653a8548bc4947ae1d1988e4b7174, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_048
+    second: {fileID: 2100000, guid: 7a10cb6138cf9e647acfd93da89b819f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_049
+    second: {fileID: 2100000, guid: bde43fde9151aab40bddf95e3815cf9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_050
+    second: {fileID: 2100000, guid: 51f8da56ee3421c4ab15207a96a407e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_051
+    second: {fileID: 2100000, guid: 6cec62a9c85f4734481aeec4830147e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_052
+    second: {fileID: 2100000, guid: 1a277a87a3f05664bb075e4981343cbf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_054
+    second: {fileID: 2100000, guid: 862a8bd34f95c3e478084c56b97182fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_055
+    second: {fileID: 2100000, guid: 28027bfd6ace54a46bb70e931009f79c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_056
+    second: {fileID: 2100000, guid: 9d28c59d55d675844a7980e47c8a9f13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_057
+    second: {fileID: 2100000, guid: 578ca5e2bc165e5499748cf0d960ab11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_058
+    second: {fileID: 2100000, guid: cebc56382ce7b8343b40658500078d26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_059
+    second: {fileID: 2100000, guid: 91e416f0bdbceb649a11c0cf7120f611, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_060
+    second: {fileID: 2100000, guid: 36ddae77a69db5247a7485e63a9005b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_061
+    second: {fileID: 2100000, guid: 54c298f2a2b8d8b419ec02bd7f792470, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_062
+    second: {fileID: 2100000, guid: ac2cd5726d41cf84a92c23426d4cd9e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_063
+    second: {fileID: 2100000, guid: af4e1b6ec7c5bd44ca5bef7058d2693f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_064
+    second: {fileID: 2100000, guid: db1347f9b02f6d8479d22f6ee1838eb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_065
+    second: {fileID: 2100000, guid: 9fbf39009258ad243bc7578e7c5d6051, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_066
+    second: {fileID: 2100000, guid: e72ae04b36d2ae644aa2d60e0c59bb3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_067
+    second: {fileID: 2100000, guid: 9a513e9f0d462744c861d78b1b749066, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_068
+    second: {fileID: 2100000, guid: b9ca5ba7e95edc84aa8483fd989e4763, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_069
+    second: {fileID: 2100000, guid: b1873633707bee6479857f7083aaa2d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_070
+    second: {fileID: 2100000, guid: 0760f7c6799f16b41bfa3906fda3b169, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_071
+    second: {fileID: 2100000, guid: d112d25ff4d57e449ad002e9f721e54a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_072
+    second: {fileID: 2100000, guid: cec0fb944f8140143921ee4b3e610b38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_073
+    second: {fileID: 2100000, guid: a9e0e4b078b50f647a2a1bce30795362, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_074
+    second: {fileID: 2100000, guid: ad14015468523a542ba747e7682107f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_075
+    second: {fileID: 2100000, guid: a7a31297b028de846bba29d21a7f5643, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_076
+    second: {fileID: 2100000, guid: e3efc0a09fc23554ca6e84257ad69c1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_077
+    second: {fileID: 2100000, guid: 89d9db1af28c84c4ba42eb10bbc34ac8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_078
+    second: {fileID: 2100000, guid: c5b03bca9c0290341b9be7290d824de4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_079
+    second: {fileID: 2100000, guid: 83d440944abf8184b95e64bf65e25e75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_080
+    second: {fileID: 2100000, guid: e518c8c98e453ee4dbb914a0b3035680, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_081
+    second: {fileID: 2100000, guid: 9216523c60767734a8389f794d48343b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_082
+    second: {fileID: 2100000, guid: 322c68ad2f0d21649ae37824d24403c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_083
+    second: {fileID: 2100000, guid: 8717a6c5c4a7e174cbaf66edd457521c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_085
+    second: {fileID: 2100000, guid: 5520c657ef4dfd246aec084daca448a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_086
+    second: {fileID: 2100000, guid: 34cd930a1e2c42e4a81c66b8ab0f9747, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_087
+    second: {fileID: 2100000, guid: f1c09775639169d459b86c947d18df97, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_088
+    second: {fileID: 2100000, guid: 9a42d0ed182ed18458a4bd4e1e665dce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_089
+    second: {fileID: 2100000, guid: 476194aead8504e4da1538f214e61ca5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_090
+    second: {fileID: 2100000, guid: 2fcb6300c56419f4c960b6c944d9118b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_091
+    second: {fileID: 2100000, guid: 5ddbbf79047a49142839796f89940e82, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_092
+    second: {fileID: 2100000, guid: 6b2f5b8455d873e4198792cc75c62ae0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_093
+    second: {fileID: 2100000, guid: 70d5461d8c61cce49888946e4f1d6fa4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_094
+    second: {fileID: 2100000, guid: a7191aefba5b5f24fabe115da4cf5c7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_095
+    second: {fileID: 2100000, guid: a7cd7f0834fac134ab242a13fe492a98, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_096
+    second: {fileID: 2100000, guid: ba8c83d519244d54fbbd15464c195acd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_097
+    second: {fileID: 2100000, guid: 9bb6bdfe6c029cb4aa4267e29ecbf2cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_098
+    second: {fileID: 2100000, guid: 1e7d4a8ae387c6543a48b39f7fb9ba00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_099
+    second: {fileID: 2100000, guid: 83cae1192a31c524383b1befc8ed8d5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_100
+    second: {fileID: 2100000, guid: 0b1e4445b72a80849bb599d9078b61d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_101
+    second: {fileID: 2100000, guid: e98893bb94c84c943ab390d3e9af74ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_102
+    second: {fileID: 2100000, guid: b0b8f307648881d4eb3f31ef09af1102, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_103
+    second: {fileID: 2100000, guid: 523f4aac3c1e3854da2b0f76dc1d2974, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_104
+    second: {fileID: 2100000, guid: 0952e19eefd55474f8553e66bfeb87ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_105
+    second: {fileID: 2100000, guid: d6476cd699a902b438440cc85d0a737d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_106
+    second: {fileID: 2100000, guid: 36561c8e6f215cf4a8f6515c39433649, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_107
+    second: {fileID: 2100000, guid: 012acb182401a7347b5d5950ea96a666, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_108
+    second: {fileID: 2100000, guid: b04fcbdb126508a4f98f73c329e47c5f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_109
+    second: {fileID: 2100000, guid: ddf64170e605a994b814ac9df52812b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_110
+    second: {fileID: 2100000, guid: 6c7bc715d2e2e72438e78162a618e4cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_111
+    second: {fileID: 2100000, guid: 1ad069691bbf3c544b88b4075d6a3449, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_112
+    second: {fileID: 2100000, guid: 5496f95a4ffade24bab1ef8a6b00819e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_113
+    second: {fileID: 2100000, guid: d68687a939cf6a7488220f6650ae2703, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_114
+    second: {fileID: 2100000, guid: 48b998cfaefc318448a3fcb57b042186, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_115
+    second: {fileID: 2100000, guid: 440dc5e8ed77dab4ea989ec513193c65, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_116
+    second: {fileID: 2100000, guid: 5d3d3205b0fc2a847840c2dde9fd471d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_117
+    second: {fileID: 2100000, guid: 20725a1e6078a9646a556fcb1c4f8d08, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_118
+    second: {fileID: 2100000, guid: a2e6a438d91ae054aa47ba58097d73fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_123
+    second: {fileID: 2100000, guid: 282cf4e96f53d9040a20b8978c2e5f8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_124
+    second: {fileID: 2100000, guid: 05778be7b6a71e44bb7caf329f0998bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_125
+    second: {fileID: 2100000, guid: 992b9d485cc6714428f638830e48e258, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_126
+    second: {fileID: 2100000, guid: bfd7d6a7751f985429fae6818dfd3f79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_127
+    second: {fileID: 2100000, guid: c1ce877b316b5e64c990fd2f42ff927b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_128
+    second: {fileID: 2100000, guid: 0429e83bd50977e4683f360e944d87b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_129
+    second: {fileID: 2100000, guid: e161b956825df554582ba36200e9130c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_130
+    second: {fileID: 2100000, guid: 984466dd273b82540becb58a144acb16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_131
+    second: {fileID: 2100000, guid: de7fd81bbe316b44db7318ceb66d8a87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_133
+    second: {fileID: 2100000, guid: 1c35906606ef63c47a7581b6fdc33a2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_134
+    second: {fileID: 2100000, guid: 2e3c0ae639615be45baf83eaff71a2a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_135
+    second: {fileID: 2100000, guid: 9727dc416b2d9ee41a4cff9709dc1899, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_136
+    second: {fileID: 2100000, guid: 3fbd342b815ae2e4a9e443942e83439c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_137
+    second: {fileID: 2100000, guid: 0a708955e9dd97240993d66a9c6c32ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_138
+    second: {fileID: 2100000, guid: 4d39a11cfc1ebf744bb2c63a7a55e43d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_139
+    second: {fileID: 2100000, guid: a566fd0ea89f7dd449025012720bcb8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_140
+    second: {fileID: 2100000, guid: 7a8918934f280314eaffb71cb5b5ce40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_141
+    second: {fileID: 2100000, guid: ecf0ec9399b0b5b4d90f0a12a94a4c78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_142
+    second: {fileID: 2100000, guid: 9859c44a602b4444d8fd3615c115ba07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_143
+    second: {fileID: 2100000, guid: 7411282e343ba284d84358ddbeb8cf90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_144
+    second: {fileID: 2100000, guid: 99f417e8d771be344b0bbc1cf4d2950a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_145
+    second: {fileID: 2100000, guid: a79cb940a255b2f4f866e61bfbfbf7cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_147
+    second: {fileID: 2100000, guid: ea91a2886d4434347afbef80a26daec3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: caizhi_148
+    second: {fileID: 2100000, guid: 3476b1f3dcee9984b8f4b3d066c0067b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_010_A
+    second: {fileID: 2100000, guid: 1cc002590eccd764196eb6492f0f530f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_010_B
+    second: {fileID: 2100000, guid: fcdc0c84f21359a4d9b3290d72fe9793, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_010_C
+    second: {fileID: 2100000, guid: 877c259ee1a5ebc44b4787aab00d1a05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_010_D
+    second: {fileID: 2100000, guid: 2b582821d9ede4b45bcfdc7cdae9c726, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_010_E
+    second: {fileID: 2100000, guid: 19ed22d5e4ccba5489787cec56e0d0e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_A
+    second: {fileID: 2100000, guid: fafc7e1abadcea14d98d2f4769ff8987, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_B
+    second: {fileID: 2100000, guid: a28cb5ef517404147bf7dd872953a2fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_C
+    second: {fileID: 2100000, guid: 765d5a45b865a12448ee2081b9c2782b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_D
+    second: {fileID: 2100000, guid: f1dd77de45e38cb4fbb292619baf742a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_E
+    second: {fileID: 2100000, guid: f93a8b9e097062b4b93a129b5f26314d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_F
+    second: {fileID: 2100000, guid: 37969ccb74067cc449f7a6ce587b1e46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_G
+    second: {fileID: 2100000, guid: 035438769ed9e594f91ad94140832374, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_H
+    second: {fileID: 2100000, guid: 0a7967c7a0395c14b84ec998a897a520, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_I
+    second: {fileID: 2100000, guid: e39b40e0bba763649951cef4a7a8c2d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_025_J
+    second: {fileID: 2100000, guid: 9f13341cf944dd6439c9f96f8e0a5028, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_043_A
+    second: {fileID: 2100000, guid: c25bd7ef29f892349a111296da2e2705, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_043_B
+    second: {fileID: 2100000, guid: 3bc199bfd843f624db62f3bdc10742f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_044_A
+    second: {fileID: 2100000, guid: b426a3ce1024dd84098106234ff518e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_044_B
+    second: {fileID: 2100000, guid: 7fd98e3f05eccad4ba33431ecf841b29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_044_C
+    second: {fileID: 2100000, guid: 962e2d56ab6795b4f8d7f0cd2f45453b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_054_A
+    second: {fileID: 2100000, guid: 7fd9e88d79c8a734899d61d5a193705a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_072_A
+    second: {fileID: 2100000, guid: 6983965774d1c5c44bc38dabb3257ce6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_077_A
+    second: {fileID: 2100000, guid: cb4c26cf6da1a6c49858ef2b02fdab81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_078_A
+    second: {fileID: 2100000, guid: 73b533e1e6a658d4f8a39494ccdee817, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_116_A
+    second: {fileID: 2100000, guid: 9387fd8153322034dbcab2592f0a71e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pingmu_130_A
+    second: {fileID: 2100000, guid: 82acc840b28ea734486a299ed68eba71, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    aCLCompressionLevel: 3
+    aCLCurvePrecision: 0.01
+    aCLFastSampleMode: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+    tuanjieGIEnable: 0
+    tuanjieGIGenSDFFactor: 1
+    tuanjieGIGenSDFBias: 0.25
+    tuanjieGIDoubleSidedMode: 0
+    tuanjieGIGenFacetNums: 12
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    totalVerticesCount: 227713
+    totalTrianglesCount: 192809
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  virtualGeometry:
+    virtualGeometry: 0
+    useTransparent: 0
+    setVGForeachMesh: 0
+    isFirstUse: 1
+    virtualGeometrySettings:
+      generateGeometryBuffer: 0
+      surfaceCompensation: 0
+      allMeshUse: 1
+      ignoreSimpleMesh: 0
+      transformScaleState: 0
+      isPossibleOverflow: 0
+      hasBoneData: 0
+      isBoneCountOverflow: 0
+    virtualGeometryPlatformSettings:
+    - serializedVersion: 0
+      overridden: 0
+      ignorePlatformSupport: 0
+      buildTarget: DefaultVirtualGeometryPlatform
+      positionPrecision: -2147483648
+      normalPrecision: -2147483648
+      tangentPrecision: -2147483648
+      boneWeightPrecision: -2147483648
+      detailedTriangleCount: 0
+      detailedVertexCount: 0
+      rootPageSize: 0
+      streamablePageSize: 0
+      reserveTrianglePercent: 100
+      reserveDetailLevel: 0
+    - serializedVersion: 0
+      overridden: 0
+      ignorePlatformSupport: 0
+      buildTarget: Standalone
+      positionPrecision: -2147483648
+      normalPrecision: -2147483648
+      tangentPrecision: -2147483648
+      boneWeightPrecision: -2147483648
+      detailedTriangleCount: 0
+      detailedVertexCount: 0
+      rootPageSize: 0
+      streamablePageSize: 0
+      reserveTrianglePercent: 100
+      reserveDetailLevel: 0
+    - serializedVersion: 0
+      overridden: 0
+      ignorePlatformSupport: 0
+      buildTarget: iPhone
+      positionPrecision: -2147483648
+      normalPrecision: -2147483648
+      tangentPrecision: -2147483648
+      boneWeightPrecision: -2147483648
+      detailedTriangleCount: 0
+      detailedVertexCount: 0
+      rootPageSize: 0
+      streamablePageSize: 0
+      reserveTrianglePercent: 100
+      reserveDetailLevel: 0
+    - serializedVersion: 0
+      overridden: 0
+      ignorePlatformSupport: 0
+      buildTarget: Android
+      positionPrecision: -2147483648
+      normalPrecision: -2147483648
+      tangentPrecision: -2147483648
+      boneWeightPrecision: -2147483648
+      detailedTriangleCount: 0
+      detailedVertexCount: 0
+      rootPageSize: 0
+      streamablePageSize: 0
+      reserveTrianglePercent: 100
+      reserveDetailLevel: 0
+    selectedVGMeshes:
+    - index: 0
+      meshName: RandomPlay_mesh
+      lodLevel: 0
+      meshGeometryBuffer: 0
+    supportVGMeshes:
+    - index: 0
+      meshName: RandomPlay_mesh
+      lodLevel: 0
+      meshGeometryBuffer: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  overrideDefaultPose: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    namedPoseList:
+    - name: Default
+      skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    defaultPoseIndex: -1
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
