@@ -1,68 +1,123 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody rb;
+    Transform playerTransform;
+
     public Animator anim;
-    public CinemachineFreeLook mainCamera;
+    public CharacterController controller;
+    public Transform mainCamera;
 
     public float speed;
-    public float turnSpeed;
     public Vector3 direction;
 
-    float horizontal;
-    float vertical;
+    Vector2 moveInput;
+    bool isRunning;
+    bool isAiming;
+
+    float gravity = -9.8f;
+    float verticalVelocity;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        playerTransform = transform;
         anim = GetComponent<Animator>();
-        mainCamera = FindObjectOfType<CinemachineFreeLook>();
+        controller = GetComponent<CharacterController>();
+        mainCamera = Camera.main.transform;
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
     {
-        PlayerInput();    //检测玩家输入；
 
-        anim.SetFloat("Forward", vertical);
-        anim.SetFloat("Right", horizontal);
-        Quaternion findir = Quaternion.Euler(0, mainCamera.m_XAxis.Value, 0);
-
-        direction = findir * Vector3.right * horizontal + findir * Vector3.forward * vertical;
-        direction.Normalize();
-
+        SwitchPlayerStats();
+        PlayerDirection();
+        CaculateGravity();
+        SetAnimtor();
     }
 
-    private void FixedUpdate()
+    public void GetMoveInput(InputAction.CallbackContext action)
     {
+        moveInput = action.ReadValue<Vector2>();
+    }
 
-        if (horizontal == 0 && vertical == 0)
+    public void GetRunInput(InputAction.CallbackContext action)
+    {
+        isRunning = action.ReadValueAsButton();
+    }
+
+    public void GetAimInput(InputAction.CallbackContext action)
+    {
+        isAiming = action.ReadValueAsButton();
+    }
+
+    void SwitchPlayerStats()
+    {
+        if(moveInput.magnitude == 0)
         {
-            rb.velocity = Vector3.zero;
+            anim.SetFloat("TurnSpeed", 0, 0.2f, Time.deltaTime);
+        }
+        else if (!isRunning)
+        {
+            anim.SetFloat("TurnSpeed", 2, 0.2f, Time.deltaTime);
         }
         else
         {
-            rb.velocity = direction * speed;
-
-            Vector3 finDir = new Vector3(transform.rotation.x, mainCamera.m_XAxis.Value, transform.rotation.z);   //行走时触发转身，平常移动不触发；
-
-            if (Mathf.Abs(transform.rotation.y - mainCamera.m_XAxis.Value) >= 1)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(finDir), turnSpeed);
-            }
+            anim.SetFloat("TurnSpeed", 5, 0.2f, Time.deltaTime);
         }
 
     }
 
 
     /// <summary>
-    /// 检测玩家输入；
+    /// 更改输入向量值为本地化向量
     /// </summary>
-    void PlayerInput()
+    void PlayerDirection()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        Vector3 cameraDir = new Vector3(mainCamera.forward.x, 0, mainCamera.forward.z).normalized;
+
+        direction = (cameraDir * moveInput.y + mainCamera.right * moveInput.x).normalized;    //保证角色沿摄像机方向前进；
+        direction = playerTransform.InverseTransformVector(direction);
+
+    }
+
+
+    void SetAnimtor()
+    {
+
+        float rad = Mathf.Atan2(direction.x, direction.z);
+
+        anim.SetFloat("Turn", rad, 0.1f, Time.deltaTime);
+
+        if(Mathf.Abs(rad) > 0.01f)
+        {
+            playerTransform.Rotate(0, rad * 200 * Time.deltaTime, 0);
+        }
+
+    }
+
+    void CaculateGravity()
+    {
+        if (controller.isGrounded)
+        {
+            verticalVelocity = gravity * Time.deltaTime;
+            return;
+        }
+        else
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+
+    }
+
+    private void OnAnimatorMove()
+    {
+        Vector3 playerDeltaPosition = anim.deltaPosition;
+        playerDeltaPosition.y = verticalVelocity * Time.deltaTime;
+        controller.Move(playerDeltaPosition);
     }
 
 
