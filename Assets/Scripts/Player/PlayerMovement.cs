@@ -10,13 +10,14 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public Transform mainCamera;
 
-    public float speed;
-    public Vector3 direction;
+    public Vector3 targetDirection;   //记忆值，角色会永远朝向这个方向，
+    public Vector3 inputDirection;     //当前值，不键入方向时为零；
 
     Vector2 moveInput;
     bool isRunning;
     bool isAiming;
 
+    float currentTurnSpeed = 0;     //当前速度；
     float gravity = -9.8f;
     float verticalVelocity;
 
@@ -27,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         mainCamera = Camera.main.transform;
 
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -56,19 +57,19 @@ public class PlayerMovement : MonoBehaviour
 
     void SwitchPlayerStats()
     {
-        if(moveInput.magnitude == 0)
-        {
-            anim.SetFloat("TurnSpeed", 0, 0.2f, Time.deltaTime);
-        }
-        else if (!isRunning)
-        {
-            anim.SetFloat("TurnSpeed", 2, 0.2f, Time.deltaTime);
-        }
-        else
-        {
-            anim.SetFloat("TurnSpeed", 5, 0.2f, Time.deltaTime);
-        }
+        float turnSpeed;
 
+
+        if (moveInput.sqrMagnitude < 0.01f)
+            turnSpeed = 0;
+        else if (!isRunning)
+            turnSpeed = 2;
+        else
+            turnSpeed = 5;
+
+        currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, turnSpeed, 10 * Time.deltaTime);
+
+        anim.SetFloat("TurnSpeed", currentTurnSpeed);
     }
 
 
@@ -78,40 +79,40 @@ public class PlayerMovement : MonoBehaviour
     void PlayerDirection()
     {
         Vector3 cameraDir = new Vector3(mainCamera.forward.x, 0, mainCamera.forward.z).normalized;
+        Vector3 cameraRight = new Vector3(mainCamera.right.x, 0, mainCamera.right.z).normalized;
 
-        direction = (cameraDir * moveInput.y + mainCamera.right * moveInput.x).normalized;    //保证角色沿摄像机方向前进；
-        direction = playerTransform.InverseTransformVector(direction);
+        inputDirection = (cameraDir * moveInput.y + cameraRight * moveInput.x).normalized;    //保证角色沿摄像机方向前进；
 
     }
 
 
     void SetAnimtor()
     {
+        if (inputDirection != Vector3.zero)
+            targetDirection = inputDirection;        //input direction不为零时更新，确保不会被归零；
+        else return;
 
-        float rad = Mathf.Atan2(direction.x, direction.z);
+        if (targetDirection == Vector3.zero)         //转向是零是返回；
+            return;
+
+        Quaternion finTarget = Quaternion.LookRotation(targetDirection, Vector3.up);
+
+        Vector3 playerDirection = playerTransform.InverseTransformVector(targetDirection);
+
+        float rad = Mathf.Atan2(playerDirection.x, playerDirection.z);
 
         anim.SetFloat("Turn", rad, 0.1f, Time.deltaTime);
 
-        if(Mathf.Abs(rad) > 0.01f)
+        if (Mathf.Abs(rad) > 0.1f)
         {
-            playerTransform.Rotate(0, rad * 200 * Time.deltaTime, 0);
+            playerTransform.rotation = Quaternion.RotateTowards(playerTransform.rotation, finTarget, 240 * Time.deltaTime);
+
         }
+
 
     }
 
-    void CaculateGravity()
-    {
-        if (controller.isGrounded)
-        {
-            verticalVelocity = gravity * Time.deltaTime;
-            return;
-        }
-        else
-        {
-            verticalVelocity += gravity * Time.deltaTime;
-        }
 
-    }
 
     private void OnAnimatorMove()
     {
@@ -120,5 +121,18 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(playerDeltaPosition);
     }
 
+    void CaculateGravity()
+    {
+        if (controller.isGrounded)
+        {
+            verticalVelocity = 0;
+            return;
+        }
+        else
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+
+    }
 
 }
