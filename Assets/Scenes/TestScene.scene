@@ -17355,6 +17355,52 @@ Transform:
   - {fileID: 804702124}
   m_Father: {fileID: 1390038845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1432651284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 7
+  m_Component:
+  - component: {fileID: 1432651285}
+  - component: {fileID: 1432651286}
+  m_Layer: 0
+  m_HasEditorInfo: 1
+  m_Name: PlayerInteracte
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1432651285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432651284}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.9790834, z: -0, w: 0.20345947}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 543450651587348874}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1432651286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432651284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48585c2bcd3639a4b97ef3ab0df0e208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionIcon: {fileID: 1303961811}
 --- !u!1 &1479663353
 GameObject:
   m_ObjectHideFlags: 0
@@ -19533,13 +19579,14 @@ Transform:
   m_GameObject: {fileID: 919132147919475504}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9790834, z: -0, w: 0.20345947}
-  m_LocalPosition: {x: -0.0109426975, y: 0.173, z: -2.6299639}
+  m_LocalPosition: {x: -0.010942936, y: 0.17299998, z: -2.6299639}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1432651285}
+  - {fileID: 114081935}
   - {fileID: 8879528568568830228}
   - {fileID: 4167280743224140891}
-  - {fileID: 114081935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 156.521, z: 0}
 --- !u!4 &549548860774823174
@@ -20202,6 +20249,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8020d9ee-4942-4541-9a34-b2ba3c7f508f
     m_ActionName: Player/Aiming[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1432651286}
+        m_TargetAssemblyTypeName: PlayerInterctable, Assembly-CSharp
+        m_MethodName: TryInteractable
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b5fd6a4d-5462-48b2-9fe7-19588233120a
+    m_ActionName: Player/Interacte[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&mouse
   m_DefaultActionMap: Player

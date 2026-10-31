@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     bool isAiming;
 
     float currentTurnSpeed = 0;     //当前速度；
-    float gravity = -9.8f;
+    readonly float gravity = -9.8f;
     float verticalVelocity;
 
     private void Start()
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         else
             turnSpeed = 5;
 
-        currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, turnSpeed, 10 * Time.deltaTime);
+        currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, turnSpeed, 8 * Time.deltaTime);
 
         anim.SetFloat("TurnSpeed", currentTurnSpeed);
     }
@@ -118,7 +118,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 playerDeltaPosition = anim.deltaPosition;
         playerDeltaPosition.y = verticalVelocity * Time.deltaTime;
-        controller.Move(playerDeltaPosition);
+
+        if(currentTurnSpeed > 0)
+            controller.Move(playerDeltaPosition);
     }
 
     void CaculateGravity()
