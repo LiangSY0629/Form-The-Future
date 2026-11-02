@@ -11,4 +11,16 @@ public class NpcInteracte : MonoBehaviour,IDialogueNPC
     {
         return NpcName;
     }
+
+    public bool CanDialogue()
+    {
+        if(MissioneManager.Instance != null)
+        {
+            if (MissioneManager.Instance.HaveMission(NpcName))
+                return true;
+        }
+
+        return false;
+    }
+
 }

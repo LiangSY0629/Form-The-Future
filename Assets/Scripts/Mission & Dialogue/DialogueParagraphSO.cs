@@ -8,15 +8,15 @@ using UnityEngine;
 public class DialogueParagraphSO : ScriptableObject
 {
     public string paragraphID;
-    public List<DialogueLine> dialogueParagraph;
-    public bool isChoose;
+    public List<DialogueLine> dialogueLines;
+
     public List<DialogueChoose> dialogueChooses;
 
 }
 
 [Serializable]
-public struct DialogueChoose
+public class DialogueChoose
 {
     public string chooseText;
-    public int nextID;
+    public string nextID;
 }

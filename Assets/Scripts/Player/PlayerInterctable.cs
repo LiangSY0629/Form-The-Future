@@ -20,22 +20,26 @@ public class PlayerInterctable : MonoBehaviour
     {
         if (action.performed)
         {
-            Debug.Log("yes");
             currentInterction?.Interactable();
-            if (currentNPC != null && DialogueManager.Instance != null)
-                DialogueManager.Instance.SetDialogue(currentNPC.DialogueNPC());
+            if (currentNPC != null && MissioneManager.Instance != null)
+            {
+                MissioneManager.Instance.SetDialogue(currentNPC.DialogueNPC());
+                interactionIcon.SetActive(false);
+            }
+                
         }
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.TryGetComponent(out IInteractable interctable) && interctable.CanInteracte())
         {
             currentInterction = interctable;
             interactionIcon.SetActive(true);
         }
-        else if(other.TryGetComponent(out IDialogueNPC dialogueNPC))
+        else if(other.TryGetComponent(out IDialogueNPC dialogueNPC) && dialogueNPC.CanDialogue())
         {
             currentNPC = dialogueNPC;
             interactionIcon.SetActive(true);
@@ -50,7 +54,7 @@ public class PlayerInterctable : MonoBehaviour
             currentInterction = null;
             interactionIcon.SetActive(false);
         }
-        else if(other.TryGetComponent(out IDialogueNPC _))
+        else if(other.TryGetComponent(out IDialogueNPC npc) && currentNPC == npc)
         {
             currentNPC = null;
             interactionIcon.SetActive(false);
