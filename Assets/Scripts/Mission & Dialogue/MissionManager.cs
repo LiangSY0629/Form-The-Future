@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Unity.VisualScripting;
+using Unity.Collections;
 using UnityEngine;
 
 public class MissioneManager : MonoBehaviour
@@ -11,11 +8,17 @@ public class MissioneManager : MonoBehaviour
 
     public DialogueViewController[] dialogueView;  //拖入Dialogue View Controller的子类；
 
-    public List<string> currentMission;   //存储所有已解锁的任务；
+    [HideInInspector]public List<string> currentMission;   //存储所有已解锁的任务；
 
+    [Header("拖入所有的任务")]
     public List<MissionSO> MissionSos;    //存储所有任务的SO；
-
     public Dictionary<string, MissionRunTime> missionDictionary;    //根据任务ID查询当前任务状态；
+
+    [Header("设置一些相关的信息")]
+    public Color fadeColor;
+    public float fadeTime;
+
+    [HideInInspector] public bool isInFade = false;
 
     DialogueSession currentSession;
 
@@ -170,61 +173,81 @@ public class MissioneManager : MonoBehaviour
     public void NextLine()
     {
 
-        if(currentSession.lineIndex + 1 < currentSession.paragraph.dialogueLines.Count)                     //判断有没有下一句；
+        //先判断还剩多少句，如果只剩一句，就播放最后一句的同时显示选项；如果没有选项可供显示，那么将会在下一次点击关闭该对话组；
+        if (currentSession.lineIndex + 2 <= currentSession.paragraph.dialogueLines.Count)
         {
+        
             currentSession.lineIndex++;
             currentSession.view.SetLine(currentSession.line);
+
+            if (currentSession.lineIndex + 1 > currentSession.paragraph.dialogueChooses.Count)
+            {
+                if (currentSession.paragraph.dialogueChooses.Count > 0)                                       //判断有没有选项，有就显示选项；
+                {
+                    IReadOnlyList<DialogueChoose> chooses = currentSession.paragraph.dialogueChooses;
+                    currentSession.view.SetChoose(chooses);
+                }
+
+            }
+
         }
-        else                                                                                              //没有就准备切换对话段；
+        else
         {
-            if (currentSession.paragraph.dialogueChooses.Count > 0)                                       //判断有没有选项，有就显示选项；
-            {
-                IReadOnlyList<DialogueChoose> chooses = currentSession.paragraph.dialogueChooses;
-                currentSession.view.SetChoose(chooses);
-            }
-            else
-            {
+            if (currentSession.paragraph.dialogueChooses.Count <= 0)
+                OnGroupEnd();
+        }
+        
 
-                if(currentSession.missionRun.groupIndex + 1 < currentSession.missionRun.mission.groupSOs.Count)       //不会超出索引再加；
-                {
-                    currentSession.missionRun.groupIndex++;
-                }
-                else
-                {
-                    currentSession.view.Close();
-                    currentSession.missionRun.complete = true;
-                    currentMission.Remove(currentSession.missionRun.missionID);
+    }
 
-                    currentSession = null;
-                    return;
-                }
+    /// <summary>
+    /// 对话组结束时调用，判断该不该接下一对话组，额外附加淡入淡出效果；
+    /// </summary>
+    public async void OnGroupEnd()
+    {
+        isInFade = true;
 
-                if (currentSession.group.isContinuous)             //如果当前对话组是连续的，就连续播放下一对话组；
-                {
-                    currentSession.view.Close();
+        await SceneFade.Instance.FadeIn(fadeColor, fadeTime);
 
-                    //更新session的数据，开始下一段；
-                    currentSession.view = GetView(currentSession.group);
-                    currentSession.group = currentSession.missionRun.Group;
-                    currentSession.paragraphIndex = 0;
-                    currentSession.lineIndex = 0;
+        if (currentSession.missionRun.groupIndex + 1 < currentSession.missionRun.mission.groupSOs.Count)       //不会超出索引再加；
+        {
+            currentSession.missionRun.groupIndex++;
+        }
+        else
+        {
 
-                    currentSession.view.OpenView();
-                    currentSession.view.SetLine(currentSession.line);
-                    return;
-                }
-                else
-                {
-                    currentSession.view.Close();
-                    currentSession = null;
-                    return;
-                }
+            currentSession.view.Close();
+            currentSession.missionRun.complete = true;
+            currentMission.Remove(currentSession.missionRun.missionID);
 
-            }
-                
+            currentSession = null;
 
+            await SceneFade.Instance.FadeOut(fadeColor, fadeTime);
+            return;
         }
 
+        if (currentSession.group.isContinuous)             //如果当前对话组是连续的，就连续播放下一对话组；
+        {
+            currentSession.view.Close();
+
+            //更新session的数据，开始下一段；
+            currentSession.view = GetView(currentSession.group);
+            currentSession.group = currentSession.missionRun.Group;
+            currentSession.paragraphIndex = 0;
+            currentSession.lineIndex = 0;
+
+            currentSession.view.OpenView();
+            currentSession.view.SetLine(currentSession.line);
+        }
+        else
+        {
+            currentSession.view.Close();
+            currentSession = null;
+        }
+
+        await SceneFade.Instance.FadeOut(fadeColor, fadeTime);
+
+        isInFade = false;
 
     }
 

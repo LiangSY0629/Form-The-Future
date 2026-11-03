@@ -49,16 +49,7 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Next",
-                    "type": "Button",
-                    "id": "eba5c0f6-21fd-4238-8a8d-b4ec669d63bf",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -160,17 +151,6 @@
                     "action": "Interacte",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2f2a39b4-ef6a-4dfa-b6ef-abff64bf3f6a",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Next",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -185,7 +165,7 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -193,7 +173,18 @@
                     "name": "",
                     "id": "ed67f9bc-b24b-402b-8a75-1a03eb4acf75",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32983656-459d-4d0b-a2ad-88f5dcfa818c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "",
                     "action": "Next",

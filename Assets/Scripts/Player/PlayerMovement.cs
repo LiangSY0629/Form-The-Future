@@ -10,8 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public Transform mainCamera;
 
-    public Vector3 targetDirection;   //记忆值，角色会永远朝向这个方向，
-    public Vector3 inputDirection;     //当前值，不键入方向时为零；
+    [HideInInspector]public Vector3 targetDirection;   //记忆值，角色会永远朝向这个方向，
+    [HideInInspector]public Vector3 inputDirection;     //当前值，不键入方向时为零；
 
     Vector2 moveInput;
     bool isRunning;
@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-
+                  
 
 
     private void OnAnimatorMove()

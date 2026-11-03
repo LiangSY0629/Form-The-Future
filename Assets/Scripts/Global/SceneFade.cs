@@ -9,21 +9,20 @@ public class SceneFade : MonoBehaviour
     public static SceneFade Instance;
 
     public CanvasGroup canvas;
-    public float fadeTime;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
     }
 
     private void Start()
     {
-        canvas = GetComponent<CanvasGroup>();
+        canvas = GetComponentInChildren<CanvasGroup>();
     }
 
     /// <summary>
@@ -31,7 +30,7 @@ public class SceneFade : MonoBehaviour
     /// </summary>
     /// <param name="alpha"></param>
     /// <returns></returns>
-    async Task Fade(float alpha)
+    async Task Fade(float alpha, float fadeTime)
     {
         float a = canvas.alpha;
 
@@ -51,10 +50,10 @@ public class SceneFade : MonoBehaviour
     /// </summary>
     /// <param name="color"></param>
     /// <returns></returns>
-    public async Task FadeIn(Color color)
+    public async Task FadeIn(Color color, float t)
     {
         canvas.GetComponent<Image>().color = color;
-        await Fade(1);
+        await Fade(1, t);
     }
 
 
@@ -63,10 +62,10 @@ public class SceneFade : MonoBehaviour
     /// </summary>
     /// <param name="color"></param>
     /// <returns></returns>
-    public async Task FadeOut(Color color)
+    public async Task FadeOut(Color color, float t)
     {
         canvas.GetComponent<Image>().color = color;
-        await Fade(0);
+        await Fade(0, t);
     }
 
 

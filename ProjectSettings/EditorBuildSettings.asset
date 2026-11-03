@@ -9,7 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HouseScene.scene
     guid: 99c9720ab356a0642a771bea13969a05
   m_BuildProfiles: []
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 034955650caad1d4fafe6fa172af8802,
+      type: 3}
   m_SlimFeaturesWeixinMiniGame:
     ACLDecompression: 0
     AllocateOverhead: 1

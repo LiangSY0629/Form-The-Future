@@ -1,28 +1,42 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class DialoguePanelView : DialogueViewController
 {
+    public PlayerInput playerInput;
+
     public GameObject dialoguePanel;
     public Transform chooseTransform;
     public GameObject dialogueChoose;
 
     public TMP_Text dialogueName, dialogueText;
 
+    bool isChoose = false;
+    bool isSpeaking = false;
+    string currentLine;
+
+    Coroutine coroutine;
+
     public override void OpenView()
     {
         dialoguePanel.SetActive(true);
+        playerInput.SwitchCurrentActionMap("UI");
     }
 
 
     public override void SetLine(DialogueLine line)
     {
         dialogueName.text = line.dialogueName;
-        dialogueText.text = line.dialogueText;
+        //dialogueText.text = line.dialogueText;
+        currentLine = line.dialogueText;
+
+        coroutine = StartCoroutine(SetLetter());
 
     }
 
@@ -34,18 +48,42 @@ public class DialoguePanelView : DialogueViewController
             choose.GetComponentInChildren<TMP_Text>().text = chooses[i].chooseText;
             string targetID = chooses[i].nextID;
             choose.GetComponent<Button>().onClick.AddListener(() => OnPressedChoose(targetID));
+            choose.SetActive(false);
         }
+
+        isChoose = true;
     }
 
     public override void Close()
     {
         dialoguePanel.SetActive(false);
+        playerInput.SwitchCurrentActionMap("Player");
     }
 
 
     public override void InputNextLine(InputAction.CallbackContext action)
     {
-        if (action.performed)
+        if (action.performed && isSpeaking)
+        {
+            isSpeaking = false;
+            StopCoroutine(coroutine);
+
+            dialogueText.text = currentLine;
+
+            if (isChoose)
+            {
+                foreach (Transform transform in chooseTransform)
+                {
+                    transform.gameObject.SetActive(true);
+                }
+
+            }
+
+            return;
+        }
+
+
+        if (action.performed && dialoguePanel.activeSelf && !MissioneManager.Instance.isInFade && !isChoose)
         {
             Debug.Log("next");
             MissioneManager.Instance.NextLine();
@@ -60,8 +98,41 @@ public class DialoguePanelView : DialogueViewController
             Destroy(choose.gameObject);
         }
 
+        isChoose = false;
+
         MissioneManager.Instance.GoToParagraph(paragraphID);
 
     }
+
+
+    /// <summary>
+    /// 传入line，逐字显示文本；
+    /// </summary>
+    /// <param name="line"></param>
+    /// <returns></returns>
+    private IEnumerator  SetLetter()
+    {
+        isSpeaking = true;
+        dialogueText.text = "";
+
+        foreach(char letter in currentLine)
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(0.03f);
+        }
+
+        if (isChoose)
+        {
+            foreach (Transform transform in chooseTransform)
+            {
+                transform.gameObject.SetActive(true);
+            }
+
+        }
+
+        isSpeaking = false;
+    }
+
+
 
 }
