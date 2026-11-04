@@ -31,6 +31,12 @@ public interface IDialogueNPC
     /// <returns></returns>
     bool CanDialogue();
 
+    /// <summary>
+    /// 获取到npc的闲聊；
+    /// </summary>
+    /// <returns></returns>
+    DialogueGroupSO DailyDialogue();
+
 }
 
 

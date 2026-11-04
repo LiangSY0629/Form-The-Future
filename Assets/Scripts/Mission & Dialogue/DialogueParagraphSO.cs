@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -18,5 +17,6 @@ public class DialogueParagraphSO : ScriptableObject
 public class DialogueChoose
 {
     public string chooseText;
+    public ChooseTypes chooseType;
     public string nextID;
 }

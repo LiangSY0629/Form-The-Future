@@ -21,4 +21,16 @@ public class EventManager : MonoBehaviour
         OnPauseGame?.Invoke(isPause);
     }
 
+    public static event Action<int> OnSwitchDaily;              //切换闲聊事件；
+
+    /// <summary>
+    /// 切换日常闲聊对话；
+    /// </summary>
+    /// <param name="index"></param>
+    public static void OnTriggerSwitchDaily(int index)
+    {
+        OnSwitchDaily?.Invoke(index);
+    }
+
+
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "New DialogueGroup", menuName = "Mission/New Dialogue Group")]
 public class DialogueGroupSO : ScriptableObject
 {
-    //public int ID;
+    public string groupID;
     public string triggerNpcID;
     public List<DialogueParagraphSO> paragrapgSos;
 

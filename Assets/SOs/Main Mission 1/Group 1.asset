@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7127162f65c0014fa333c87f292a60d, type: 3}
   m_Name: Group 1
   m_EditorClassIdentifier: 
+  groupID: main_1
   triggerNpcID: "\u5927\u80A5\u9C7C"
   paragrapgSos:
   - {fileID: 11400000, guid: 4c378579b447abe488bc4a3830889693, type: 2}
   - {fileID: 11400000, guid: bf4d53c8063210743a6ec9f620384e94, type: 2}
+  isSubtitle: 0
+  isContinuous: 0

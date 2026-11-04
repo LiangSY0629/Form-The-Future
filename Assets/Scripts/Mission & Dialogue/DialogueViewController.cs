@@ -44,7 +44,8 @@ public abstract class DialogueViewController : MonoBehaviour
     /// <summary>
     /// 按下选项，跳转到对应段落并删除所有的选项game object；
     /// </summary>
+    /// <param name="type"></param>
     /// <param name="paragraphID"></param>
-    public abstract void OnPressedChoose(string paragraphID);
+    public abstract void OnPressedChoose(ChooseTypes type, string paragraphID);
 
 }

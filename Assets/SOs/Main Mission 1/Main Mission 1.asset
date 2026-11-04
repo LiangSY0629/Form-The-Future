@@ -16,3 +16,4 @@ MonoBehaviour:
   missionType: 0
   groupSOs:
   - {fileID: 11400000, guid: e306bbae4241ae54eb9e3aa66cffaddb, type: 2}
+  - {fileID: 11400000, guid: f3bad793c78eec44082339922a69c5f4, type: 2}

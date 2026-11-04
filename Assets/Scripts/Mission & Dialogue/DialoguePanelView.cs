@@ -46,8 +46,11 @@ public class DialoguePanelView : DialogueViewController
         {
             GameObject choose = Instantiate(dialogueChoose, chooseTransform);
             choose.GetComponentInChildren<TMP_Text>().text = chooses[i].chooseText;
+
             string targetID = chooses[i].nextID;
-            choose.GetComponent<Button>().onClick.AddListener(() => OnPressedChoose(targetID));
+            ChooseTypes type = chooses[i].chooseType;
+
+            choose.GetComponent<Button>().onClick.AddListener(() => OnPressedChoose(type, targetID));
             choose.SetActive(false);
         }
 
@@ -90,7 +93,7 @@ public class DialoguePanelView : DialogueViewController
         }
     }
 
-    public override void OnPressedChoose(string paragraphID)
+    public override void OnPressedChoose(ChooseTypes type, string targetID)
     {
         foreach (Transform choose in chooseTransform)
         {
@@ -100,7 +103,16 @@ public class DialoguePanelView : DialogueViewController
 
         isChoose = false;
 
-        MissioneManager.Instance.GoToParagraph(paragraphID);
+        switch (type)
+        {
+            case ChooseTypes.Mission : MissioneManager.Instance.GoToMission(targetID);
+                break;
+            case ChooseTypes.Group : MissioneManager.Instance.GoToGroup(targetID);
+                break;
+            case ChooseTypes.Paragraph : MissioneManager.Instance.GoToParagraph(targetID);
+                break;
+        }
+
 
     }
 

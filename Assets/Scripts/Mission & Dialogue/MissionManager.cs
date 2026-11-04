@@ -110,6 +110,27 @@ public class MissioneManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 传入ID判断有没有跟这个npc相关的任务；
+    /// </summary>
+    /// <param name="NpcID"></param>
+    /// <returns></returns>
+    public bool HaveMission(string NpcID)
+    {
+        if (currentSession != null)
+            return false;
+
+        //遍历已解锁的任务，如果没找到对应的任务，就返回false，找到则返回true；
+        foreach (string ID in currentMission)
+        {
+            if (missionDictionary[ID].TriggerNpcID == NpcID)
+                return true;
+        }
+
+        return false;
+    }
+
+
 
     /// <summary>
     /// 传入当前的NpcID显示对应任务的对话，
@@ -121,6 +142,7 @@ public class MissioneManager : MonoBehaviour
 
         foreach (string ID in currentMission)
         {
+            Debug.Log(ID);
             if (missionDictionary[ID].TriggerNpcID == NpcID)       //从前往后找，找到匹配的就终止，后续改为用list全部显示；
             {
                 currentID = ID;
@@ -147,11 +169,15 @@ public class MissioneManager : MonoBehaviour
 
         currentSession = session;
 
-        session.view.OpenView();
-        session.view.SetLine(session.line);
+        currentSession.view.OpenView();
+        SetLine();
 
     }
 
+    public void SetDailyDialogue(DialogueGroupSO group)
+    {
+
+    }
 
     /// <summary>
     /// 获取传入对话组对应的View;
@@ -168,6 +194,25 @@ public class MissioneManager : MonoBehaviour
 
 
     /// <summary>
+    /// 调用函数判断该不该显示选项，还是只显示对话；（防止出现对话段出现只有一句对话但无法及时显示选项）
+    /// </summary>
+    public void SetLine()
+    {
+        currentSession.view.SetLine(currentSession.line);
+
+        if (currentSession.lineIndex + 1 > currentSession.paragraph.dialogueChooses.Count)
+        {
+            if (currentSession.paragraph.dialogueChooses.Count > 0)                                       //判断有没有选项，有就显示选项；
+            {
+                IReadOnlyList<DialogueChoose> chooses = currentSession.paragraph.dialogueChooses;
+                currentSession.view.SetChoose(chooses);
+            }
+
+        }
+    }
+
+
+    /// <summary>
     /// 切换下一句，如果没有下一句，显示选项，如果没有下一句也没有选项，关闭对话；
     /// </summary>
     public void NextLine()
@@ -178,18 +223,7 @@ public class MissioneManager : MonoBehaviour
         {
         
             currentSession.lineIndex++;
-            currentSession.view.SetLine(currentSession.line);
-
-            if (currentSession.lineIndex + 1 > currentSession.paragraph.dialogueChooses.Count)
-            {
-                if (currentSession.paragraph.dialogueChooses.Count > 0)                                       //判断有没有选项，有就显示选项；
-                {
-                    IReadOnlyList<DialogueChoose> chooses = currentSession.paragraph.dialogueChooses;
-                    currentSession.view.SetChoose(chooses);
-                }
-
-            }
-
+            SetLine();
         }
         else
         {
@@ -197,8 +231,8 @@ public class MissioneManager : MonoBehaviour
                 OnGroupEnd();
         }
         
-
     }
+
 
     /// <summary>
     /// 对话组结束时调用，判断该不该接下一对话组，额外附加淡入淡出效果；
@@ -223,6 +257,7 @@ public class MissioneManager : MonoBehaviour
             currentSession = null;
 
             await SceneFade.Instance.FadeOut(fadeColor, fadeTime);
+            isInFade = false;
             return;
         }
 
@@ -237,7 +272,7 @@ public class MissioneManager : MonoBehaviour
             currentSession.lineIndex = 0;
 
             currentSession.view.OpenView();
-            currentSession.view.SetLine(currentSession.line);
+            SetLine();
         }
         else
         {
@@ -269,30 +304,56 @@ public class MissioneManager : MonoBehaviour
 
         }
 
-        currentSession.view.SetLine(currentSession.line);
+        SetLine();
+
+    }
+
+    /// <summary>
+    /// 传入对话组的ID，跳转到对应组；
+    /// </summary>
+    /// <param name="groupID"></param>
+    public void GoToGroup(string groupID)
+    {
+        for(int i = 0;i < currentSession.missionRun.mission.groupSOs.Count; i++)
+        {
+            if (currentSession.missionRun.mission.groupSOs[i].groupID == groupID)
+            {
+                currentSession.missionRun.groupIndex = i;
+                currentSession.group = currentSession.missionRun.Group;
+                currentSession.paragraphIndex = 0;
+                currentSession.lineIndex = 0;
+                break;
+            }
+        }
+
+        SetLine();
 
     }
 
 
     /// <summary>
-    /// 传入ID判断有没有跟这个npc相关的任务；
+    /// 传入任务的ID，跳转到对应的任务组；
     /// </summary>
-    /// <param name="NpcID"></param>
-    /// <returns></returns>
-    public bool HaveMission(string NpcID)
+    /// <param name="missionID"></param>
+    public void GoToMission(string missionID)
     {
-        if (currentSession != null)
-            return false;
-
-        //遍历已解锁的任务，如果没找到对应的任务，就返回false，找到则返回true；
-        foreach(string ID in currentMission)
+        if (!missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun))
         {
-            if (missionDictionary[ID].TriggerNpcID == NpcID)
-                return true;
+            currentSession.view.Close();
+            return;
         }
 
-        return false;
+
+        currentSession.missionRun = missionRun;
+        currentSession.group = missionRun.Group;
+        currentSession.paragraphIndex = 0;
+        currentSession.lineIndex = 0;
+        currentSession.view = GetView(currentSession.group);
+
+        SetLine();
+
     }
+
 
 
     /// <summary>
