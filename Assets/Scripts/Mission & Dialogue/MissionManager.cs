@@ -21,6 +21,7 @@ public class MissioneManager : MonoBehaviour
     [HideInInspector] public bool isInFade = false;
 
     DialogueSession currentSession;
+    readonly List<DialogueChoose> dailyChoose = new();
 
     /// <summary>
     /// 创建任务的运行状态；
@@ -44,7 +45,7 @@ public class MissioneManager : MonoBehaviour
         public DialogueViewController view;
 
         public MissionRunTime missionRun;
-        public DialogueGroupSO group;
+        public DialogueGroupSO group => missionRun.Group;
         public DialogueParagraphSO paragraph => group.paragrapgSos[paragraphIndex];
         public DialogueLine line => paragraph.dialogueLines[lineIndex];
 
@@ -133,27 +134,68 @@ public class MissioneManager : MonoBehaviour
 
 
     /// <summary>
-    /// 传入当前的NpcID显示对应任务的对话，
+    /// 传入日常对话，显示传入的日常对话；
     /// </summary>
-    /// <param name="NpcID"></param>
-    public void SetDialogue(string NpcID)
+    /// <param name="daily"></param>
+    public void SetDailyDialogue(MissionSO daily, string npcID)
     {
         string currentID = "";
 
-        foreach (string ID in currentMission)
+        //判断传入的daily是不是null，daily的type是不是daily；
+        if (daily != null && daily.missionType == MissionTypes.Daily)
         {
-            Debug.Log(ID);
-            if (missionDictionary[ID].TriggerNpcID == NpcID)       //从前往后找，找到匹配的就终止，后续改为用list全部显示；
+
+            Debug.Log("daily");
+            currentID = daily.missionID;
+
+            dailyChoose.Clear();
+
+            //遍历所有的已解锁任务，如果有就把这个当作选项；
+            foreach(string ID in currentMission)
             {
-                currentID = ID;
-                break;
+                if (missionDictionary[ID].TriggerNpcID == npcID)
+                {
+                    DialogueChoose choose = new()
+                    {
+                        chooseText = ID,
+                        chooseType = ChooseTypes.Mission,
+                        nextID = ID,
+                    };
+
+                    dailyChoose.Add(choose);
+                }
+            }
+
+        }
+        else
+        {
+            foreach (string ID in currentMission)
+            {
+                Debug.Log(ID);
+                if (missionDictionary[ID].TriggerNpcID == npcID)       //从前往后找，找到匹配的就终止，后续改为用list全部显示；
+                {
+                    currentID = ID;
+                    break;
+                }
+
             }
 
         }
 
-        //判断是否可以正常获取到Runtime，防止出错；
-        if (!missionDictionary.TryGetValue(currentID, out MissionRunTime missionRun))
-            return;
+        MissionRunTime missionRun;
+
+        //判断有没有这个任务的运行状态，防止出错；
+        if (missionDictionary.ContainsKey(currentID))       
+            missionRun = missionDictionary[currentID];
+        else
+            missionRun = new()
+            {
+                missionID = daily.missionID,
+                mission = daily,
+                groupIndex = 0,
+                complete = false,
+            };
+
 
         DialogueViewController view = GetView(missionRun.Group);
 
@@ -161,21 +203,14 @@ public class MissioneManager : MonoBehaviour
         {
             view = view,
             missionRun = missionRun,
-            group = missionRun.Group,
-            paragraphIndex = 0,
             lineIndex = 0,
-
+            paragraphIndex = 0,
         };
 
         currentSession = session;
 
         currentSession.view.OpenView();
         SetLine();
-
-    }
-
-    public void SetDailyDialogue(DialogueGroupSO group)
-    {
 
     }
 
@@ -200,11 +235,28 @@ public class MissioneManager : MonoBehaviour
     {
         currentSession.view.SetLine(currentSession.line);
 
-        if (currentSession.lineIndex + 1 > currentSession.paragraph.dialogueChooses.Count)
+        if (currentSession.lineIndex + 1 >= currentSession.paragraph.dialogueLines.Count)
         {
-            if (currentSession.paragraph.dialogueChooses.Count > 0)                                       //判断有没有选项，有就显示选项；
+            List<DialogueChoose> currentChoose = new();
+
+            //判断对话段有没有选项，有就显示；
+            if (currentSession.paragraph.dialogueChooses.Count > 0)
             {
-                IReadOnlyList<DialogueChoose> chooses = currentSession.paragraph.dialogueChooses;
+                //判断当前对话是不是daily对话，且daily Choose不为空；
+                if (currentSession.missionRun.mission.missionType == MissionTypes.Daily && dailyChoose.Count > 0)
+                {
+                    foreach (DialogueChoose choose in dailyChoose)
+                        currentChoose.Add(choose);
+                }
+
+                foreach (DialogueChoose choose in currentSession.paragraph.dialogueChooses)
+                    currentChoose.Add(choose);
+            }
+
+            //判断有没有选项，有就显示选项；
+            if (currentChoose.Count > 0)
+            {
+                IReadOnlyList<DialogueChoose> chooses = currentChoose;
                 currentSession.view.SetChoose(chooses);
             }
 
@@ -267,7 +319,6 @@ public class MissioneManager : MonoBehaviour
 
             //更新session的数据，开始下一段；
             currentSession.view = GetView(currentSession.group);
-            currentSession.group = currentSession.missionRun.Group;
             currentSession.paragraphIndex = 0;
             currentSession.lineIndex = 0;
 
@@ -319,7 +370,6 @@ public class MissioneManager : MonoBehaviour
             if (currentSession.missionRun.mission.groupSOs[i].groupID == groupID)
             {
                 currentSession.missionRun.groupIndex = i;
-                currentSession.group = currentSession.missionRun.Group;
                 currentSession.paragraphIndex = 0;
                 currentSession.lineIndex = 0;
                 break;
@@ -345,7 +395,6 @@ public class MissioneManager : MonoBehaviour
 
 
         currentSession.missionRun = missionRun;
-        currentSession.group = missionRun.Group;
         currentSession.paragraphIndex = 0;
         currentSession.lineIndex = 0;
         currentSession.view = GetView(currentSession.group);

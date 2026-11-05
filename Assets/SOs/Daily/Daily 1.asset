@@ -16,5 +16,6 @@ MonoBehaviour:
   triggerNpcID: "\u5927\u80A5\u9C7C"
   paragrapgSos:
   - {fileID: 11400000, guid: 5c3ea108ca69ccf408f4e840c7b6cb5f, type: 2}
+  - {fileID: 11400000, guid: 736358805724c224baf0d6de0ef1c4fc, type: 2}
   isSubtitle: 0
   isContinuous: 0

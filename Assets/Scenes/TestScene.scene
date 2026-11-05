@@ -13844,8 +13844,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -314, y: 323}
-  m_SizeDelta: {x: 300, y: 260}
+  m_AnchoredPosition: {x: -314, y: 512.75696}
+  m_SizeDelta: {x: 300, y: 597.9079}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &658415466
 MonoBehaviour:
@@ -37116,7 +37116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NpcName: "\u5927\u80A5\u9C7C"
   dailyDialogue:
-  - {fileID: 11400000, guid: fb97f7e5d9ee6424d8d40f4b8b099b71, type: 2}
+  - {fileID: 11400000, guid: a1fd161df43b5fc41ab0771999d8f1c8, type: 2}
   dailyIndex: 0
 --- !u!136 &5866666021836566489
 CapsuleCollider:

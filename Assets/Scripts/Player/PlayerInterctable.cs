@@ -23,12 +23,8 @@ public class PlayerInterctable : MonoBehaviour
             currentInterction?.Interactable();
             if (currentNPC != null && MissioneManager.Instance != null)
             {
-                if(currentNPC.DailyDialogue() != null)
-                {
-                    Debug.Log("Have");
-                    return;
-                }
-                MissioneManager.Instance.SetDialogue(currentNPC.DialogueNPC());
+                MissionSO daily = currentNPC.DailyDialogue();
+                MissioneManager.Instance.SetDailyDialogue(daily, currentNPC.DialogueNPC());
                 interactionIcon.SetActive(false);
             }
                 

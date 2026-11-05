@@ -17,7 +17,13 @@ MonoBehaviour:
   - dialogueName: "\u5927\u80A5\u9C7C"
     dialogueText: "\u6700\u8FD1\u6709\u4EC0\u4E48\u4E8B\u5417\uFF1F"
     dialogueEffects: []
-  dialogueChooses: []
+  - dialogueName: "\u5927\u80A5\u9C7C"
+    dialogueText: "\u4F60\u5F88\u95F2\u5417\uFF1F"
+    dialogueEffects: []
+  dialogueChooses:
+  - chooseText: "\u6CA1\u4E8B"
+    chooseType: 2
+    nextID: 1_2
   references:
     version: 2
     RefIds: []

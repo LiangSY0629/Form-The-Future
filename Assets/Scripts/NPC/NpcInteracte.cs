@@ -8,7 +8,7 @@ public class NpcInteracte : MonoBehaviour,IDialogueNPC
     public string NpcName;
 
     [Header("放入闲聊对话")]
-    public DialogueGroupSO[] dailyDialogue;
+    public MissionSO[] dailyDialogue;
     public int dailyIndex;
 
     private void OnEnable()
@@ -26,7 +26,7 @@ public class NpcInteracte : MonoBehaviour,IDialogueNPC
         return NpcName;
     }
 
-    public DialogueGroupSO DailyDialogue()
+    public MissionSO DailyDialogue()
     {
         if (dailyDialogue.Length > 0 && 0 <= dailyIndex && dailyIndex < dailyDialogue.Length)
         {

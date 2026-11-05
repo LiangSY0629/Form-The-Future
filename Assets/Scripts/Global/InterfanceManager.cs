@@ -35,7 +35,7 @@ public interface IDialogueNPC
     /// 获取到npc的闲聊；
     /// </summary>
     /// <returns></returns>
-    DialogueGroupSO DailyDialogue();
+    MissionSO DailyDialogue();
 
 }
 
