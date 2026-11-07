@@ -18,6 +18,7 @@ MonoBehaviour:
     dialogueText: "\u597D\u7684\uFF0C\u6211\u5C31\u5728\u8FD9\u91CC\u7B49\u4F60"
     dialogueEffects: []
   dialogueChooses: []
+  effectType: 1
   references:
     version: 2
     RefIds: []

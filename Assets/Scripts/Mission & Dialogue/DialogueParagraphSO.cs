@@ -11,6 +11,8 @@ public class DialogueParagraphSO : ScriptableObject
 
     public List<DialogueChoose> dialogueChooses;
 
+    public ParagraphOutCome effectType;
+
 }
 
 [Serializable]

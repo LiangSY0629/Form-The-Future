@@ -28,3 +28,12 @@ public enum ChooseTypes
     Group,
     Paragraph,
 }
+
+/// <summary>
+/// 结束本对话段后对本对话组的影响；
+/// </summary>
+public enum ParagraphOutCome
+{
+    Default,
+    Abort,
+}

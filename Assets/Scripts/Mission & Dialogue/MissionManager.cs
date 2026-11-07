@@ -8,6 +8,7 @@ public class MissioneManager : MonoBehaviour
     public static MissioneManager Instance;
 
     public DialogueViewController[] dialogueView;  //拖入Dialogue View Controller的子类；
+    public MissionView missionView;                //任务面板，包含大面板和小面板；
 
     [HideInInspector]public List<string> currentMission;      //存储所有已解锁的任务（包含待接取任务）；
     //[HideInInspector] public List<string> availableMission;   //存储所有可接取的任务；
@@ -26,21 +27,6 @@ public class MissioneManager : MonoBehaviour
     DialogueSession currentSession;
     bool isConditionChange = false;
     readonly List<DialogueChoose> dailyChoose = new();
-
-    /// <summary>
-    /// 创建任务的运行状态；
-    /// </summary>
-    public class MissionRunTime
-    {
-        public string missionID;            //任务ID；
-        public int groupIndex;              //当前任务进度；
-        public MissionStates state;         //当前任务的状态；
-
-        public MissionSO mission;                                         //当前RunTime所对应的Mission；
-        public DialogueGroupSO Group => mission.groupSOs[groupIndex];     //当前任务的对话组；
-        public string TriggerNpcID => Group.triggerNpcID;                 //当前任务触发需要的NpcID；
-    }
-
 
     /// <summary>
     /// 当前正在运行的对话的暂存数据；
@@ -282,7 +268,40 @@ public class MissioneManager : MonoBehaviour
             if (currentSession.paragraph.dialogueChooses.Count > 0)
             {
                 foreach (DialogueChoose choose in currentSession.paragraph.dialogueChooses)
-                    currentChoose.Add(choose);
+                {
+                    //判断选项是不是跳转到对应的对话组，是就需要判断对应的对话组条件是不是全部解锁，全部解锁才能设为选项；
+                    if(choose.chooseType == ChooseTypes.Group)
+                    {
+                        //遍历该任务所有的对话组，寻找对应的对话组；
+                        foreach (DialogueGroupSO group in currentSession.missionRun.mission.groupSOs)
+                        {
+                            if (group.groupID == choose.chooseText)
+                            {
+                                //如果对话组有限制，判断是否完成，完成后才能跳转；
+                                if (group.conditions.Count > 0)
+                                {
+                                    if (CanAdvance(group.conditions))
+                                    {
+                                        currentChoose.Add(choose);
+                                    }
+                                }
+                                //没有限制可直接跳转；
+                                else
+                                {
+                                    currentChoose.Add(choose);
+                                }
+                                break;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        currentChoose.Add(choose);
+                    }
+
+                }
+
             }
 
             //判断有没有选项，有就显示选项；
@@ -335,10 +354,19 @@ public class MissioneManager : MonoBehaviour
 
         await SceneFade.Instance.FadeIn(fadeColor, fadeTime);
 
-        string conditionID = currentSession.missionRun.missionID + "_" + currentSession.missionRun.Group.groupID;
+        if(currentSession.paragraph.effectType == ParagraphOutCome.Default)
+        {
+            string conditionID = currentSession.missionRun.missionID + "_" + currentSession.missionRun.Group.groupID;
 
-        //更改对应的限制值，并置为脏，下一帧更新状态；
-        conditionDictionary[conditionID] = 1;
+            //更改对应的限制值；
+            conditionDictionary[conditionID] = 1;
+        }
+        else if(currentSession.paragraph.effectType == ParagraphOutCome.Abort)
+        {
+            //什么都不做，万一后续有操作呢？先留一个位置；
+        }
+
+        //无论有没有更改，都置为脏，下一帧更新状态；
         isConditionChange = true;
 
         if (currentSession.missionRun.groupIndex + 1 >= currentSession.missionRun.mission.groupSOs.Count)       //不会超出索引再加；
@@ -359,7 +387,7 @@ public class MissioneManager : MonoBehaviour
 
         DialogueGroupSO group = currentSession.missionRun.mission.groupSOs[currentSession.missionRun.groupIndex + 1];
 
-        if (group.isContinuous && group.conditions.Count < 1)             //如果下一对话组是连续的，并且下一对话组没有任何限制就连续播放下一对话组；
+        if (group.isContinuous && (group.conditions.Count < 1 || CanAdvance(group.conditions)))             //如果下一对话组是连续的，并且下一对话组没有任何限制就连续播放下一对话组；
         {
             CloseView();
             currentSession.missionRun.groupIndex++;
@@ -419,6 +447,12 @@ public class MissioneManager : MonoBehaviour
     /// <param name="groupID"></param>
     public void GoToGroup(string groupID)
     {
+        if (currentSession.group.conditions.Count > 0)
+            if (!CanAdvance(currentSession.group.conditions))
+            {
+                return;
+            }
+
         for(int i = 0;i < currentSession.missionRun.mission.groupSOs.Count; i++)
         {
             if (currentSession.missionRun.mission.groupSOs[i].groupID == groupID)
@@ -547,6 +581,8 @@ public class MissioneManager : MonoBehaviour
 
         }
 
+        missionView.SetSimpleView();
+
     }
 
     /// <summary>
@@ -571,7 +607,7 @@ public class MissioneManager : MonoBehaviour
     /// </summary>
     /// <param name="conditionID"></param>
     /// <returns></returns>
-    int CanAdvance(string conditionID)
+    public int CanAdvance(string conditionID)
     {
         if (conditionDictionary.TryGetValue(conditionID, out int value))
         {
@@ -603,7 +639,28 @@ public class MissioneManager : MonoBehaviour
             //如果不需要接取，就直接触发
             EventManager.OnTriggerAcceptMission(missionRun.missionID);
         }
+
+        if (missionView.currentMission == null)
+        {
+            missionView.currentMission = missionRun;
+        }
+
     }
 
 
+}
+
+
+/// <summary>
+/// 创建任务的运行状态；
+/// </summary>
+public class MissionRunTime
+{
+    public string missionID;            //任务ID；
+    public int groupIndex;              //当前任务进度；
+    public MissionStates state;         //当前任务的状态；
+
+    public MissionSO mission;                                         //当前RunTime所对应的Mission；
+    public DialogueGroupSO Group => mission.groupSOs[groupIndex];     //当前任务的对话组；
+    public string TriggerNpcID => Group.triggerNpcID;                 //当前任务触发需要的NpcID；
 }
