@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,6 +12,19 @@ public class MissionSO : ScriptableObject
 
     public MissionTypes missionType;
 
+    public DialogueGroupSO preGroup;
+
     public List<DialogueGroupSO> groupSOs;
 
+    public List<UnlockCondition> conditions;
+}
+
+[Serializable]
+public class UnlockCondition
+{
+    //限制的ID；
+    public string conditionID;
+
+    //解锁限制的值；
+    public int value;
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MissioneManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class MissioneManager : MonoBehaviour
     [Header("拖入所有的任务")]
     public List<MissionSO> MissionSos;    //存储所有任务的SO；
     public Dictionary<string, MissionRunTime> missionDictionary;    //根据任务ID查询当前任务状态；
+    public Dictionary<string, int> conditionDictionary;                  //根据限制ID查询当前限制状态；
 
     [Header("设置一些相关的信息")]
     public Color fadeColor;
@@ -21,6 +23,7 @@ public class MissioneManager : MonoBehaviour
     [HideInInspector] public bool isInFade = false;
 
     DialogueSession currentSession;
+    bool isConditionChange = false;
     readonly List<DialogueChoose> dailyChoose = new();
 
     /// <summary>
@@ -28,14 +31,15 @@ public class MissioneManager : MonoBehaviour
     /// </summary>
     public class MissionRunTime
     {
-        public string missionID;               //任务ID；
-        public int groupIndex;               //当前任务进度；
-        public bool complete;               //是否可完成；
+        public string missionID;            //任务ID；
+        public int groupIndex;              //当前任务进度；
+        public MissionStates state;         //当前任务的状态；
 
         public MissionSO mission;                                         //当前RunTime所对应的Mission；
         public DialogueGroupSO Group => mission.groupSOs[groupIndex];     //当前任务的对话组；
         public string TriggerNpcID => Group.triggerNpcID;                 //当前任务触发需要的NpcID；
     }
+
 
     /// <summary>
     /// 当前正在运行的对话的暂存数据；
@@ -65,6 +69,7 @@ public class MissioneManager : MonoBehaviour
 
         //运行时创建所有的mission run time，并添加进字典；
         missionDictionary = new Dictionary<string, MissionRunTime>();
+        conditionDictionary = new Dictionary<string, int>();
 
         foreach (MissionSO missionSO in MissionSos)
         {
@@ -80,12 +85,20 @@ public class MissioneManager : MonoBehaviour
                 missionID = missionSO.missionID,
                 //groupIndex = -1,
                 groupIndex = 0,
-                complete = false,
+                state = MissionStates.Locked,
                 mission = missionSO
             };
 
-            if (missionRun.groupIndex == 0)
+            //限制小于1证明没有限制，直接解锁；
+            if (missionSO.conditions.Count < 1)
+            {
                 currentMission.Add(missionRun.missionID);
+                missionRun.state = MissionStates.Active;
+
+                //没被锁定就让状态加一，进入下一状态；
+                //missionRun.state = MissionStates.Avaliable;
+            }
+
             missionDictionary[missionRun.missionID] = missionRun;
 
         }
@@ -95,19 +108,35 @@ public class MissioneManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnUnlockMission += UnlockMission;       //订阅任务解锁事件；
+        EventManager.OnAcceptMission += AcceptMission;       //订阅任务解锁事件；
+        EventManager.OnConditionChange += ConditionChange;   //订阅限制值改变事件；
     }
 
 
-    private void Start()
+    //private void Start()
+    //{
+    //  运行时从存档内获取进度，并赋值到mission runtime上；
+
+    //}
+
+    private void LateUpdate()
     {
-        //运行时从存档内获取进度，并赋值到mission runtime上；
+        if (!isConditionChange)
+            return;
+        if (currentSession != null)
+            return;
+
+        Debug.Log("yes");
+        isConditionChange = false;
+        UpdateMission();
 
     }
+
 
     private void OnDisable()
     {
-        EventManager.OnUnlockMission -= UnlockMission;     //取消订阅任务解锁事件；
+        EventManager.OnAcceptMission -= AcceptMission;         //取消订阅任务解锁事件；
+        EventManager.OnConditionChange -= ConditionChange;     //取消订阅限制值改变事件；
     }
 
 
@@ -150,7 +179,7 @@ public class MissioneManager : MonoBehaviour
 
             dailyChoose.Clear();
 
-            //遍历所有的已解锁任务，如果有就把这个当作选项；
+            //遍历所有的已接取任务，如果有就把这个当作选项；
             foreach(string ID in currentMission)
             {
                 if (missionDictionary[ID].TriggerNpcID == npcID)
@@ -169,10 +198,11 @@ public class MissioneManager : MonoBehaviour
         }
         else
         {
+            //遍历所有已接取任务，如果有就把第一个当作当前任务；
             foreach (string ID in currentMission)
             {
                 Debug.Log(ID);
-                if (missionDictionary[ID].TriggerNpcID == npcID)       //从前往后找，找到匹配的就终止，后续改为用list全部显示；
+                if (missionDictionary[ID].TriggerNpcID == npcID)
                 {
                     currentID = ID;
                     break;
@@ -193,9 +223,12 @@ public class MissioneManager : MonoBehaviour
                 missionID = daily.missionID,
                 mission = daily,
                 groupIndex = 0,
-                complete = false,
+                state = MissionStates.Active,
             };
 
+        //防止出错，如果当前任务的状态不是已接取，就返回；
+        if (missionRun.state != MissionStates.Active)
+            return;
 
         DialogueViewController view = GetView(missionRun.Group);
 
@@ -239,16 +272,16 @@ public class MissioneManager : MonoBehaviour
         {
             List<DialogueChoose> currentChoose = new();
 
+            //判断当前对话是不是daily对话，且是第一个对话段（即做出第一个选择前）；
+            if (currentSession.missionRun.mission.missionType == MissionTypes.Daily && currentSession.paragraphIndex == 0)
+            {
+                foreach (DialogueChoose choose in dailyChoose)
+                    currentChoose.Add(choose);
+            }
+
             //判断对话段有没有选项，有就显示；
             if (currentSession.paragraph.dialogueChooses.Count > 0)
             {
-                //判断当前对话是不是daily对话，且daily Choose不为空；
-                if (currentSession.missionRun.mission.missionType == MissionTypes.Daily && dailyChoose.Count > 0)
-                {
-                    foreach (DialogueChoose choose in dailyChoose)
-                        currentChoose.Add(choose);
-                }
-
                 foreach (DialogueChoose choose in currentSession.paragraph.dialogueChooses)
                     currentChoose.Add(choose);
             }
@@ -279,6 +312,15 @@ public class MissioneManager : MonoBehaviour
         }
         else
         {
+            //如果是日常对话，就关闭面板并返回；
+            if(currentSession.missionRun.mission.missionType == MissionTypes.Daily)
+            {
+                currentSession.view.Close();
+                currentSession = null;
+                return;
+            }
+
+            //不是日常对话，调用对话组关闭函数；
             if (currentSession.paragraph.dialogueChooses.Count <= 0)
                 OnGroupEnd();
         }
@@ -295,16 +337,20 @@ public class MissioneManager : MonoBehaviour
 
         await SceneFade.Instance.FadeIn(fadeColor, fadeTime);
 
-        if (currentSession.missionRun.groupIndex + 1 < currentSession.missionRun.mission.groupSOs.Count)       //不会超出索引再加；
-        {
-            currentSession.missionRun.groupIndex++;
-        }
-        else
-        {
+        string conditionID = currentSession.missionRun.missionID + "_" + currentSession.missionRun.Group.groupID;
 
-            currentSession.view.Close();
-            currentSession.missionRun.complete = true;
+        //更改对应的限制值，并置为脏，下一帧更新状态；
+        conditionDictionary[conditionID] = 1;
+        isConditionChange = true;
+
+        if (currentSession.missionRun.groupIndex + 1 >= currentSession.missionRun.mission.groupSOs.Count)       //不会超出索引再加；
+        {
+            CloseView();
+            currentSession.missionRun.state = MissionStates.Complete;
             currentMission.Remove(currentSession.missionRun.missionID);
+
+            //更改对应的限制值；
+            conditionDictionary[currentSession.missionRun.missionID] = 1;
 
             currentSession = null;
 
@@ -313,10 +359,12 @@ public class MissioneManager : MonoBehaviour
             return;
         }
 
-        if (currentSession.group.isContinuous)             //如果当前对话组是连续的，就连续播放下一对话组；
-        {
-            currentSession.view.Close();
+        DialogueGroupSO group = currentSession.missionRun.mission.groupSOs[currentSession.missionRun.groupIndex + 1];
 
+        if (group.isContinuous && group.conditions.Count < 1)             //如果下一对话组是连续的，并且下一对话组没有任何限制就连续播放下一对话组；
+        {
+            CloseView();
+            currentSession.missionRun.groupIndex++;
             //更新session的数据，开始下一段；
             currentSession.view = GetView(currentSession.group);
             currentSession.paragraphIndex = 0;
@@ -327,7 +375,7 @@ public class MissioneManager : MonoBehaviour
         }
         else
         {
-            currentSession.view.Close();
+            CloseView();
             currentSession = null;
         }
 
@@ -335,6 +383,14 @@ public class MissioneManager : MonoBehaviour
 
         isInFade = false;
 
+    }
+
+    /// <summary>
+    /// 调用关闭view面板的函数；
+    /// </summary>
+    void CloseView()
+    {
+        currentSession.view.Close();
     }
 
 
@@ -387,12 +443,11 @@ public class MissioneManager : MonoBehaviour
     /// <param name="missionID"></param>
     public void GoToMission(string missionID)
     {
-        if (!missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun))
+        if (!missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun) || missionRun.state != MissionStates.Active)
         {
-            currentSession.view.Close();
+            CloseView();
             return;
         }
-
 
         currentSession.missionRun = missionRun;
         currentSession.paragraphIndex = 0;
@@ -403,17 +458,115 @@ public class MissioneManager : MonoBehaviour
 
     }
 
-
-
     /// <summary>
-    /// 传入任务ID解锁对应任务；
+    /// 传入解锁的限制的ID，在字典中获取到对应ID对应的值，并改变对应值；
     /// </summary>
-    /// <param name="missionID"></param>
-    public void UnlockMission(string missionID)
+    /// <param name="flag"></param>
+    /// <param name="addValue"></param>
+    public void ConditionChange(string flag, int addValue)
     {
-        currentMission.Add(missionID);
-        missionDictionary[missionID].groupIndex = 0;
+        if (conditionDictionary.TryGetValue(flag, out int value))
+        {
+            conditionDictionary[flag] = value + addValue;
+
+            isConditionChange = true;
+        }
+
     }
 
+    /// <summary>
+    /// 传入任务ID，代表任务已被接取；
+    /// </summary>
+    /// <param name="missionID"></param>
+    public void AcceptMission(string missionID)
+    {
+        if (missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun) && missionRun.state == MissionStates.Avaliable)
+        {
+            missionRun.state = MissionStates.Active;
+            currentMission.Add(missionID);
+        }
+
+    }
+
+    /// <summary>
+    /// 刷新当前所有任务的状态，判断任务是否可以解锁或推进；
+    /// </summary>
+    void UpdateMission()
+    {
+        foreach(MissionRunTime missionRun in missionDictionary.Values)
+        {
+            //如果当前任务被锁定，判断当前任务能不能被接取；
+            if (missionRun.state == MissionStates.Locked)
+            {
+                //遍历完如果没被置否，就设置为可接取；
+                if (CanAdvance(missionRun.mission.conditions))
+                {
+                    missionRun.state = MissionStates.Avaliable;
+                    EventManager.OnTriggerAcceptMission(missionRun.missionID);
+                }
+
+            }
+            //如果当前任务正在被追踪，判断当前对话组条件是否满足；
+            else if(missionRun.state == MissionStates.Active)
+            {
+                //限制名称用mission ID_groupID；(be like: 初识_main_1)
+                string conditionID = missionRun.missionID + "_" + missionRun.Group.groupID;
+
+                Debug.Log(CanAdvance(conditionID));
+
+                //如果当前任务的下一对话组的要求全部被满足，就切换至下一对话组；
+                if (CanAdvance(conditionID) >= 1 && missionRun.groupIndex + 1 < missionRun.mission.groupSOs.Count)
+                {
+                    DialogueGroupSO group = missionRun.mission.groupSOs[missionRun.groupIndex + 1];
+
+                    if (group.conditions.Count > 0)
+                    {
+                        if (CanAdvance(group.conditions))
+                        {
+                            missionRun.groupIndex += 1;
+
+                            //预留占位符，写任务面板的更新函数方法；
+                        }
+                    }
+                    else missionRun.groupIndex += 1;
+                }
+                
+
+            }
+
+        }
+
+    }
+
+    /// <summary>
+    /// 传入限制数组，遍历限制数组并在全部限制解锁时返回true；
+    /// </summary>
+    /// <param name="conditions"></param>
+    /// <returns></returns>
+    bool CanAdvance(List<UnlockCondition> conditions)
+    {
+        foreach (UnlockCondition condition in conditions)
+        {
+            if (CanAdvance(condition.conditionID) < condition.value)
+                return false;
+        }
+
+        return true;
+
+    }
+
+    /// <summary>
+    /// 传入限制的ID，判断是否存在，并返回值；
+    /// </summary>
+    /// <param name="conditionID"></param>
+    /// <returns></returns>
+    int CanAdvance(string conditionID)
+    {
+        if (conditionDictionary.TryGetValue(conditionID, out int value))
+        {
+            return value;
+        }
+        else return 0;
+    }
 
 }

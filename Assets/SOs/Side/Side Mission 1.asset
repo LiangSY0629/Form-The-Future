@@ -16,3 +16,6 @@ MonoBehaviour:
   missionType: 1
   groupSOs:
   - {fileID: 11400000, guid: 81c5658c4a845474d9aa0cc49d24852e, type: 2}
+  conditions:
+  - conditionID: "\u597D\u611F\u5EA6"
+    value: 10

@@ -25,8 +25,8 @@ MonoBehaviour:
     dialogueEffects: []
   dialogueChooses:
   - chooseText: "\u4FE1\u4F60\u662F\u7A7F\u8D8A\u8005\u4E0D\u5982\u4FE1\u6211\u662F\u79E6\u59CB\u7687"
-    chooseType: 1
-    nextID: main_2
+    chooseType: 2
+    nextID: 1_2
   - chooseText: "\u4F60\u770B\u6211\u50CF\u5565\u5B50\u5417\uFF1F"
     chooseType: 2
     nextID: 1_2

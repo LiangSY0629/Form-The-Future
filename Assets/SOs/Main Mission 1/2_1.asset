@@ -28,8 +28,8 @@ MonoBehaviour:
     chooseType: 2
     nextID: 2_2
   - chooseText: "\u540E\u53D1\u5236\u4EBA"
-    chooseType: 0
-    nextID: "\u76F8\u719F"
+    chooseType: 2
+    nextID: 2_2
   references:
     version: 2
     RefIds: []

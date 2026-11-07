@@ -3,16 +3,21 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public static event Action<string> OnUnlockMission;             //解锁任务事件；
+    public static event Action<string, int> OnConditionChange;             //更改限制值事件；
+
+    public static event Action<string> OnAcceptMission;                  //接取任务事件；
 
     /// <summary>
-    /// 传入任务的名称，解锁对应的任务；
+    /// 传入限制的名称，设置对应的限制的值；
     /// </summary>
     /// <param name="missionID"></param>
-    public static void OnTriggerUnlockMission(string missionID)
-    {
-        OnUnlockMission?.Invoke(missionID);
-    }
+    public static void OnTriggerConditionChange(string conditionID, int value) => OnConditionChange?.Invoke(conditionID, value);
+    
+    /// <summary>
+    /// 传入任务的ID，接取对应的任务；
+    /// </summary>
+    /// <param name="missionID"></param>
+    public static void OnTriggerAcceptMission(string missionID) => OnAcceptMission?.Invoke(missionID);
 
     public static event Action<bool> OnPauseGame;
 

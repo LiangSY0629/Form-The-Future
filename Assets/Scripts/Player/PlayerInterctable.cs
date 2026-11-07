@@ -27,7 +27,7 @@ public class PlayerInterctable : MonoBehaviour
                 MissioneManager.Instance.SetDailyDialogue(daily, currentNPC.DialogueNPC());
                 interactionIcon.SetActive(false);
             }
-                
+
         }
     }
 
