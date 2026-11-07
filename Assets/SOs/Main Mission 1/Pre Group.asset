@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7127162f65c0014fa333c87f292a60d, type: 3}
+  m_Name: Pre Group
+  m_EditorClassIdentifier: 
+  groupID: preGroup
+  triggerNpcID: "\u5927\u80A5\u9C7C"
+  paragrapgSos:
+  - {fileID: 11400000, guid: 2c40111a213df0d40b02b9b84b5d63e5, type: 2}
+  - {fileID: 11400000, guid: e7ceba71cccbb2b4c827a312cd4a688b, type: 2}
+  - {fileID: 11400000, guid: 4eb8054e79577c74a8bba420860d69ad, type: 2}
+  conditions: []
+  isSubtitle: 0
+  isContinuous: 0

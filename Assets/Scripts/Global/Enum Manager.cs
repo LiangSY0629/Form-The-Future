@@ -14,7 +14,7 @@ public enum MissionTypes
 public enum MissionStates
 {
     Locked,
-    Avaliable,
+    Available,
     Active,
     Complete,
 }

@@ -8,17 +8,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Mission", menuName = "Mission/New Mission")]
 public class MissionSO : ScriptableObject
 {
-    public string missionID;
+    public string missionID;                    //任务的ID，具有唯一性；
 
-    public MissionTypes missionType;
+    public MissionTypes missionType;            //任务的类型（判断是不是主线，支线等任务）
 
-    public DialogueGroupSO preGroup;
+    public bool accepted;                    //判断是否需要接取任务；
 
-    public List<DialogueGroupSO> groupSOs;
+    public List<DialogueGroupSO> groupSOs;      //任务的所有主对话组（即接取任务后的对话组）；
 
-    public List<UnlockCondition> conditions;
+    public List<UnlockCondition> conditions;    //任务的前置解锁条件，必须全部完成才能解锁任务；
 }
 
+/// <summary>
+/// 解锁条件
+/// </summary>
 [Serializable]
 public class UnlockCondition
 {

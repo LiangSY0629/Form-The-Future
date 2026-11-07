@@ -9,7 +9,8 @@ public class MissioneManager : MonoBehaviour
 
     public DialogueViewController[] dialogueView;  //拖入Dialogue View Controller的子类；
 
-    [HideInInspector]public List<string> currentMission;   //存储所有已解锁的任务；
+    [HideInInspector]public List<string> currentMission;      //存储所有已解锁的任务（包含待接取任务）；
+    //[HideInInspector] public List<string> availableMission;   //存储所有可接取的任务；
 
     [Header("拖入所有的任务")]
     public List<MissionSO> MissionSos;    //存储所有任务的SO；
@@ -73,13 +74,6 @@ public class MissioneManager : MonoBehaviour
 
         foreach (MissionSO missionSO in MissionSos)
         {
-            //如果需要为group创建顺序ID，就取消注释；
-            //for(int i = 0; i < mission.groupSOs.Count; i++)
-            //{
-            //    mission.groupSOs[i].ID = i;
-            //}
-
-
             MissionRunTime missionRun = new()
             {
                 missionID = missionSO.missionID,
@@ -93,10 +87,13 @@ public class MissioneManager : MonoBehaviour
             if (missionSO.conditions.Count < 1)
             {
                 currentMission.Add(missionRun.missionID);
-                missionRun.state = MissionStates.Active;
 
-                //没被锁定就让状态加一，进入下一状态；
-                //missionRun.state = MissionStates.Avaliable;
+                //判断需不需要额外接取任务，不需要就直接设置为进行中
+                if (missionSO.accepted)
+                    missionRun.state = MissionStates.Available;
+                else
+                    missionRun.state = MissionStates.Active;
+
             }
 
             missionDictionary[missionRun.missionID] = missionRun;
@@ -126,7 +123,6 @@ public class MissioneManager : MonoBehaviour
         if (currentSession != null)
             return;
 
-        Debug.Log("yes");
         isConditionChange = false;
         UpdateMission();
 
@@ -173,13 +169,11 @@ public class MissioneManager : MonoBehaviour
         //判断传入的daily是不是null，daily的type是不是daily；
         if (daily != null && daily.missionType == MissionTypes.Daily)
         {
-
-            Debug.Log("daily");
             currentID = daily.missionID;
 
             dailyChoose.Clear();
 
-            //遍历所有的已接取任务，如果有就把这个当作选项；
+            //遍历所有的已解锁任务，如果有就把这个当作选项；
             foreach(string ID in currentMission)
             {
                 if (missionDictionary[ID].TriggerNpcID == npcID)
@@ -191,6 +185,9 @@ public class MissioneManager : MonoBehaviour
                         nextID = ID,
                     };
 
+                    if (missionDictionary[ID].state == MissionStates.Available)
+                        choose.chooseText = "接取：" + ID;
+
                     dailyChoose.Add(choose);
                 }
             }
@@ -198,10 +195,9 @@ public class MissioneManager : MonoBehaviour
         }
         else
         {
-            //遍历所有已接取任务，如果有就把第一个当作当前任务；
+            //遍历所有已解锁任务，如果有就把第一个当作当前任务；
             foreach (string ID in currentMission)
             {
-                Debug.Log(ID);
                 if (missionDictionary[ID].TriggerNpcID == npcID)
                 {
                     currentID = ID;
@@ -276,7 +272,10 @@ public class MissioneManager : MonoBehaviour
             if (currentSession.missionRun.mission.missionType == MissionTypes.Daily && currentSession.paragraphIndex == 0)
             {
                 foreach (DialogueChoose choose in dailyChoose)
+                {
                     currentChoose.Add(choose);
+                }
+
             }
 
             //判断对话段有没有选项，有就显示；
@@ -306,7 +305,6 @@ public class MissioneManager : MonoBehaviour
         //先判断还剩多少句，如果只剩一句，就播放最后一句的同时显示选项；如果没有选项可供显示，那么将会在下一次点击关闭该对话组；
         if (currentSession.lineIndex + 2 <= currentSession.paragraph.dialogueLines.Count)
         {
-        
             currentSession.lineIndex++;
             SetLine();
         }
@@ -443,7 +441,7 @@ public class MissioneManager : MonoBehaviour
     /// <param name="missionID"></param>
     public void GoToMission(string missionID)
     {
-        if (!missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun) || missionRun.state != MissionStates.Active)
+        if (!missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun))
         {
             CloseView();
             return;
@@ -480,10 +478,9 @@ public class MissioneManager : MonoBehaviour
     /// <param name="missionID"></param>
     public void AcceptMission(string missionID)
     {
-        if (missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun) && missionRun.state == MissionStates.Avaliable)
+        if (missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun) && missionRun.state == MissionStates.Available)
         {
             missionRun.state = MissionStates.Active;
-            currentMission.Add(missionID);
         }
 
     }
@@ -495,24 +492,39 @@ public class MissioneManager : MonoBehaviour
     {
         foreach(MissionRunTime missionRun in missionDictionary.Values)
         {
+            //使用分段if且顺序不能变，这样可以在一次遍历中逐个改变；
+
             //如果当前任务被锁定，判断当前任务能不能被接取；
             if (missionRun.state == MissionStates.Locked)
             {
                 //遍历完如果没被置否，就设置为可接取；
                 if (CanAdvance(missionRun.mission.conditions))
                 {
-                    missionRun.state = MissionStates.Avaliable;
-                    EventManager.OnTriggerAcceptMission(missionRun.missionID);
+                    missionRun.state = MissionStates.Available;
+                    currentMission.Add(missionRun.missionID);
+
+                    CanAccept(missionRun);
+
                 }
 
             }
+
+            //如果当前任务处于待接取状态；
+            if(missionRun.state == MissionStates.Available)
+            {
+                Debug.Log("待接取_" + missionRun.missionID);
+
+                CanAccept(missionRun);
+
+            }
+
             //如果当前任务正在被追踪，判断当前对话组条件是否满足；
-            else if(missionRun.state == MissionStates.Active)
+            if(missionRun.state == MissionStates.Active)
             {
                 //限制名称用mission ID_groupID；(be like: 初识_main_1)
                 string conditionID = missionRun.missionID + "_" + missionRun.Group.groupID;
 
-                Debug.Log(CanAdvance(conditionID));
+                Debug.Log("进行中_" + conditionID);
 
                 //如果当前任务的下一对话组的要求全部被满足，就切换至下一对话组；
                 if (CanAdvance(conditionID) >= 1 && missionRun.groupIndex + 1 < missionRun.mission.groupSOs.Count)
@@ -523,14 +535,13 @@ public class MissioneManager : MonoBehaviour
                     {
                         if (CanAdvance(group.conditions))
                         {
-                            missionRun.groupIndex += 1;
+                            missionRun.groupIndex++;
 
                             //预留占位符，写任务面板的更新函数方法；
                         }
                     }
-                    else missionRun.groupIndex += 1;
+                    else missionRun.groupIndex++;
                 }
-                
 
             }
 
@@ -568,5 +579,31 @@ public class MissioneManager : MonoBehaviour
         }
         else return 0;
     }
+
+    /// <summary>
+    /// 传入mission Run，判断这个mission Run所对应的任务该不该从待接取状态变为可接取状态；
+    /// </summary>
+    /// <param name="missionRun"></param>
+    void CanAccept(MissionRunTime missionRun)
+    {
+        if (missionRun.mission.accepted)
+        {
+            //限制名称用mission ID_groupID；(be like: 初识_main_1)
+            string conditionID = missionRun.missionID + "_" + missionRun.mission.groupSOs[0].groupID;
+
+            if (CanAdvance(conditionID) > 0)
+            {
+                //如果当前接取对话已经完成，就设置为任务状态为正在进行中；
+                EventManager.OnTriggerAcceptMission(missionRun.missionID);
+            }
+
+        }
+        else
+        {
+            //如果不需要接取，就直接触发
+            EventManager.OnTriggerAcceptMission(missionRun.missionID);
+        }
+    }
+
 
 }

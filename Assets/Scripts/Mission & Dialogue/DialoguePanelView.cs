@@ -88,7 +88,6 @@ public class DialoguePanelView : DialogueViewController
 
         if (action.performed && dialoguePanel.activeSelf && !MissioneManager.Instance.isInFade && !isChoose)
         {
-            Debug.Log("next");
             MissioneManager.Instance.NextLine();
         }
     }
