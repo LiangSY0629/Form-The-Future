@@ -10,7 +10,7 @@ public class MissioneManager : MonoBehaviour
     public DialogueViewController[] dialogueView;  //拖入Dialogue View Controller的子类；
     public MissionView missionView;                //任务面板，包含大面板和小面板；
 
-    [HideInInspector]public List<string> currentMission;      //存储所有已解锁的任务（包含待接取任务）；
+    //[HideInInspector]public List<MissionRunTime> currentMission = new();      //存储所有已解锁的任务（包含待接取任务）；
     //[HideInInspector] public List<string> availableMission;   //存储所有可接取的任务；
 
     [Header("拖入所有的任务")]
@@ -72,14 +72,13 @@ public class MissioneManager : MonoBehaviour
             //限制小于1证明没有限制，直接解锁；
             if (missionSO.conditions.Count < 1)
             {
-                currentMission.Add(missionRun.missionID);
-
                 //判断需不需要额外接取任务，不需要就直接设置为进行中
                 if (missionSO.accepted)
                     missionRun.state = MissionStates.Available;
                 else
                     missionRun.state = MissionStates.Active;
 
+                //currentMission.Add(missionRun);
             }
 
             missionDictionary[missionRun.missionID] = missionRun;
@@ -133,9 +132,9 @@ public class MissioneManager : MonoBehaviour
             return false;
 
         //遍历已解锁的任务，如果没找到对应的任务，就返回false，找到则返回true；
-        foreach (string ID in currentMission)
+        foreach (MissionRunTime run in missionDictionary.Values)
         {
-            if (missionDictionary[ID].TriggerNpcID == NpcID)
+            if (run.TriggerNpcID == NpcID && (run.state == MissionStates.Active || run.state == MissionStates.Available))
                 return true;
         }
 
@@ -160,21 +159,27 @@ public class MissioneManager : MonoBehaviour
             dailyChoose.Clear();
 
             //遍历所有的已解锁任务，如果有就把这个当作选项；
-            foreach(string ID in currentMission)
+            foreach(MissionRunTime run in missionDictionary.Values)
             {
-                if (missionDictionary[ID].TriggerNpcID == npcID)
+                if (run.TriggerNpcID == npcID)
                 {
                     DialogueChoose choose = new()
                     {
-                        chooseText = ID,
+                        chooseText = run.missionID,
                         chooseType = ChooseTypes.Mission,
-                        nextID = ID,
+                        nextID = run.missionID,
                     };
 
-                    if (missionDictionary[ID].state == MissionStates.Available)
-                        choose.chooseText = "接取：" + ID;
+                    if (run.state == MissionStates.Available)
+                    {
+                        choose.chooseText = "接取：" + run.missionID;
+                        dailyChoose.Add(choose);
+                    }
+                    else if(run.state == MissionStates.Active)
+                    {
+                        dailyChoose.Add(choose);
+                    }
 
-                    dailyChoose.Add(choose);
                 }
             }
 
@@ -182,11 +187,11 @@ public class MissioneManager : MonoBehaviour
         else
         {
             //遍历所有已解锁任务，如果有就把第一个当作当前任务；
-            foreach (string ID in currentMission)
+            foreach (MissionRunTime run in missionDictionary.Values)
             {
-                if (missionDictionary[ID].TriggerNpcID == npcID)
+                if (run.TriggerNpcID == npcID && (run.state == MissionStates.Active || run.state == MissionStates.Available))
                 {
-                    currentID = ID;
+                    currentID = run.missionID;
                     break;
                 }
 
@@ -208,9 +213,9 @@ public class MissioneManager : MonoBehaviour
                 state = MissionStates.Active,
             };
 
-        //防止出错，如果当前任务的状态不是已接取，就返回；
-        if (missionRun.state != MissionStates.Active)
-            return;
+        ////防止出错，如果当前任务的状态不是已接取，就返回；
+        //if (missionRun.state != MissionStates.Active)
+        //    return;
 
         DialogueViewController view = GetView(missionRun.Group);
 
@@ -373,7 +378,6 @@ public class MissioneManager : MonoBehaviour
         {
             CloseView();
             currentSession.missionRun.state = MissionStates.Complete;
-            currentMission.Remove(currentSession.missionRun.missionID);
 
             //更改对应的限制值；
             conditionDictionary[currentSession.missionRun.missionID] = 1;
@@ -535,7 +539,6 @@ public class MissioneManager : MonoBehaviour
                 if (CanAdvance(missionRun.mission.conditions))
                 {
                     missionRun.state = MissionStates.Available;
-                    currentMission.Add(missionRun.missionID);
 
                     CanAccept(missionRun);
 

@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         else
             turnSpeed = 5;
 
-        currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, turnSpeed, 6 * Time.deltaTime);
+        currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, turnSpeed, 8 * Time.deltaTime);
 
         anim.SetFloat("TurnSpeed", currentTurnSpeed);
     }

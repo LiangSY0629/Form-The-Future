@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionID: "\u521D\u8BC6"
   missionType: 0
-  accepted: 1
+  accepted: 0
+  description: "\u4E3A\u4E86\u6539\u5199\u5730\u7403\u88AB\u6BC1\u706D\u7684\u547D\u8FD0\uFF0C\u8D85\u7EA7ai\u4ECE\u672A\u6765\u7A7F\u8D8A\u81F3\u6B64\uFF0C\u534F\u52A9\u4EBA\u7C7B\u53D1\u5C55\uFF0C\u4F46\u5979\u771F\u7684\u53EF\u4EE5\u6210\u529F\u5417\uFF1F\u91CD\u8FD4\u8BA1\u5212\uFF0C\u542F\u52A8\u3002"
   groupSOs:
   - {fileID: 11400000, guid: 707e44ca440f8a545bd31dee87091bcc, type: 2}
   - {fileID: 11400000, guid: e306bbae4241ae54eb9e3aa66cffaddb, type: 2}

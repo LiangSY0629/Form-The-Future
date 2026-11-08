@@ -14,6 +14,8 @@ public class MissionSO : ScriptableObject
 
     public bool accepted;                    //判断是否需要接取任务；
 
+    [TextArea] public string description;       //任务的描述；
+
     public List<DialogueGroupSO> groupSOs;      //任务的所有主对话组（即接取任务后的对话组）；
 
     public List<UnlockCondition> conditions;    //任务的前置解锁条件，必须全部完成才能解锁任务；
