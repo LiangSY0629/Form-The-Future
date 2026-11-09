@@ -38,7 +38,7 @@ public class MissionView : MonoBehaviour
 
     private void OnEnable()
     {
-        detailButton.onClick.AddListener(() => OpenDetailView());
+        detailButton.onClick.AddListener(() => OnPressedDetail());
 
         typeButtons[0].onClick.AddListener(() => ChangeType(MissionTypes.Main));
         typeButtons[1].onClick.AddListener(() => ChangeType(MissionTypes.Side));
@@ -61,6 +61,8 @@ public class MissionView : MonoBehaviour
         }
 
         SetSimpleView();
+
+        detailView.SetActive(false);
     }
 
     private void OnDisable()
@@ -179,6 +181,26 @@ public class MissionView : MonoBehaviour
     {
         currentType = type;
         SetDetailView();
+        missionDetail.SetActive(false);
+    }
+
+
+    /// <summary>
+    /// 按下小面板的任务详情按钮；
+    /// </summary>
+    public void OnPressedDetail()
+    {
+        OpenDetailView();
+        if(trickMission == null)
+        {
+            ChangeType(MissionTypes.Main);
+        }
+        else
+        {
+            ChangeType(trickMission.mission.missionType);
+            OnPressedMission(trickMission);
+        }
+
     }
 
     /// <summary>
@@ -186,12 +208,8 @@ public class MissionView : MonoBehaviour
     /// </summary>
     public void OpenDetailView()
     {
-        currentType = MissionTypes.Main;
-        SetDetailView();
         detailView.SetActive(true);
-
         missionDetail.SetActive(false);
-
     }
 
     /// <summary>
@@ -202,6 +220,10 @@ public class MissionView : MonoBehaviour
         detailView.SetActive(false);
     }
 
+    /// <summary>
+    /// 检测关闭任务面板的指令；
+    /// </summary>
+    /// <param name="action"></param>
     public void GetReturnInput(InputAction.CallbackContext action)
     {
         if (action.performed)
@@ -210,11 +232,16 @@ public class MissionView : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 检测打开任务面板的指令
+    /// </summary>
+    /// <param name="action"></param>
     public void GetMissionInput(InputAction.CallbackContext action)
     {
         if (action.performed)
         {
             OpenDetailView();
+            ChangeType(MissionTypes.Main);
         }
     }
 
@@ -264,6 +291,9 @@ public class MissionView : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 按下追踪任务按钮；
+    /// </summary>
     public void OnTrickMission()
     {
         if(currentMission != null)
@@ -275,6 +305,9 @@ public class MissionView : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 设置追踪按钮的文本；
+    /// </summary>
     public void SetTrickButton()
     {
         if (trickMission == currentMission)
