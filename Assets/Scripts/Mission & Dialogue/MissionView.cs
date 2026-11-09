@@ -17,9 +17,7 @@ public class MissionView : MonoBehaviour
 
     public GameObject missionDetail;
 
-    public TMP_Text missionTitle;
-
-    public TMP_Text missionDescription, missionCondition;
+    public TMP_Text missionTitle, missionDescription, missionCondition;
 
     public GameObject missionReward;
 
@@ -181,56 +179,12 @@ public class MissionView : MonoBehaviour
     {
         currentType = type;
         SetDetailView();
-        missionDetail.SetActive(false);
+
+        if(missionDetail.activeSelf)
+            MenuController.Instance.Pop(CloseMissionDetail);
     }
 
-
-    /// <summary>
-    /// 按下小面板的任务详情按钮；
-    /// </summary>
-    public void OnPressedDetail()
-    {
-        OpenDetailView();
-        if(trickMission == null)
-        {
-            ChangeType(MissionTypes.Main);
-        }
-        else
-        {
-            ChangeType(trickMission.mission.missionType);
-            OnPressedMission(trickMission);
-        }
-
-    }
-
-    /// <summary>
-    /// 打开任务详情面板；
-    /// </summary>
-    public void OpenDetailView()
-    {
-        detailView.SetActive(true);
-        missionDetail.SetActive(false);
-    }
-
-    /// <summary>
-    /// 关闭任务详情面板；
-    /// </summary>
-    public void CloseDetailView()
-    {
-        detailView.SetActive(false);
-    }
-
-    /// <summary>
-    /// 检测关闭任务面板的指令；
-    /// </summary>
-    /// <param name="action"></param>
-    public void GetReturnInput(InputAction.CallbackContext action)
-    {
-        if (action.performed)
-        {
-            CloseDetailView();
-        }
-    }
+    #region 打开任务面板
 
     /// <summary>
     /// 检测打开任务面板的指令
@@ -246,12 +200,66 @@ public class MissionView : MonoBehaviour
     }
 
     /// <summary>
+    /// 按下小面板的任务详情按钮；
+    /// </summary>
+    public void OnPressedDetail()
+    {
+        OpenDetailView();
+
+        if(trickMission != null)
+        {
+            ChangeType(trickMission.mission.missionType);
+            OnPressedMission(trickMission);
+        }
+        else
+        {
+            ChangeType(MissionTypes.Main);
+        }
+
+    }
+
+    /// <summary>
+    /// 打开任务详情面板；
+    /// </summary>
+    public void OpenDetailView()
+    {
+        //把关闭方法传入；
+        MenuController.Instance.Push(CloseDetailView);
+
+        detailView.SetActive(true);
+    }
+
+    #endregion
+
+    #region 关闭任务面板
+    /// <summary>
+    /// 关闭任务面板；
+    /// </summary>
+    public void CloseDetailView()
+    {
+        detailView.SetActive(false);
+    }
+
+    /// <summary>
+    /// 关闭详情面板；
+    /// </summary>
+    public void CloseMissionDetail()
+    {
+        missionDetail.SetActive(false);
+    }
+    #endregion
+
+    /// <summary>
     /// 点击对应任务，显示详细信息；
     /// </summary>
     public void OnPressedMission(MissionRunTime missionRun)
     {
         if (!missionDetail.activeSelf)
+        {
             missionDetail.SetActive(true);
+            MenuController.Instance.Push(CloseMissionDetail);
+        }
+
 
         currentMission = missionRun;
 

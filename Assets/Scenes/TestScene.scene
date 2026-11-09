@@ -1617,7 +1617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &313704571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2470,7 +2470,7 @@ RectTransform:
   m_Father: {fileID: 1351503806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 2, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2547,9 +2547,9 @@ RectTransform:
   - {fileID: 1260014094}
   m_Father: {fileID: 865050854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.58995, y: -400}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &437475857
@@ -15419,6 +15419,7 @@ GameObject:
   - component: {fileID: 826096342}
   - component: {fileID: 826096341}
   - component: {fileID: 826096340}
+  - component: {fileID: 826096344}
   m_Layer: 5
   m_HasEditorInfo: 1
   m_Name: UI
@@ -15512,6 +15513,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &826096344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826096339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8317c8d3b58c5de4087499ab791b19e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 919132147919475506}
 --- !u!1 &865050853
 GameObject:
   m_ObjectHideFlags: 0
@@ -21567,9 +21581,9 @@ RectTransform:
   - {fileID: 790387110}
   m_Father: {fileID: 865050854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.58995, y: -60}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624084088
@@ -23201,9 +23215,9 @@ RectTransform:
   - {fileID: 1573997747}
   m_Father: {fileID: 865050854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 77.58995, y: -230}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2131217630
@@ -25964,9 +25978,9 @@ MonoBehaviour:
     m_ActionName: Player/Mission[/Keyboard/u]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 66844697}
-        m_TargetAssemblyTypeName: MissionView, Assembly-CSharp
-        m_MethodName: GetReturnInput
+      - m_Target: {fileID: 826096344}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: GetEscInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25978,6 +25992,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b07cbfbc-c91c-467f-8aaf-4853a301c836
     m_ActionName: Player/Return[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 826096344}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: GetEscInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 52808019-620f-4836-a141-8ead0e903273
+    m_ActionName: UI/Esc[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&mouse
   m_DefaultActionMap: Player
