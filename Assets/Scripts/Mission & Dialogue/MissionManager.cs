@@ -643,9 +643,9 @@ public class MissioneManager : MonoBehaviour
             EventManager.OnTriggerAcceptMission(missionRun.missionID);
         }
 
-        if (missionView.currentMission == null)
+        if (missionView.trickMission == null)
         {
-            missionView.currentMission = missionRun;
+            missionView.trickMission = missionRun;
         }
 
     }

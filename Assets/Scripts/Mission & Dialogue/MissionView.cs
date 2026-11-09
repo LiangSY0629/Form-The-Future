@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -17,6 +15,8 @@ public class MissionView : MonoBehaviour
     public Transform missionTransform;
     public GameObject missionPrefab;
 
+    public GameObject missionDetail;
+
     public TMP_Text missionTitle;
 
     public TMP_Text missionDescription, missionCondition;
@@ -26,6 +26,7 @@ public class MissionView : MonoBehaviour
     public Button trickButton;
 
     MissionTypes currentType;
+    MissionRunTime currentMission;
 
     [Header("设置simple面板")]
     public GameObject simpleView;
@@ -33,14 +34,16 @@ public class MissionView : MonoBehaviour
     public TMP_Text titleText, conditonText;
     public Button detailButton;
 
-    [HideInInspector]public MissionRunTime currentMission; //当前正在追踪的任务；
+    [HideInInspector]public MissionRunTime trickMission; //当前正在追踪的任务；
 
     private void OnEnable()
     {
         detailButton.onClick.AddListener(() => OpenDetailView());
 
         typeButtons[0].onClick.AddListener(() => ChangeType(MissionTypes.Main));
-        typeButtons[1].onClick.AddListener(() => ChangeType(MissionTypes.Side)); 
+        typeButtons[1].onClick.AddListener(() => ChangeType(MissionTypes.Side));
+
+        trickButton.onClick.AddListener(() => OnTrickMission());
     }
 
     private void Start()
@@ -52,7 +55,7 @@ public class MissionView : MonoBehaviour
         {
             if(missionRun.state == MissionStates.Active)
             {
-                currentMission = missionRun;
+                trickMission = missionRun;
                 break;
             }
         }
@@ -66,6 +69,8 @@ public class MissionView : MonoBehaviour
 
         typeButtons[0].onClick.RemoveAllListeners();
         typeButtons[1].onClick.RemoveAllListeners();
+
+        trickButton.onClick.RemoveAllListeners();
     }
 
     /// <summary>
@@ -73,26 +78,26 @@ public class MissionView : MonoBehaviour
     /// </summary>
     public void SetSimpleView()
     {
-        if (currentMission != null)
+        if (trickMission != null)
         {
             if(!simpleView.activeSelf)
                 simpleView.SetActive(true);
 
-            titleText.text = currentMission.missionID + "：";
+            titleText.text = trickMission.missionID + "：";
 
-            if(currentMission.state == MissionStates.Available)
+            if(trickMission.state == MissionStates.Available)
             {
-                conditonText.text = "与" + currentMission.Group.triggerNpcID + "对话接取任务";
+                conditonText.text = "与" + trickMission.Group.triggerNpcID + "对话接取任务";
             }
-            else if(currentMission.state == MissionStates.Active)
+            else if(trickMission.state == MissionStates.Active)
             {
                 //如果有限制条件
-                if(currentMission.Group.conditions.Count > 0)
+                if(trickMission.Group.conditions.Count > 0)
                 {
                     conditonText.text = "";   //初始化未完成限制的文本；
                     int conditionNum = 0;     //记录有多少个限制未完成；
 
-                    foreach(UnlockCondition condition in currentMission.Group.conditions)
+                    foreach(UnlockCondition condition in trickMission.Group.conditions)
                     {
                         if (MissioneManager.Instance.CanAdvance(condition.conditionID) < condition.value)
                         {
@@ -109,18 +114,18 @@ public class MissionView : MonoBehaviour
                     //如果限制条件全部完成；
                     if (conditionNum < 1)
                     {
-                        conditonText.text = "与" + currentMission.Group.triggerNpcID + "对话";
+                        conditonText.text = "与" + trickMission.Group.triggerNpcID + "对话";
                     }
 
                 }
                 //没有限制条件；
                 else
                 {
-                    conditonText.text = "与" + currentMission.Group.triggerNpcID + "对话";
+                    conditonText.text = "与" + trickMission.Group.triggerNpcID + "对话";
                 }
 
             }
-            else if(currentMission.state == MissionStates.Complete)
+            else if(trickMission.state == MissionStates.Complete)
             {
                 titleText.text = "";
                 conditonText.text = "";
@@ -158,7 +163,9 @@ public class MissionView : MonoBehaviour
 
         foreach(MissionRunTime missionRun in mission)
         {
-            GameObject newMission = Instantiate(missionPrefab, missionTransform);
+            Mission newMission = Instantiate(missionPrefab, missionTransform).GetComponent<Mission>();
+            newMission.missionRun = missionRun;
+            newMission.missionView = this;
             newMission.GetComponentInChildren<TMP_Text>().text = missionRun.missionID;
         }
 
@@ -182,6 +189,9 @@ public class MissionView : MonoBehaviour
         currentType = MissionTypes.Main;
         SetDetailView();
         detailView.SetActive(true);
+
+        missionDetail.SetActive(false);
+
     }
 
     /// <summary>
@@ -205,6 +215,75 @@ public class MissionView : MonoBehaviour
         if (action.performed)
         {
             OpenDetailView();
+        }
+    }
+
+    /// <summary>
+    /// 点击对应任务，显示详细信息；
+    /// </summary>
+    public void OnPressedMission(MissionRunTime missionRun)
+    {
+        if (!missionDetail.activeSelf)
+            missionDetail.SetActive(true);
+
+        currentMission = missionRun;
+
+        missionTitle.text = missionRun.missionID;
+        missionDescription.text = missionRun.mission.description;
+
+        //如果有限制条件
+        if (missionRun.Group.conditions.Count > 0)
+        {
+            missionCondition.text = "";   //初始化未完成限制的文本；
+            int conditionNum = 0;     //记录有多少个限制未完成；
+
+            foreach (UnlockCondition condition in missionRun.Group.conditions)
+            {
+                if (MissioneManager.Instance.CanAdvance(condition.conditionID) < condition.value)
+                {
+                    conditionNum++;
+
+                    missionCondition.text += condition.conditionID + "\n";
+                }
+            }
+
+            //如果限制条件全部完成；
+            if (conditionNum < 1)
+            {
+                conditonText.text = "与" + missionRun.Group.triggerNpcID + "对话";
+            }
+
+        }
+        //没有限制条件；
+        else
+        {
+            conditonText.text = "与" + missionRun.Group.triggerNpcID + "对话";
+        }
+
+        SetTrickButton();
+
+    }
+
+    public void OnTrickMission()
+    {
+        if(currentMission != null)
+        {
+            trickMission = currentMission;
+            SetTrickButton();
+
+            SetSimpleView();
+        }
+    }
+
+    public void SetTrickButton()
+    {
+        if (trickMission == currentMission)
+        {
+            trickButton.GetComponentInChildren<TMP_Text>().text = "追踪中";
+        }
+        else
+        {
+            trickButton.GetComponentInChildren<TMP_Text>().text = "追踪任务";
         }
     }
 
