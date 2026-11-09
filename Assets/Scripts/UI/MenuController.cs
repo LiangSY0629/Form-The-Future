@@ -100,4 +100,41 @@ public class MenuController : MonoBehaviour
             playerInput.SwitchCurrentActionMap("Player");
     }
 
+    /// <summary>
+    /// 传入需要调用的方法，如果有该方法，将调用这个方法之后的所有方法；
+    /// </summary>
+    /// <param name="action"></param>
+    public void Pops(Action action)
+    {
+        if (openMenu.Count == 0)
+            return;
+
+        int index = -1;
+
+        for(int i = 0; i < openMenu.Count; i++)
+        {
+            if (action == openMenu[i])
+            {
+                index = i;
+                break;
+            }
+        }
+
+        if (index >= 0)
+        {
+            for (int i = index; i < openMenu.Count; i++)
+            {
+                openMenu[i]();
+            }
+
+            openMenu.RemoveRange(index, openMenu.Count - index);
+
+        }
+
+        //移除后如果没有任何需要关闭的，就切换为移动；
+        if (openMenu.Count == 0)
+            playerInput.SwitchCurrentActionMap("Player");
+
+    }
+
 }

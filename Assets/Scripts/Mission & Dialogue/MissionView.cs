@@ -240,6 +240,11 @@ public class MissionView : MonoBehaviour
         detailView.SetActive(false);
     }
 
+    public void CloseAllView()
+    {
+        MenuController.Instance.Pops(CloseDetailView);
+    }
+
     /// <summary>
     /// πÿ±’œÍ«È√Ê∞Â£ª
     /// </summary>
