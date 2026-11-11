@@ -9,8 +9,6 @@ using UnityEngine.UI;
 
 public class DialoguePanelView : DialogueViewController
 {
-    public PlayerInput playerInput;
-
     public GameObject dialoguePanel;
     public Transform chooseTransform;
     public GameObject dialogueChoose;
@@ -26,7 +24,7 @@ public class DialoguePanelView : DialogueViewController
     public override void OpenView()
     {
         dialoguePanel.SetActive(true);
-        playerInput.SwitchCurrentActionMap("UI");
+        GameManager.Instance.SetInputMap("UI", true);
     }
 
 
@@ -60,7 +58,7 @@ public class DialoguePanelView : DialogueViewController
     public override void Close()
     {
         dialoguePanel.SetActive(false);
-        playerInput.SwitchCurrentActionMap("Player");
+        GameManager.Instance.SetInputMap("Player", false);
     }
 
 

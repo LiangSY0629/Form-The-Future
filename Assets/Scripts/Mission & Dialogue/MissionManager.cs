@@ -3,20 +3,19 @@ using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MissioneManager : MonoBehaviour
+public class MissioneManager : MonoBehaviour,ISaveable
 {
     public static MissioneManager Instance;
+
+    public string saveName = "mission";
 
     public DialogueViewController[] dialogueView;  //拖入Dialogue View Controller的子类；
     public MissionView missionView;                //任务面板，包含大面板和小面板；
 
-    //[HideInInspector]public List<MissionRunTime> currentMission = new();      //存储所有已解锁的任务（包含待接取任务）；
-    //[HideInInspector] public List<string> availableMission;   //存储所有可接取的任务；
-
     [Header("拖入所有的任务")]
     public List<MissionSO> MissionSos;    //存储所有任务的SO；
     public Dictionary<string, MissionRunTime> missionDictionary;    //根据任务ID查询当前任务状态；
-    public Dictionary<string, int> conditionDictionary;                  //根据限制ID查询当前限制状态；
+    public Dictionary<string, float> conditionDictionary;                  //根据限制ID查询当前限制状态；
 
     [Header("设置一些相关的信息")]
     public Color fadeColor;
@@ -56,8 +55,51 @@ public class MissioneManager : MonoBehaviour
 
         //运行时创建所有的mission run time，并添加进字典；
         missionDictionary = new Dictionary<string, MissionRunTime>();
-        conditionDictionary = new Dictionary<string, int>();
+        conditionDictionary = new Dictionary<string, float>();
 
+        CreateMissionRun();
+
+    }
+
+
+    private void OnEnable()
+    {
+        //EventManager.OnAcceptMission += AcceptMission;       //订阅任务解锁事件；
+        EventManager.OnConditionChange += ConditionChange;   //订阅限制值改变事件；
+    }
+
+
+    private void Start()
+    {
+        //运行时从存档内获取进度，并赋值到mission runtime上；
+        SaveManager.Instance.saveables[saveName] = this;
+
+    }
+
+    private void LateUpdate()
+    {
+        if (!isConditionChange)
+            return;
+        if (currentSession != null)
+            return;
+
+        isConditionChange = false;
+        UpdateMission();
+
+    }
+
+
+    private void OnDisable()
+    {
+        //EventManager.OnAcceptMission -= AcceptMission;         //取消订阅任务解锁事件；
+        EventManager.OnConditionChange -= ConditionChange;     //取消订阅限制值改变事件；
+    }
+
+    /// <summary>
+    /// 根据ListSO，重建所有的mission Run；
+    /// </summary>
+    public void CreateMissionRun()
+    {
         foreach (MissionSO missionSO in MissionSos)
         {
             MissionRunTime missionRun = new()
@@ -84,40 +126,6 @@ public class MissioneManager : MonoBehaviour
             missionDictionary[missionRun.missionID] = missionRun;
 
         }
-
-    }
-
-
-    private void OnEnable()
-    {
-        EventManager.OnAcceptMission += AcceptMission;       //订阅任务解锁事件；
-        EventManager.OnConditionChange += ConditionChange;   //订阅限制值改变事件；
-    }
-
-
-    //private void Start()
-    //{
-    //  运行时从存档内获取进度，并赋值到mission runtime上；
-
-    //}
-
-    private void LateUpdate()
-    {
-        if (!isConditionChange)
-            return;
-        if (currentSession != null)
-            return;
-
-        isConditionChange = false;
-        UpdateMission();
-
-    }
-
-
-    private void OnDisable()
-    {
-        EventManager.OnAcceptMission -= AcceptMission;         //取消订阅任务解锁事件；
-        EventManager.OnConditionChange -= ConditionChange;     //取消订阅限制值改变事件；
     }
 
 
@@ -382,6 +390,12 @@ public class MissioneManager : MonoBehaviour
             //更改对应的限制值；
             conditionDictionary[currentSession.missionRun.missionID] = 1;
 
+            //如果当前正在追踪这个任务，把任务追踪置为空；
+            if (missionView.trickMission == currentSession.missionRun)
+                missionView.trickMission = null;
+
+            TipsPopController.Instance.SetTips("任务完成！");
+
             currentSession = null;
 
             await SceneFade.Instance.FadeOut(fadeColor, fadeTime);
@@ -499,14 +513,15 @@ public class MissioneManager : MonoBehaviour
     /// </summary>
     /// <param name="flag"></param>
     /// <param name="addValue"></param>
-    public void ConditionChange(string flag, int addValue)
+    public void ConditionChange(string flag, float addValue)
     {
-        if (conditionDictionary.TryGetValue(flag, out int value))
+        if (conditionDictionary.TryGetValue(flag, out float value))
         {
             conditionDictionary[flag] = value + addValue;
 
             isConditionChange = true;
         }
+        else conditionDictionary[flag] = addValue;
 
     }
 
@@ -518,6 +533,7 @@ public class MissioneManager : MonoBehaviour
     {
         if (missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun) && missionRun.state == MissionStates.Available)
         {
+            TipsPopController.Instance.SetTips("已接取：" + missionID);
             missionRun.state = MissionStates.Active;
         }
 
@@ -549,10 +565,7 @@ public class MissioneManager : MonoBehaviour
             //如果当前任务处于待接取状态；
             if(missionRun.state == MissionStates.Available)
             {
-                Debug.Log("待接取_" + missionRun.missionID);
-
                 CanAccept(missionRun);
-
             }
 
             //如果当前任务正在被追踪，判断当前对话组条件是否满足；
@@ -560,8 +573,6 @@ public class MissioneManager : MonoBehaviour
             {
                 //限制名称用mission ID_groupID；(be like: 初识_main_1)
                 string conditionID = missionRun.missionID + "_" + missionRun.Group.groupID;
-
-                Debug.Log("进行中_" + conditionID);
 
                 //如果当前任务的下一对话组的要求全部被满足，就切换至下一对话组；
                 if (CanAdvance(conditionID) >= 1 && missionRun.groupIndex + 1 < missionRun.mission.groupSOs.Count)
@@ -573,8 +584,6 @@ public class MissioneManager : MonoBehaviour
                         if (CanAdvance(group.conditions))
                         {
                             missionRun.groupIndex++;
-
-                            //预留占位符，写任务面板的更新函数方法；
                         }
                     }
                     else missionRun.groupIndex++;
@@ -610,9 +619,9 @@ public class MissioneManager : MonoBehaviour
     /// </summary>
     /// <param name="conditionID"></param>
     /// <returns></returns>
-    public int CanAdvance(string conditionID)
+    public float CanAdvance(string conditionID)
     {
-        if (conditionDictionary.TryGetValue(conditionID, out int value))
+        if (conditionDictionary.TryGetValue(conditionID, out float value))
         {
             return value;
         }
@@ -633,26 +642,109 @@ public class MissioneManager : MonoBehaviour
             if (CanAdvance(conditionID) > 0)
             {
                 //如果当前接取对话已经完成，就设置为任务状态为正在进行中；
-                EventManager.OnTriggerAcceptMission(missionRun.missionID);
+                AcceptMission(missionRun.missionID);
             }
 
         }
         else
         {
             //如果不需要接取，就直接触发
-            EventManager.OnTriggerAcceptMission(missionRun.missionID);
+            AcceptMission(missionRun.missionID);
         }
 
-        if (missionView.trickMission == null)
-        {
-            missionView.trickMission = missionRun;
-        }
+        missionView.trickMission ??= missionRun;
 
     }
 
 
-}
+    public Data GetSaveData()
+    {
 
+        List<MissionData> missionData = new();
+        List<ConditionData> conditionData = new();
+
+        //遍历运行字典，保存当前任务运行状态；
+        foreach(MissionRunTime missionRun in missionDictionary.Values)
+        {
+            missionData.Add(new MissionData
+            {
+                missionID = missionRun.missionID,
+                missionState = missionRun.state,
+                groupIndex = missionRun.groupIndex,
+            });
+        }
+
+        //遍历限制字典，保存当前限制的值；
+        foreach(var dic in conditionDictionary)
+        {
+            conditionData.Add(new ConditionData
+            {
+                conditionID = dic.Key,
+                value = dic.Value,
+            });
+        }
+
+        MissionSaveData saveData = new()
+        {
+            version = 1,
+            trickMissionID = missionView.trickMission.missionID,
+            missionDatas = missionData,
+            conditionDatas = conditionData,
+        };
+
+        Data data = new()
+        {
+            key = saveName,
+            value = JsonUtility.ToJson(saveData),
+        };
+
+        return data;
+    }
+
+
+    public void SetSaveData(Data data)
+    {
+        if (data.key != saveName)
+            return;
+
+        MissionSaveData saveData = JsonUtility.FromJson<MissionSaveData>(data.value);
+
+        missionView.trickMission = null;
+
+        conditionDictionary.Clear();
+
+        //清空再重建，遍历存下来的所有限制数据；
+        foreach (ConditionData conditionData in saveData.conditionDatas)
+        {
+            ConditionChange(conditionData.conditionID, conditionData.value);
+        }
+
+        //先清空再重建，保证新添加的或更改过的任务刷新至初始状态，不至于直接消失不见；
+        missionDictionary.Clear();
+        CreateMissionRun();
+
+        foreach(MissionData missionData in saveData.missionDatas)
+        {
+            if(missionDictionary.TryGetValue(missionData.missionID, out MissionRunTime missionRun))
+            {
+                missionRun.state = missionData.missionState;
+                missionRun.groupIndex = missionData.groupIndex;
+            }
+        }
+
+        //查找存档时的任务当前是否存在，存在就继续追踪；
+        if (missionDictionary.TryGetValue(saveData.trickMissionID, out MissionRunTime trickMission))
+        {
+            missionView.trickMission = trickMission;
+        }
+
+        missionView.SetSimpleView();
+
+    }
+
+
+
+}
 
 /// <summary>
 /// 创建任务的运行状态；

@@ -11,12 +11,13 @@ public enum MissionTypes
 /// <summary>
 /// ÈÎÎñµÄ×´Ì¬£»
 /// </summary>
+[System.Serializable]
 public enum MissionStates
 {
-    Locked,
-    Available,
-    Active,
-    Complete,
+    Locked = 0,
+    Available = 1,
+    Active = 2,
+    Complete = 3,
 }
 
 /// <summary>

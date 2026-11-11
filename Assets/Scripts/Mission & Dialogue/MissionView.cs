@@ -154,7 +154,7 @@ public class MissionView : MonoBehaviour
 
         foreach (MissionRunTime missionRun in MissioneManager.Instance.missionDictionary.Values)
         {
-            if(missionRun.state == MissionStates.Active)
+            if(missionRun.state == MissionStates.Active || missionRun.state == MissionStates.Available)
             {
                 if (missionRun.mission.missionType == currentType)
                     mission.Add(missionRun);
@@ -166,7 +166,10 @@ public class MissionView : MonoBehaviour
             Mission newMission = Instantiate(missionPrefab, missionTransform).GetComponent<Mission>();
             newMission.missionRun = missionRun;
             newMission.missionView = this;
-            newMission.GetComponentInChildren<TMP_Text>().text = missionRun.missionID;
+
+            //只存在两种情况，待接取和已接取；
+            if(missionRun.state == MissionStates.Active) newMission.GetComponentInChildren<TMP_Text>().text = missionRun.missionID;
+            else newMission.GetComponentInChildren<TMP_Text>().text =  "待接取：" + missionRun.missionID;
         }
 
     }
@@ -268,36 +271,46 @@ public class MissionView : MonoBehaviour
 
         currentMission = missionRun;
 
-        missionTitle.text = missionRun.missionID;
         missionDescription.text = missionRun.mission.description;
 
-        //如果有限制条件
-        if (missionRun.Group.conditions.Count > 0)
+        if (missionRun.state == MissionStates.Active)
         {
-            missionCondition.text = "";   //初始化未完成限制的文本；
-            int conditionNum = 0;     //记录有多少个限制未完成；
+            missionTitle.text = missionRun.missionID;
 
-            foreach (UnlockCondition condition in missionRun.Group.conditions)
+            //如果有限制条件
+            if (missionRun.Group.conditions.Count > 0)
             {
-                if (MissioneManager.Instance.CanAdvance(condition.conditionID) < condition.value)
+                missionCondition.text = "";   //初始化未完成限制的文本；
+                int conditionNum = 0;     //记录有多少个限制未完成；
+
+                foreach (UnlockCondition condition in missionRun.Group.conditions)
                 {
-                    conditionNum++;
+                    if (MissioneManager.Instance.CanAdvance(condition.conditionID) < condition.value)
+                    {
+                        conditionNum++;
 
-                    missionCondition.text += condition.conditionID + "\n";
+                        missionCondition.text += condition.conditionID + "\n";
+                    }
                 }
-            }
 
-            //如果限制条件全部完成；
-            if (conditionNum < 1)
+                //如果限制条件全部完成；
+                if (conditionNum < 1)
+                {
+                    missionCondition.text = "与" + missionRun.Group.triggerNpcID + "对话";
+                }
+
+            }
+            //没有限制条件；
+            else
             {
-                conditonText.text = "与" + missionRun.Group.triggerNpcID + "对话";
+                missionCondition.text = "与" + missionRun.Group.triggerNpcID + "对话";
             }
-
         }
-        //没有限制条件；
         else
         {
-            conditonText.text = "与" + missionRun.Group.triggerNpcID + "对话";
+            missionTitle.text = "接取：" + missionRun.missionID;
+
+            missionCondition.text = "与" + missionRun.Group.triggerNpcID + "对话接取任务";
         }
 
         SetTrickButton();

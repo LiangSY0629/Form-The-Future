@@ -31,5 +31,5 @@ public class UnlockCondition
     public string conditionID;
 
     //解锁限制的值；
-    public int value;
+    public float value;
 }

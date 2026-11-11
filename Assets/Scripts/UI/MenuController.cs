@@ -8,8 +8,6 @@ public class MenuController : MonoBehaviour
 {
     public static MenuController Instance;
 
-    public PlayerInput playerInput;
-
     /// <summary>
     /// 通常当作栈来使用，为后续可能情况预留空间；
     /// </summary>
@@ -33,7 +31,7 @@ public class MenuController : MonoBehaviour
         //加入时如果没有一个打开，就切换为UI；
         if (openMenu.Count == 0)
         {
-            playerInput.SwitchCurrentActionMap("UI");
+            GameManager.Instance.SetInputMap("UI", true);
         }
 
         openMenu.Add(action);
@@ -56,7 +54,7 @@ public class MenuController : MonoBehaviour
 
         //移除后如果没有任何需要关闭的，就切换为移动；
         if (openMenu.Count == 0)
-            playerInput.SwitchCurrentActionMap("Player");
+            GameManager.Instance.SetInputMap("Player", false);
     }
 
     /// <summary>
@@ -72,7 +70,7 @@ public class MenuController : MonoBehaviour
         {
             Pop();
             return;
-        } 
+        }
 
     }
 
@@ -97,7 +95,7 @@ public class MenuController : MonoBehaviour
 
         //移除后如果没有任何需要关闭的，就切换为移动；
         if (openMenu.Count == 0)
-            playerInput.SwitchCurrentActionMap("Player");
+            GameManager.Instance.SetInputMap("Player", false);
     }
 
     /// <summary>
@@ -133,7 +131,7 @@ public class MenuController : MonoBehaviour
 
         //移除后如果没有任何需要关闭的，就切换为移动；
         if (openMenu.Count == 0)
-            playerInput.SwitchCurrentActionMap("Player");
+            GameManager.Instance.SetInputMap("Player", false);
 
     }
 

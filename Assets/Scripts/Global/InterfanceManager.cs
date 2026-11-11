@@ -38,3 +38,19 @@ public interface IDialogueNPC
     MissionSO DailyDialogue();
 
 }
+
+public interface ISaveable
+{
+    /// <summary>
+    /// 获取存档数据；
+    /// </summary>
+    /// <returns></returns>
+    Data GetSaveData();
+
+    /// <summary>
+    /// 加载存档数据；
+    /// </summary>
+    /// <param name="data"></param>
+    void SetSaveData(Data data);
+
+}

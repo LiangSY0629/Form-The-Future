@@ -11,15 +11,15 @@ public class NpcInteracte : MonoBehaviour,IDialogueNPC
     public MissionSO[] dailyDialogue;
     public int dailyIndex;
 
-    private void OnEnable()
-    {
-        EventManager.OnSwitchDaily += SwitchDaily;
-    }
+    //private void OnEnable()
+    //{
+    //    EventManager.OnSwitchDaily += SwitchDaily;
+    //}
 
-    private void OnDisable()
-    {
-        EventManager.OnSwitchDaily -= SwitchDaily;
-    }
+    //private void OnDisable()
+    //{
+    //    EventManager.OnSwitchDaily -= SwitchDaily;
+    //}
 
     public string DialogueNPC()
     {
@@ -52,7 +52,7 @@ public class NpcInteracte : MonoBehaviour,IDialogueNPC
     }
 
 
-    void SwitchDaily(int index) => dailyIndex = index;
+    //void SwitchDaily(int index) => dailyIndex = index;
 
 
 }

@@ -2,9 +2,11 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour,ISaveable
 {
     Transform playerTransform;
+
+    public string saveName = "move";
 
     public Animator anim;
     public CharacterController controller;
@@ -23,12 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+
+        SaveManager.Instance.saveables[saveName] = this;
+
         playerTransform = transform;
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         mainCamera = Camera.main.transform;
 
-        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -136,5 +140,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+        
 
+    public Data GetSaveData()
+    {
+        Data data = new()
+        {
+            key = saveName,
+            value = JsonUtility.ToJson(playerTransform.position),
+        };
+
+        return data;
+    }
+
+    public void SetSaveData(Data data)
+    {
+        if (data.key != saveName)
+            return;
+
+        playerTransform.position = JsonUtility.FromJson<Vector3>(data.value);
+    }
 }
