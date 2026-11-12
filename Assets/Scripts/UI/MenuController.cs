@@ -12,6 +12,8 @@ public class MenuController : MonoBehaviour
 
     public GameObject saveView;
 
+    public GameObject attributeView;
+
     public MissionView missionView;
 
 
@@ -191,5 +193,15 @@ public class MenuController : MonoBehaviour
         missionView.ChangeType(MissionTypes.Main);
     }
 
+    public void OpenAttributeView()
+    {
+        attributeView.SetActive(true);
+        Push(CloseAttributeView);
+    }
+
+    void CloseAttributeView()
+    {
+        attributeView.SetActive(false);
+    }
 
 }
