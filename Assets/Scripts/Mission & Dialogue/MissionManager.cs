@@ -686,11 +686,13 @@ public class MissioneManager : MonoBehaviour,ISaveable
 
         MissionSaveData saveData = new()
         {
-            version = 1,
-            trickMissionID = missionView.trickMission.missionID,
             missionDatas = missionData,
             conditionDatas = conditionData,
         };
+
+        if (missionView.trickMission != null)
+            saveData.trickMissionID = missionView.trickMission.missionID;
+        else saveData.trickMissionID = null;
 
         Data data = new()
         {
@@ -733,7 +735,7 @@ public class MissioneManager : MonoBehaviour,ISaveable
         }
 
         //查找存档时的任务当前是否存在，存在就继续追踪；
-        if (missionDictionary.TryGetValue(saveData.trickMissionID, out MissionRunTime trickMission))
+        if (saveData.trickMissionID != null && missionDictionary.TryGetValue(saveData.trickMissionID, out MissionRunTime trickMission))
         {
             missionView.trickMission = trickMission;
         }

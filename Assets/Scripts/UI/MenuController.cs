@@ -8,6 +8,13 @@ public class MenuController : MonoBehaviour
 {
     public static MenuController Instance;
 
+    public GameObject mainMenuView;
+
+    public GameObject saveView;
+
+    public MissionView missionView;
+
+
     /// <summary>
     /// 通常当作栈来使用，为后续可能情况预留空间；
     /// </summary>
@@ -35,6 +42,13 @@ public class MenuController : MonoBehaviour
         }
 
         openMenu.Add(action);
+
+        if (action != CloseMenuView && openMenu.Contains(CloseMenuView))
+        {
+            CloseMenuView();
+            openMenu.Remove(CloseMenuView);
+        }
+
     }
 
     /// <summary>
@@ -66,11 +80,14 @@ public class MenuController : MonoBehaviour
         if (!ctx.performed)
             return;
 
+
         if (openMenu.Count > 0)
         {
             Pop();
             return;
         }
+
+        OpenMenuView();
 
     }
 
@@ -134,5 +151,45 @@ public class MenuController : MonoBehaviour
             GameManager.Instance.SetInputMap("Player", false);
 
     }
+
+
+    public void OpenMenuView()
+    {
+        mainMenuView.SetActive(true);
+        Push(CloseMenuView);
+    }
+
+    void CloseMenuView()
+    {
+        mainMenuView.SetActive(false);
+    }
+
+    public void OpenSaveView()
+    {
+        saveView.GetComponent<SaveViewController>().isSaveMode = true;
+
+        saveView.SetActive(true);
+        Push(CloseSaveView);
+    }
+
+    public void OpenLoadView()
+    {
+        saveView.GetComponent<SaveViewController>().isSaveMode = false;
+
+        saveView.SetActive(true);
+        Push(CloseSaveView);
+    }
+
+    void CloseSaveView()
+    {
+        saveView.SetActive(false);
+    }
+
+    public void OpenMissionView()
+    {
+        missionView.OpenDetailView();
+        missionView.ChangeType(MissionTypes.Main);
+    }
+
 
 }

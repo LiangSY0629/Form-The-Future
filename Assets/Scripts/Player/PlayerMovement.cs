@@ -158,6 +158,8 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         if (data.key != saveName)
             return;
 
+        controller.enabled = false;
         playerTransform.position = JsonUtility.FromJson<Vector3>(data.value);
+        controller.enabled = true;
     }
 }

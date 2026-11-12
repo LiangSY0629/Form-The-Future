@@ -5,6 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
+    //public int version;
+    public string dataName;
+    public long saveAt;
     public List<Data> datas;
 }
 
@@ -20,7 +23,6 @@ public class Data
 [System.Serializable]
 public class MissionSaveData
 {
-    public int version;
     public string trickMissionID;
     public List<MissionData> missionDatas;
     public List<ConditionData> conditionDatas;
