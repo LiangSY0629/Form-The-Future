@@ -44,19 +44,19 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         SetAnimtor();
     }
 
-    public void GetMoveInput(InputAction.CallbackContext action)
+    public void GetMoveInput(InputAction.CallbackContext ctx)
     {
-        moveInput = action.ReadValue<Vector2>();
+        moveInput = ctx.ReadValue<Vector2>();
     }
 
-    public void GetRunInput(InputAction.CallbackContext action)
+    public void GetRunInput(InputAction.CallbackContext ctx)
     {
-        isRunning = action.ReadValueAsButton();
+        isRunning = ctx.ReadValueAsButton();
     }
 
-    public void GetAimInput(InputAction.CallbackContext action)
+    public void GetAimInput(InputAction.CallbackContext ctx)
     {
-        isAiming = action.ReadValueAsButton();
+        isAiming = ctx.ReadValueAsButton();
     }
 
     void SwitchPlayerStats()

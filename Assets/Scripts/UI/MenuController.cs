@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -10,12 +12,15 @@ public class MenuController : MonoBehaviour
 
     public GameObject mainMenuView;
 
-    public GameObject saveView;
-
-    public GameObject attributeView;
+    public GameObject buttonPrefab;
 
     public MissionView missionView;
 
+    public List<ViewController> views;
+
+    public Dictionary<string, ViewController> viewDictionary;
+
+    public Transform buttonTransform;
 
     /// <summary>
     /// 通常当作栈来使用，为后续可能情况预留空间；
@@ -29,7 +34,33 @@ public class MenuController : MonoBehaviour
             Instance = this;
         }
         else Destroy(gameObject);
+
+        viewDictionary = new Dictionary<string, ViewController>();
     }
+
+    private void Start()
+    {
+        foreach(ViewController view in views)
+        {
+            viewDictionary[view.viewID] = view;
+
+            Button button = Instantiate(buttonPrefab, buttonTransform).GetComponent<Button>();
+
+            button.onClick.AddListener(() => OpenView(view.viewID));
+
+            button.GetComponentInChildren<TMP_Text>().text = view.viewID;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach(Transform tr in buttonTransform)
+        {
+            tr.GetComponent<Button>().onClick.RemoveAllListeners();
+            Destroy(tr.gameObject);
+        }
+    }
+
 
     /// <summary>
     /// 将传入的方法放入list中，调用时按顺序调用；
@@ -77,7 +108,7 @@ public class MenuController : MonoBehaviour
     /// 检测esc输入；
     /// </summary>
     /// <param name="ctx"></param>
-    public void GetEscInput(InputAction.CallbackContext ctx)
+    public void GetOpenInput(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed)
             return;
@@ -161,30 +192,9 @@ public class MenuController : MonoBehaviour
         Push(CloseMenuView);
     }
 
-    void CloseMenuView()
+    public void CloseMenuView()
     {
         mainMenuView.SetActive(false);
-    }
-
-    public void OpenSaveView()
-    {
-        saveView.GetComponent<SaveViewController>().isSaveMode = true;
-
-        saveView.SetActive(true);
-        Push(CloseSaveView);
-    }
-
-    public void OpenLoadView()
-    {
-        saveView.GetComponent<SaveViewController>().isSaveMode = false;
-
-        saveView.SetActive(true);
-        Push(CloseSaveView);
-    }
-
-    void CloseSaveView()
-    {
-        saveView.SetActive(false);
     }
 
     public void OpenMissionView()
@@ -193,15 +203,17 @@ public class MenuController : MonoBehaviour
         missionView.ChangeType(MissionTypes.Main);
     }
 
-    public void OpenAttributeView()
+    /// <summary>
+    /// 传入参数打开对应面板；
+    /// </summary>
+    /// <param name="index"></param>
+    public void OpenView(string key)
     {
-        attributeView.SetActive(true);
-        Push(CloseAttributeView);
-    }
+        if (!viewDictionary.TryGetValue(key, out ViewController view))
+            return;
 
-    void CloseAttributeView()
-    {
-        attributeView.SetActive(false);
+        view.OpenView();
+
     }
 
 }

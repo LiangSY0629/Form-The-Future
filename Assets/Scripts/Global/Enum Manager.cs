@@ -38,3 +38,9 @@ public enum ParagraphOutCome
     Default,
     Abort,
 }
+
+public enum AttributeAddTypes
+{
+    Direct,
+    Percent,
+}
