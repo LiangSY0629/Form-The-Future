@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class MissionView : MonoBehaviour
+public class MissionView : ViewController
 {
     [Header("设置detail面板")]
     public GameObject detailView;
@@ -25,6 +25,7 @@ public class MissionView : MonoBehaviour
 
     MissionTypes currentType;
     MissionRunTime currentMission;
+    bool isTrick = false;
 
     [Header("设置simple面板")]
     public GameObject simpleView;
@@ -37,6 +38,7 @@ public class MissionView : MonoBehaviour
     private void OnEnable()
     {
         detailButton.onClick.AddListener(() => OnPressedDetail());
+        Debug.Log("1");
 
         typeButtons[0].onClick.AddListener(() => ChangeType(MissionTypes.Main));
         typeButtons[1].onClick.AddListener(() => ChangeType(MissionTypes.Side));
@@ -187,65 +189,11 @@ public class MissionView : MonoBehaviour
             MenuController.Instance.Pop(CloseMissionDetail);
     }
 
-    #region 打开任务面板
-
-    /// <summary>
-    /// 检测打开任务面板的指令
-    /// </summary>
-    /// <param name="action"></param>
-    public void GetMissionInput(InputAction.CallbackContext action)
-    {
-        if (action.performed)
-        {
-            OpenDetailView();
-            ChangeType(MissionTypes.Main);
-        }
-    }
-
-    /// <summary>
-    /// 按下小面板的任务详情按钮；
-    /// </summary>
-    public void OnPressedDetail()
-    {
-        OpenDetailView();
-
-        if(trickMission != null)
-        {
-            ChangeType(trickMission.mission.missionType);
-            OnPressedMission(trickMission);
-        }
-        else
-        {
-            ChangeType(MissionTypes.Main);
-        }
-
-    }
-
-    /// <summary>
-    /// 打开任务详情面板；
-    /// </summary>
-    public void OpenDetailView()
-    {
-        //把关闭方法传入；
-        MenuController.Instance.Push(CloseDetailView);
-
-        detailView.SetActive(true);
-    }
-
-    #endregion
-
     #region 关闭任务面板
-    /// <summary>
-    /// 关闭任务面板；
-    /// </summary>
-    public void CloseDetailView()
-    {
-        detailView.SetActive(false);
-    }
 
     public void CloseAllView()
     {
-        MenuController.Instance.Pops(CloseDetailView);
+        MenuController.Instance.Pops(CloseView);
     }
 
     /// <summary>
@@ -345,5 +293,58 @@ public class MissionView : MonoBehaviour
             trickButton.GetComponentInChildren<TMP_Text>().text = "追踪任务";
         }
     }
+
+    public override void OpenView()
+    {
+        if (isTrick)
+        {
+            if (trickMission != null)
+            {
+                ChangeType(trickMission.mission.missionType);
+                OnPressedMission(trickMission);
+            }
+            else
+            {
+                ChangeType(MissionTypes.Main);
+                missionDetail.SetActive(false);
+            }
+        }
+        else
+        {
+            ChangeType(MissionTypes.Main);
+            missionDetail.SetActive(false);
+        }
+
+        //把关闭方法传入；
+        MenuController.Instance.Push(CloseView);
+
+        detailView.SetActive(true);
+
+        isTrick = false;
+    }
+
+    public override void CloseView()
+    {
+        detailView.SetActive(false);
+    }
+
+    public override void GetOpenInput(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            OpenView();
+        }
+    }
+
+    /// <summary>
+    /// 按下小面板的任务详情按钮；
+    /// </summary>
+    public void OnPressedDetail()
+    {
+        isTrick = true;
+
+        OpenView();
+    }
+
 
 }

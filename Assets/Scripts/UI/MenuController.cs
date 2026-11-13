@@ -14,8 +14,6 @@ public class MenuController : MonoBehaviour
 
     public GameObject buttonPrefab;
 
-    public MissionView missionView;
-
     public List<ViewController> views;
 
     public Dictionary<string, ViewController> viewDictionary;
@@ -195,12 +193,6 @@ public class MenuController : MonoBehaviour
     public void CloseMenuView()
     {
         mainMenuView.SetActive(false);
-    }
-
-    public void OpenMissionView()
-    {
-        missionView.OpenDetailView();
-        missionView.ChangeType(MissionTypes.Main);
     }
 
     /// <summary>
