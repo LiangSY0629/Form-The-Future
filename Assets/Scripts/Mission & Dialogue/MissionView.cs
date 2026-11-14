@@ -38,7 +38,6 @@ public class MissionView : ViewController
     private void OnEnable()
     {
         detailButton.onClick.AddListener(() => OnPressedDetail());
-        Debug.Log("1");
 
         typeButtons[0].onClick.AddListener(() => ChangeType(MissionTypes.Main));
         typeButtons[1].onClick.AddListener(() => ChangeType(MissionTypes.Side));

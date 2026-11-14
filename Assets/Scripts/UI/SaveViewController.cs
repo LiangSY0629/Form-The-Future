@@ -126,7 +126,7 @@ public class SaveViewController : ViewController
 
     public override void CloseView()
     {
-        inputName.onValueChanged.RemoveAllListeners();
+        //inputName.onValueChanged.RemoveAllListeners();
         saveButton.onClick.RemoveAllListeners();
 
         DestroySaveData();
@@ -148,7 +148,7 @@ public class SaveViewController : ViewController
         MenuController.Instance.Push(CloseView);
 
         //监听事件，如果输入框为空不允许保存；
-        inputName.onValueChanged.AddListener(text => saveButton.interactable = !string.IsNullOrWhiteSpace(text));
+        //inputName.onValueChanged.AddListener(text => saveButton.interactable = !string.IsNullOrWhiteSpace(text));
 
         saveButton.onClick.AddListener(() => SaveGame());
         saveButton.GetComponentInChildren<TMP_Text>().text = "存档";

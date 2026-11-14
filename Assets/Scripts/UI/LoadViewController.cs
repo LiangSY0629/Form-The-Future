@@ -118,7 +118,7 @@ public class LoadViewController : ViewController
 
     public override void CloseView()
     {
-        inputName.onValueChanged.RemoveAllListeners();
+        //inputName.onValueChanged.RemoveAllListeners();
         loadButton.onClick.RemoveAllListeners();
 
         DestroySaveData();
@@ -141,7 +141,7 @@ public class LoadViewController : ViewController
         MenuController.Instance.Push(CloseView);
 
         //监听事件，如果输入框为空不允许保存；
-        inputName.onValueChanged.AddListener(text => loadButton.interactable = !string.IsNullOrWhiteSpace(text));
+        //inputName.onValueChanged.AddListener(text => loadButton.interactable = !string.IsNullOrWhiteSpace(text));
 
         loadButton.onClick.AddListener(() => LoadGame());
         loadButton.GetComponentInChildren<TMP_Text>().text = "加载";

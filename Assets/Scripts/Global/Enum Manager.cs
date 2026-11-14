@@ -39,7 +39,7 @@ public enum ParagraphOutCome
     Abort,
 }
 
-public enum AttributeAddTypes
+public enum ModifierTypes
 {
     Direct,
     Percent,
