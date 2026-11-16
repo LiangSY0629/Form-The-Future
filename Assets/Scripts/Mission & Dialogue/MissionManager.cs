@@ -10,7 +10,6 @@ public class MissioneManager : MonoBehaviour,ISaveable
     public string saveName = "mission";
 
     public DialogueViewController[] dialogueView;  //拖入Dialogue View Controller的子类；
-    public MissionView missionView;                //任务面板，包含大面板和小面板；
 
     [Header("拖入所有的任务")]
     public List<MissionSO> MissionSos;    //存储所有任务的SO；
@@ -20,11 +19,14 @@ public class MissioneManager : MonoBehaviour,ISaveable
     [Header("设置一些相关的信息")]
     public Color fadeColor;
     public float fadeTime;
+    public bool isMissionChange = false;
 
     [HideInInspector] public bool isInFade = false;
+    [HideInInspector] public MissionRunTime trickMission; //当前正在追踪的任务；
 
     DialogueSession currentSession;
     bool isConditionChange = false;
+
     readonly List<DialogueChoose> dailyChoose = new();
 
     /// <summary>
@@ -64,7 +66,6 @@ public class MissioneManager : MonoBehaviour,ISaveable
 
     private void OnEnable()
     {
-        //EventManager.OnAcceptMission += AcceptMission;       //订阅任务解锁事件；
         EventManager.OnConditionChange += ConditionChange;   //订阅限制值改变事件；
     }
 
@@ -91,7 +92,6 @@ public class MissioneManager : MonoBehaviour,ISaveable
 
     private void OnDisable()
     {
-        //EventManager.OnAcceptMission -= AcceptMission;         //取消订阅任务解锁事件；
         EventManager.OnConditionChange -= ConditionChange;     //取消订阅限制值改变事件；
     }
 
@@ -390,9 +390,10 @@ public class MissioneManager : MonoBehaviour,ISaveable
             //更改对应的限制值；
             conditionDictionary[currentSession.missionRun.missionID] = 1;
 
-            //如果当前正在追踪这个任务，把任务追踪置为空；
-            if (missionView.trickMission == currentSession.missionRun)
-                missionView.trickMission = null;
+            //EventManager.OnTriggerMissionChanged(currentSession.missionRun.missionID);
+
+            if (trickMission == currentSession.missionRun)
+                trickMission = null;
 
             TipsPopController.Instance.SetTips("任务完成！");
 
@@ -518,25 +519,10 @@ public class MissioneManager : MonoBehaviour,ISaveable
         if (conditionDictionary.TryGetValue(flag, out float value))
         {
             conditionDictionary[flag] = value + addValue;
-
-            isConditionChange = true;
         }
         else conditionDictionary[flag] = addValue;
 
-    }
-
-    /// <summary>
-    /// 传入任务ID，代表任务已被接取；
-    /// </summary>
-    /// <param name="missionID"></param>
-    public void AcceptMission(string missionID)
-    {
-        if (missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun) && missionRun.state == MissionStates.Available)
-        {
-            TipsPopController.Instance.SetTips("已接取：" + missionID);
-            missionRun.state = MissionStates.Active;
-        }
-
+        isConditionChange = true;
     }
 
     /// <summary>
@@ -557,7 +543,6 @@ public class MissioneManager : MonoBehaviour,ISaveable
                     missionRun.state = MissionStates.Available;
 
                     CanAccept(missionRun);
-
                 }
 
             }
@@ -593,7 +578,7 @@ public class MissioneManager : MonoBehaviour,ISaveable
 
         }
 
-        missionView.SetSimpleView();
+        isMissionChange = true;
 
     }
 
@@ -632,7 +617,7 @@ public class MissioneManager : MonoBehaviour,ISaveable
     /// 传入mission Run，判断这个mission Run所对应的任务该不该从待接取状态变为可接取状态；
     /// </summary>
     /// <param name="missionRun"></param>
-    void CanAccept(MissionRunTime missionRun)
+    private void CanAccept(MissionRunTime missionRun)
     {
         if (missionRun.mission.accepted)
         {
@@ -644,6 +629,7 @@ public class MissioneManager : MonoBehaviour,ISaveable
                 //如果当前接取对话已经完成，就设置为任务状态为正在进行中；
                 AcceptMission(missionRun.missionID);
             }
+            else return;
 
         }
         else
@@ -652,8 +638,35 @@ public class MissioneManager : MonoBehaviour,ISaveable
             AcceptMission(missionRun.missionID);
         }
 
-        missionView.trickMission ??= missionRun;
+    }
 
+
+    /// <summary>
+    /// 传入任务ID，代表任务已被接取；
+    /// </summary>
+    /// <param name="missionID"></param>
+    public void AcceptMission(string missionID)
+    {
+        if (missionDictionary.TryGetValue(missionID, out MissionRunTime missionRun) && missionRun.state == MissionStates.Available)
+        {
+            TipsPopController.Instance.SetTips("已接取：" + missionID);
+            missionRun.state = MissionStates.Active;
+
+            trickMission ??= missionRun;
+
+            //EventManager.OnTriggerMissionChanged(missionRun.missionID);
+        }
+
+    }
+
+
+    /// <summary>
+    /// 传入任务，设置当前正在追踪的任务；
+    /// </summary>
+    /// <param name="mission"></param>
+    public void SetTrickMission(MissionRunTime mission)
+    {
+        trickMission = mission;
     }
 
 
@@ -690,9 +703,7 @@ public class MissioneManager : MonoBehaviour,ISaveable
             conditionDatas = conditionData,
         };
 
-        if (missionView.trickMission != null)
-            saveData.trickMissionID = missionView.trickMission.missionID;
-        else saveData.trickMissionID = null;
+        saveData.trickMissionID = trickMission.missionID;
 
         Data data = new()
         {
@@ -711,7 +722,7 @@ public class MissioneManager : MonoBehaviour,ISaveable
 
         MissionSaveData saveData = JsonUtility.FromJson<MissionSaveData>(data.value);
 
-        missionView.trickMission = null;
+        trickMission = null;
 
         conditionDictionary.Clear();
 
@@ -735,12 +746,12 @@ public class MissioneManager : MonoBehaviour,ISaveable
         }
 
         //查找存档时的任务当前是否存在，存在就继续追踪；
-        if (saveData.trickMissionID != null && missionDictionary.TryGetValue(saveData.trickMissionID, out MissionRunTime trickMission))
+        if (saveData.trickMissionID != null && missionDictionary.TryGetValue(saveData.trickMissionID, out MissionRunTime savetrickMission))
         {
-            missionView.trickMission = trickMission;
+            trickMission = savetrickMission;
         }
 
-        missionView.SetSimpleView();
+        isMissionChange = true;
 
     }
 

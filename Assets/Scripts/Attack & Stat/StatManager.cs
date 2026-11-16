@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class StatManager : MonoBehaviour
@@ -9,85 +8,68 @@ public class StatManager : MonoBehaviour
 
     public List<Stat> stats;
 
-    public Dictionary<string, StatRunTime> statDictionary;
+    public Dictionary<StatTypes, StatRunTime> statRunDictionary;
 
-    public StatViewController statViewController;
+    bool isStatChange;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        statDictionary = new Dictionary<string, StatRunTime>();
+        statRunDictionary = new Dictionary<StatTypes, StatRunTime>();
 
         foreach(Stat stat in stats)
         {
             StatRunTime statRun = new()
             {
-                ID = stat.ID,
+                type = stat.type,
                 baseValue = stat.value,
             };
 
             statRun.SetFinalValue();
 
-            statDictionary[stat.ID] = statRun;
+            statRunDictionary[stat.type] = statRun;
         }
 
     }
-    
-    /// <summary>
-    /// 给对应属性添加加成；
-    /// </summary>
-    /// <param name="ID"></param>
-    /// <param name="modifier"></param>
-    public void AddStatModirier(string ID, StatModifier modifier)
+
+    private void LateUpdate()
     {
-        if (!statDictionary.TryGetValue(ID, out StatRunTime statRun))
+        //判断要不要刷新，如果需要，判断有没有显示层，有就更新并刷新；
+        if (!isStatChange)
             return;
 
-        statRun.AddModifier(modifier);
-    }
+        //属性值发生了更改；
+        EventManager.OnTriggerStatChanged();
 
-    /// <summary>
-    /// 移除对应属性的加成；
-    /// </summary>
-    /// <param name="ID"></param>
-    /// <param name="modifier"></param>
-    public void RemoveStatModifier(string ID, StatModifier modifier)
-    {
-        if (!statDictionary.TryGetValue(ID, out StatRunTime statRun))
-            return;
-
-        statRun.RemoveModifier(modifier);
+        isStatChange = false;
     }
 
     /// <summary>
     /// 传入ID和值，更改属性的基础值；
     /// </summary>
-    /// <param name="ID"></param>
+    /// <param name="type"></param>
     /// <param name="value"></param>
-    public void StatBaseModifier(string ID, float value)
+    public void StatBaseModifier(StatTypes type, float value)
     {
-        if (!statDictionary.TryGetValue(ID, out StatRunTime statRun))
+        if (!statRunDictionary.TryGetValue(type, out StatRunTime statRun))
             return;
 
         statRun.baseValue += value;
         statRun.SetFinalValue();
 
-        if(statViewController != null)
-            statViewController.SetStatView(ID);
-
+        isStatChange = true;
     }
-
 
 }
 
 [Serializable]
 public struct Stat
 {
-    public string ID;
+    public StatTypes type;
     public float value;
-    public float addOnUp;
+    public float baseModifier;
 }
 
 
@@ -96,9 +78,11 @@ public struct Stat
 /// </summary>
 public class StatRunTime
 {
-    public string ID;
+    public StatTypes type;
 
     public float baseValue;
+
+    public float currentValue;
 
     public float finalValue;
 
@@ -138,13 +122,20 @@ public class StatRunTime
     /// <param name="sourceID"></param>
     public void RemoveModifier(StatModifier modifier)
     {
-        if (modifierDictionary.TryGetValue(modifier.sourceID, out StatModifier oldModifier))
-            modifierDictionary.Remove(modifier.sourceID);
+        modifierDictionary.Remove(modifier.sourceID);
 
         SetFinalValue();
     }
 
 }
+
+
+[Serializable]
+public class Buff
+{
+
+}
+
 
 /// <summary>
 /// 属性的加成；

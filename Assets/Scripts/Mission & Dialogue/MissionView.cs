@@ -24,7 +24,12 @@ public class MissionView : ViewController
     public Button trickButton;
 
     MissionTypes currentType;
+
     MissionRunTime currentMission;
+
+    /// <summary>
+    /// 是否通过小面板的按钮进入面板；
+    /// </summary>
     bool isTrick = false;
 
     [Header("设置simple面板")]
@@ -32,18 +37,6 @@ public class MissionView : ViewController
 
     public TMP_Text titleText, conditonText;
     public Button detailButton;
-
-    [HideInInspector]public MissionRunTime trickMission; //当前正在追踪的任务；
-
-    private void OnEnable()
-    {
-        detailButton.onClick.AddListener(() => OnPressedDetail());
-
-        typeButtons[0].onClick.AddListener(() => ChangeType(MissionTypes.Main));
-        typeButtons[1].onClick.AddListener(() => ChangeType(MissionTypes.Side));
-
-        trickButton.onClick.AddListener(() => OnTrickMission());
-    }
 
     private void Start()
     {
@@ -54,7 +47,7 @@ public class MissionView : ViewController
         {
             if(missionRun.state == MissionStates.Active)
             {
-                trickMission = missionRun;
+                MissioneManager.Instance.trickMission = missionRun;
                 break;
             }
         }
@@ -63,6 +56,18 @@ public class MissionView : ViewController
 
         detailView.SetActive(false);
     }
+    private void OnEnable()
+    {
+        detailButton.onClick.AddListener(() => OnPressedDetail());
+
+        typeButtons[0].onClick.AddListener(() => ChangeType(MissionTypes.Main));
+        typeButtons[1].onClick.AddListener(() => ChangeType(MissionTypes.Side));
+
+        trickButton.onClick.AddListener(() => OnTrickMission());
+
+        EventManager.OnMissionChanged += SetMissionTip;
+    }
+
 
     private void OnDisable()
     {
@@ -72,15 +77,41 @@ public class MissionView : ViewController
         typeButtons[1].onClick.RemoveAllListeners();
 
         trickButton.onClick.RemoveAllListeners();
+
+        EventManager.OnMissionChanged -= SetMissionTip;
     }
+
+    private void Update()
+    {
+        if (!MissioneManager.Instance.isMissionChange)
+            return;
+
+        SetSimpleView();
+
+        MissioneManager.Instance.isMissionChange = false;
+
+    }
+
+    /// <summary>
+    /// 短暂弹窗显示完成的任务；
+    /// </summary>
+    /// <param name="missionID"></param>
+    void SetMissionTip(string missionID)
+    {
+        SetSimpleView();
+        //占位符，暂时先刷新面板，后续用协程实现短暂的任务弹窗效果；
+    }
+
 
     /// <summary>
     /// 设置小面板的显示内容；
     /// </summary>
     public void SetSimpleView()
     {
-        if (trickMission != null)
+        if (MissioneManager.Instance.trickMission != null)
         {
+            MissionRunTime trickMission = MissioneManager.Instance.trickMission;
+
             if(!simpleView.activeSelf)
                 simpleView.SetActive(true);
 
@@ -271,11 +302,17 @@ public class MissionView : ViewController
     {
         if(currentMission != null)
         {
-            trickMission = currentMission;
+            if (MissioneManager.Instance.trickMission == currentMission)
+                MissioneManager.Instance.SetTrickMission(null);
+            else 
+                MissioneManager.Instance.SetTrickMission(currentMission);
+
             SetTrickButton();
 
             SetSimpleView();
         }
+
+        
     }
 
     /// <summary>
@@ -283,9 +320,9 @@ public class MissionView : ViewController
     /// </summary>
     public void SetTrickButton()
     {
-        if (trickMission == currentMission)
+        if (MissioneManager.Instance.trickMission == currentMission)
         {
-            trickButton.GetComponentInChildren<TMP_Text>().text = "追踪中";
+            trickButton.GetComponentInChildren<TMP_Text>().text = "取消追踪";
         }
         else
         {
@@ -297,8 +334,10 @@ public class MissionView : ViewController
     {
         if (isTrick)
         {
-            if (trickMission != null)
+            if (MissioneManager.Instance.trickMission != null)
             {
+                MissionRunTime trickMission = MissioneManager.Instance.trickMission;
+
                 ChangeType(trickMission.mission.missionType);
                 OnPressedMission(trickMission);
             }

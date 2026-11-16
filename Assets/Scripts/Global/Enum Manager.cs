@@ -39,8 +39,21 @@ public enum ParagraphOutCome
     Abort,
 }
 
-public enum ModifierTypes
+public enum SkillEffectTarget
 {
-    Direct,
-    Percent,
+    Player,
+    Enemy,
+}
+
+/// <summary>
+///  Ù–‘¿‡–Õ£ª
+/// </summary>
+public enum StatTypes
+{
+    Health,
+    Attack,
+    Magic,
+    CritRate,
+    CritDamage,
+    DamageBonus,
 }

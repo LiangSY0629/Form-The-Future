@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -230.51355, y: -1.6}
-  m_SizeDelta: {x: 201.6887, y: 50}
+  m_AnchoredPosition: {x: -239.8913, y: -1.6}
+  m_SizeDelta: {x: 220.4442, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9074446823739278187
 CanvasRenderer:
@@ -95,14 +95,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 44
+  m_fontSizeBase: 44
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 20
@@ -434,8 +434,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -140}
-  m_SizeDelta: {x: 700, y: 120}
+  m_AnchoredPosition: {x: 476.4709, y: -140}
+  m_SizeDelta: {x: 750, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7993147137596324731
 CanvasRenderer:
@@ -488,9 +488,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statID: 
-  titleText: {fileID: 0}
-  valueText: {fileID: 0}
-  button: {fileID: 0}
+  titleText: {fileID: 1890635985131967910}
+  valueText: {fileID: 14050198676091524}
+  button: {fileID: 105250508867681216}
+  baseModifier: 0
 --- !u!1 &6877738638935793604
 GameObject:
   m_ObjectHideFlags: 0
