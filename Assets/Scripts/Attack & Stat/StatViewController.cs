@@ -80,11 +80,11 @@ public class StatViewController : ViewController
     /// </summary>
     void SetDescriptionView()
     {
-        if (!CharacterManager.Instance.characterSoDictionary.TryGetValue(currentCharacterID, out CharacterSO character))
+        if (!CharacterManager.Instance.characterSoDictionary.TryGetValue(currentCharacterID, out CharacterRunTime characterRun))
             return;
 
-        skillTitle.text = character.charaterID;
-        skillDescription.text = character.description;
+        skillTitle.text = characterRun.ID;
+        skillDescription.text = characterRun.characterSo.description;
         skillLock.text = "";
     }
 
@@ -107,20 +107,20 @@ public class StatViewController : ViewController
     /// </summary>
     public void SetSkillView()
     {
-        if (!CharacterManager.Instance.characterSoDictionary.TryGetValue(currentCharacterID, out CharacterSO character))
+        if (!CharacterManager.Instance.characterSoDictionary.TryGetValue(currentCharacterID, out CharacterRunTime characterRun))
             return;
 
         for (int i = 0; i < skills.Length; i++)
         {
             SkillView skill = skills[i];
 
-            if (i >= character.skills.Count)
+            if (i >= characterRun.characterSo.skills.Count)
             {
                 skill.gameObject.SetActive(false);
             }
             else
             {
-                skill.skillSo = character.skills[i];
+                skill.skillSo = characterRun.characterSo.skills[i];
 
                 //判断是否达到解锁条件，没达到置为灰色，达到恢复原来的颜色；
                 if (CharacterManager.Instance.GetAffinityValue(currentCharacterID) < skill.lockValue)

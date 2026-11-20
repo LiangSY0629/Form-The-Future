@@ -69,7 +69,6 @@ public struct Stat
 {
     public StatTypes type;
     public float value;
-    public float baseModifier;
 }
 
 

@@ -11,21 +11,27 @@ public class PlayerMovement : MonoBehaviour,ISaveable
     public Animator anim;
     public CharacterController controller;
     public Transform mainCamera;
+    public float fadeTime;
 
     [HideInInspector]public Vector3 targetDirection;   //记忆值，角色会永远朝向这个方向，
     [HideInInspector]public Vector3 inputDirection;     //当前值，不键入方向时为零；
 
     Vector2 moveInput;
     bool isRunning;
-    bool isAiming;
+    bool isLockBody;
+
+    public ArmStats currentArmStat;
 
     float currentTurnSpeed = 0;     //当前速度；
+
+    float forwardSpeed = 0;
+    float rightSpeed = 0;
+
     readonly float gravity = -9.8f;
     float verticalVelocity;
 
     private void Start()
     {
-
         SaveManager.Instance.saveables[saveName] = this;
 
         playerTransform = transform;
@@ -37,11 +43,28 @@ public class PlayerMovement : MonoBehaviour,ISaveable
 
     private void Update()
     {
+        if (CharacterManager.Instance.currentCharacter.armStat != currentArmStat)
+        {
+            currentArmStat = CharacterManager.Instance.currentCharacter.armStat;
+            SetArmStat();
+        }
 
-        SwitchPlayerStats();
         PlayerDirection();
+
+        //判断有没有锁定视角
+        if (!isLockBody)
+        {
+            SwitchUnlockBodyStats();
+            SetUnlockBodyAnimtor();
+        }
+        else
+        {
+            SwitchLockBodyStats();
+            SetLockBodyAnimtor();
+        }
+
         CaculateGravity();
-        SetAnimtor();
+
     }
 
     public void GetMoveInput(InputAction.CallbackContext ctx)
@@ -54,15 +77,12 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         isRunning = ctx.ReadValueAsButton();
     }
 
-    public void GetAimInput(InputAction.CallbackContext ctx)
-    {
-        isAiming = ctx.ReadValueAsButton();
-    }
-
-    void SwitchPlayerStats()
+    /// <summary>
+    /// 当前身体朝向未锁定，根据移动速度切换移动动画；
+    /// </summary>
+    void SwitchUnlockBodyStats()
     {
         float turnSpeed;
-
 
         if (moveInput.sqrMagnitude < 0.01f)
             turnSpeed = 0;
@@ -76,6 +96,38 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         anim.SetFloat("TurnSpeed", currentTurnSpeed);
     }
 
+    /// <summary>
+    /// 当前身体朝向被锁定，根据移动速度切换移动动画；
+    /// </summary>
+    void SwitchLockBodyStats()
+    {
+        float trunSpeed;
+
+        if (moveInput.sqrMagnitude < 0.01f)
+            trunSpeed = 0;
+        else if (!isRunning)
+            trunSpeed = 2;
+        else
+            trunSpeed = 5;
+
+        forwardSpeed = Mathf.MoveTowards(forwardSpeed, moveInput.y, fadeTime * Time.deltaTime);
+        rightSpeed = Mathf.MoveTowards(rightSpeed, moveInput.x, fadeTime * Time.deltaTime);
+        currentTurnSpeed = Mathf.MoveTowards(currentTurnSpeed, trunSpeed, fadeTime * Time.deltaTime);
+
+        anim.SetFloat("Forward", forwardSpeed * currentTurnSpeed);
+        anim.SetFloat("Right", rightSpeed * currentTurnSpeed);
+
+        //必须三个全部为零（即当前输入为零，移动倾向为零）再置为非奔跑状态；
+        if (trunSpeed == 0 && rightSpeed == 0 && forwardSpeed == 0)
+        {
+            anim.SetBool("Running", false);
+        }
+        else
+        {
+            anim.SetBool("Running", isRunning);
+        }
+
+    }
 
     /// <summary>
     /// 更改输入向量值为本地化向量
@@ -85,12 +137,36 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         Vector3 cameraDir = new Vector3(mainCamera.forward.x, 0, mainCamera.forward.z).normalized;
         Vector3 cameraRight = new Vector3(mainCamera.right.x, 0, mainCamera.right.z).normalized;
 
-        inputDirection = (cameraDir * moveInput.y + cameraRight * moveInput.x).normalized;    //保证角色沿摄像机方向前进；
+        //保证角色沿摄像机方向前进；
+        if (!isLockBody)
+            inputDirection = (cameraDir * moveInput.y + cameraRight * moveInput.x).normalized;
+        else
+            inputDirection = cameraDir;
 
     }
 
+    /// <summary>
+    /// 更新到新的动作组；
+    /// </summary>
+    void SetArmStat()
+    {
+        if(currentArmStat == ArmStats.Normal)
+        {
+            anim.SetBool("Aim", false);
+            isLockBody = false;
+        }
+        else if(currentArmStat == ArmStats.Aim)
+        {
+            //切换到对应动画组，并判断需不需要锁定身体；
+            anim.SetBool("Aim", true);
+            isLockBody = true;
+        }
+    }
 
-    void SetAnimtor()
+    /// <summary>
+    /// 当前身体朝向未锁定，更新当前动画，如果有转向更新转向动画；
+    /// </summary>
+    void SetUnlockBodyAnimtor()
     {
         if (inputDirection != Vector3.zero)
             targetDirection = inputDirection;        //input direction不为零时更新，确保不会被归零；
@@ -110,12 +186,22 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         if (Mathf.Abs(rad) > 0.01f)
         {
             playerTransform.rotation = Quaternion.RotateTowards(playerTransform.rotation, finTarget, 240 * Time.deltaTime);
-
         }
 
-
     }
-                  
+
+    /// <summary>
+    /// 当前身体朝向锁定，更新当前动画，如果有转向更新转向动画；
+    /// </summary>
+    void SetLockBodyAnimtor()
+    {
+        if (inputDirection == Vector3.zero)
+            return;
+
+        Quaternion finTarget = Quaternion.LookRotation(inputDirection, Vector3.up);
+
+        playerTransform.rotation = Quaternion.RotateTowards(playerTransform.rotation, finTarget, 240 * Time.deltaTime);
+    }
 
 
     private void OnAnimatorMove()
@@ -123,15 +209,22 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         Vector3 playerDeltaPosition = anim.deltaPosition;
         playerDeltaPosition.y = verticalVelocity * Time.deltaTime;
 
-        if(currentTurnSpeed > 0)
-            controller.Move(playerDeltaPosition);
+        if(currentTurnSpeed <= 0)
+        {
+            playerDeltaPosition.x = 0;
+            playerDeltaPosition.z = 0;
+        }
+
+        controller.Move(playerDeltaPosition);
     }
+
 
     void CaculateGravity()
     {
         if (controller.isGrounded)
         {
-            verticalVelocity = 0;
+            //verticalVelocity = gravity * Time.deltaTime;
+            verticalVelocity = -2f;
             return;
         }
         else

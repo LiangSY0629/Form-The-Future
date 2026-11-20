@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
+
     public static event Action<string> OnMissionChanged;
 
     /// <summary>

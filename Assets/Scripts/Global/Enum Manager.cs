@@ -1,3 +1,15 @@
+
+
+/// <summary>
+/// 角色行走类型；
+/// </summary>
+public enum ArmStats
+{
+    Normal,
+    Aim,
+}
+
+
 /// <summary>
 /// 任务的类型；
 /// </summary>
