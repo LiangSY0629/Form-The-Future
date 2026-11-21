@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour,ISaveable
     public CharacterController controller;
     public Transform mainCamera;
     public float fadeTime;
+    public Transform armTransform;
 
     [HideInInspector]public Vector3 targetDirection;   //记忆值，角色会永远朝向这个方向，
     [HideInInspector]public Vector3 inputDirection;     //当前值，不键入方向时为零；
