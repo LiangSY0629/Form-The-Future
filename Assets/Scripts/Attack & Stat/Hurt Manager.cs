@@ -14,6 +14,7 @@ public class HurtManager : MonoBehaviour
 
     public WeaponRunTime currentWeapon = null;
     public bool isWeaponChanged;
+    public bool isReloading;
 
     public WeaponSocket weaponSocket;
 
@@ -80,6 +81,31 @@ public class HurtManager : MonoBehaviour
 
         isWeaponChanged = true;
         //Debug.Log("已切换");
+    }
+
+    /// <summary>
+    /// 开始换弹，检测是否需要，不需要换弹就返回false，不播放换弹动画，反之播放换弹；
+    /// </summary>
+    /// <returns></returns>
+    public bool StartReload()
+    {
+        if (currentWeapon.bulletNumber == currentWeapon.maxBullet)
+        {
+            TipsPopController.Instance.SetTips("当前不需要换弹");
+            return false;
+        }
+
+        isReloading = true;
+        return true;
+    }
+
+    /// <summary>
+    /// 换弹自然停止，剩余弹药数量更新；
+    /// </summary>
+    public void EndReload()
+    {
+        isReloading = false;
+        currentWeapon.bulletNumber = currentWeapon.maxBullet;
     }
 
     /// <summary>

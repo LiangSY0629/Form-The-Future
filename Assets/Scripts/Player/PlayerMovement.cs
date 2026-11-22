@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour,ISaveable
 
     Vector2 moveInput;
     bool isRunning;
+    bool isFireing;
     bool isLockBody;
 
     public ArmStats currentArmStat;
@@ -71,15 +72,67 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         CaculateGravity();
 
     }
-
+    
+    /// <summary>
+    /// 获取移动按键状态；
+    /// </summary>
+    /// <param name="ctx"></param>
     public void GetMoveInput(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<Vector2>();
     }
 
+    /// <summary>
+    /// 获取奔跑按键状态；
+    /// </summary>
+    /// <param name="ctx"></param>
     public void GetRunInput(InputAction.CallbackContext ctx)
     {
         isRunning = ctx.ReadValueAsButton();
+
+        if (isFireing)
+            anim.SetBool("Fire", false);
+    }
+
+    /// <summary>
+    /// 获取换弹按键状态；
+    /// </summary>
+    /// <param name="ctx"></param>
+    public void GetReloadInput(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        if (currentArmStat != ArmStats.Aim)
+            return;
+
+        if (!HurtManager.Instance.StartReload())
+            return;
+        
+
+        anim.Play("Reload", 1, 0.2f);
+
+    }
+
+    /// <summary>
+    /// 获取开火按键状态；
+    /// </summary>
+    /// <param name="ctx"></param>
+    public void GetFireInput(InputAction.CallbackContext ctx)
+    {
+        if (currentArmStat != ArmStats.Aim)
+            return;
+
+        isFireing = ctx.ReadValueAsButton();
+
+        if (!isRunning)
+            anim.SetBool("Fire", isFireing);
+        else anim.SetBool("Fire", false);
+    }
+
+    public void EndReload()
+    {
+        HurtManager.Instance.EndReload();
     }
 
     /// <summary>
