@@ -9,17 +9,11 @@ public class CharacterManager : MonoBehaviour
 
     public List<CharacterSO> characterSos;
 
-    public List<WeaponSO> weaponSos;
-
     public Dictionary<string, CharacterRunTime> characterSoDictionary;
-
-    public Dictionary<string, WeaponSO> weaponSoDictionary;
-    public Dictionary<int, WeaponRunTime> weaponRunDictionary;
 
     public CharacterRunTime currentCharacter;
 
     Dictionary<string, float> affinityDictionary;
-    public WeaponSocket weaponSocket;
 
     private void Awake()
     {
@@ -28,8 +22,6 @@ public class CharacterManager : MonoBehaviour
 
         affinityDictionary = new();
         characterSoDictionary = new();
-        weaponSoDictionary = new();
-        weaponRunDictionary = new();
 
         foreach (CharacterSO character in characterSos)
         {
@@ -47,59 +39,8 @@ public class CharacterManager : MonoBehaviour
 
         currentCharacter ??= characterSoDictionary[characterSos[0].charaterID];
 
-        foreach(WeaponSO weapon in weaponSos)
-        {
-            weaponSoDictionary[weapon.ID] = weapon;
-        }
-
-        //仅供测试使用，将所有武器全部设置进装备栏
-        for(int i = 0; i < weaponSos.Count; i++)
-        {
-            Debug.Log("tianjia chenggong" + i);
-            WeaponSO weapon = weaponSos[i];
-
-            WeaponRunTime weaponRun = new()
-            {
-                ID = weapon.ID,
-                attack = weapon.attack,
-                maxBullet = weapon.maxBullet,
-                armStat = weapon.armStat,
-                bulletNumber = weapon.maxBullet,
-            };
-
-            weaponRunDictionary[i + 2] = weaponRun;
-
-        }
-
     }
 
-    /// <summary>
-    /// 切换当前角色的武器状态；
-    /// </summary>
-    /// <param name="index"></param>
-    public void SwitchArmStat(int index)
-    {
-        if (index == 1)
-        {
-            currentCharacter.armStat = ArmStats.Normal;
-            weaponSocket.SetNoWeapon();
-            return;
-        }
-
-        if (!weaponRunDictionary.TryGetValue(index, out WeaponRunTime weaponRun))
-        {
-            Debug.Log("meizhaodao" + index);
-            return;
-        }
-
-        if (weaponSocket == null)
-            return;
-
-        currentCharacter.armStat = weaponRun.armStat;
-        weaponSocket.SetNewWeapon(weaponSoDictionary[weaponRun.ID]);
-
-        Debug.Log("已切换");
-    }
 
     /// <summary>
     /// 传入ID获取对应角色好感度
@@ -121,23 +62,6 @@ public class CharacterManager : MonoBehaviour
     /// <returns></returns>
     public void SetAffinityValue(string ID, float value) => affinityDictionary[ID] += value;
 
-
-    /// <summary>
-    /// 检测当前键盘输入的数字，判断切换第几个武器；
-    /// </summary>
-    /// <param name="ctx"></param>
-    public void GetArmInput(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed)
-            return;
-
-        string key = ctx.control.name;
-
-        if (int.TryParse(key, out int slot))
-            SwitchArmStat(slot);
-
-    }
-
 }
 
 
@@ -152,17 +76,4 @@ public class CharacterRunTime
     public Dictionary<string, float> cooldownDictionary;
 
     public List<Stat> currentStats;
-}
-
-public class WeaponRunTime
-{
-    public string ID;
-
-    public float attack;
-
-    public int maxBullet;
-
-    public int bulletNumber;
-
-    public ArmStats armStat;
 }

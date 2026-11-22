@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gun 2
   m_EditorClassIdentifier: 
   ID: "\u7206\u5F39\u67AA"
-  prefab: {fileID: 8781692921186336046, guid: 6544f25a59322064e8ae6a0a10ff89bb, type: 3}
+  prefab: {fileID: 271667109001807197, guid: 413d763899007be4587739f590caab11, type: 3}
   attack: 20
   maxBullet: 2
   armStat: 1

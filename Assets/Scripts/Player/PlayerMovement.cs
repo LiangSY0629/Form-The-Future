@@ -1,6 +1,8 @@
-using System.Collections.Generic;
 using Cinemachine;
+using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour,ISaveable
@@ -9,14 +11,15 @@ public class PlayerMovement : MonoBehaviour,ISaveable
 
     public string saveName = "move";
 
-    public Animator anim;
-    public CharacterController controller;
-    public Transform mainCamera;
+    public MultiAimConstraint multiRig;
     public float fadeTime;
-    public Transform armTransform;
 
     [HideInInspector]public Vector3 targetDirection;   //记忆值，角色会永远朝向这个方向，
     [HideInInspector]public Vector3 inputDirection;     //当前值，不键入方向时为零；
+
+    Animator anim;
+    CharacterController controller;
+    Transform mainCamera;
 
     Vector2 moveInput;
     bool isRunning;
@@ -156,12 +159,14 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         {
             anim.SetBool("Aim", false);
             isLockBody = false;
+            StartCoroutine(SetRigWeight(0));
         }
         else if(currentArmStat == ArmStats.Aim)
         {
             //切换到对应动画组，并判断需不需要锁定身体；
             anim.SetBool("Aim", true);
             isLockBody = true;
+            StartCoroutine(SetRigWeight(0.6f));
         }
     }
 
@@ -236,6 +241,18 @@ public class PlayerMovement : MonoBehaviour,ISaveable
 
     }
         
+    IEnumerator SetRigWeight(float value)
+    {
+        float weight = multiRig.weight;
+
+        for(float t = 0; t < 0.2f; t += Time.deltaTime)
+        {
+            multiRig.weight = Mathf.Lerp(weight, value, t / 0.2f);
+            yield return null;
+        }
+
+    }
+
 
     public Data GetSaveData()
     {
