@@ -13,8 +13,12 @@ public class HurtManager : MonoBehaviour
     public Dictionary<int, WeaponRunTime> weaponRunDictionary;
 
     public WeaponRunTime currentWeapon = null;
-    public bool isWeaponChanged;
-    public bool isReloading;
+
+
+    public bool isWeaponChanged = false;
+    public bool isBulletChanged = false;
+    public bool isReloading = false;
+    public bool isBulletEmpty = false;
 
     public WeaponSocket weaponSocket;
 
@@ -100,12 +104,27 @@ public class HurtManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 武器开火
+    /// </summary>
+    public void WeaponFire()
+    {
+        currentWeapon.bulletNumber--;
+
+        if (currentWeapon.bulletNumber < 1)
+            isBulletEmpty = true;
+
+        isBulletChanged = true;
+    }
+
+    /// <summary>
     /// 换弹自然停止，剩余弹药数量更新；
     /// </summary>
     public void EndReload()
     {
         isReloading = false;
         currentWeapon.bulletNumber = currentWeapon.maxBullet;
+        isBulletChanged = true;
+        isBulletEmpty = false;
     }
 
     /// <summary>

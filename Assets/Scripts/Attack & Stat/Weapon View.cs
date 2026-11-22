@@ -13,12 +13,19 @@ public class WeaponView : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!HurtManager.Instance.isWeaponChanged)
+        if (!HurtManager.Instance.isWeaponChanged && !HurtManager.Instance.isBulletChanged)
             return;
 
-        SetWeaponView();
-
-        HurtManager.Instance.isWeaponChanged = false;
+        if(HurtManager.Instance.isWeaponChanged)
+        {
+            SetWeaponView();
+            HurtManager.Instance.isWeaponChanged = false;
+        }
+        else
+        {
+            SetBulletText();
+            HurtManager.Instance.isBulletChanged = false;
+        }
     }
 
 
@@ -29,17 +36,26 @@ public class WeaponView : MonoBehaviour
             weaponView.SetActive(false);
             return;
         }
-        else
-        {
-            if (!weaponView.activeSelf)
-                weaponView.SetActive(true);
 
-            WeaponRunTime weaponRun = HurtManager.Instance.currentWeapon;
+        if (!weaponView.activeSelf)
+            weaponView.SetActive(true);
 
-            weaponName.text = weaponRun.ID;
-            bulletNumber.text = $"{weaponRun.bulletNumber}/{weaponRun.maxBullet}";
+        WeaponRunTime weaponRun = HurtManager.Instance.currentWeapon;
 
-        }
+        weaponName.text = weaponRun.ID;
+        bulletNumber.text = $"{weaponRun.bulletNumber}/{weaponRun.maxBullet}";
 
+        
+
+    }
+
+    void SetBulletText()
+    {
+        if (HurtManager.Instance.currentWeapon == null)
+            return;
+
+        WeaponRunTime weaponRun = HurtManager.Instance.currentWeapon;
+
+        bulletNumber.text = $"{weaponRun.bulletNumber}/{weaponRun.maxBullet}";
     }
 }

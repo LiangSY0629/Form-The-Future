@@ -71,8 +71,14 @@ public class PlayerMovement : MonoBehaviour,ISaveable
 
         CaculateGravity();
 
+        if (HurtManager.Instance.isBulletEmpty)    //弹夹为空，返回；
+        {
+            anim.SetBool("Fire", false);
+            return;
+        }
+
     }
-    
+
     /// <summary>
     /// 获取移动按键状态；
     /// </summary>
@@ -91,7 +97,7 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         isRunning = ctx.ReadValueAsButton();
 
         if (isFireing)
-            anim.SetBool("Fire", false);
+            anim.SetBool("Fire", !isRunning);
     }
 
     /// <summary>
@@ -109,7 +115,6 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         if (!HurtManager.Instance.StartReload())
             return;
         
-
         anim.Play("Reload", 1, 0.2f);
 
     }
@@ -120,7 +125,7 @@ public class PlayerMovement : MonoBehaviour,ISaveable
     /// <param name="ctx"></param>
     public void GetFireInput(InputAction.CallbackContext ctx)
     {
-        if (currentArmStat != ArmStats.Aim)
+        if (currentArmStat != ArmStats.Aim)        //非瞄准状态，返回；
             return;
 
         isFireing = ctx.ReadValueAsButton();
@@ -133,6 +138,11 @@ public class PlayerMovement : MonoBehaviour,ISaveable
     public void EndReload()
     {
         HurtManager.Instance.EndReload();
+    }
+
+    public void EndFire()
+    {
+        HurtManager.Instance.WeaponFire();
     }
 
     /// <summary>
