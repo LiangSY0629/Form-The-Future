@@ -9,6 +9,8 @@ public class WeaponSO : ScriptableObject
 
     public float attack;
 
+    public int fireRate;
+
     public int maxBullet;
 
     public ArmStats armStat;

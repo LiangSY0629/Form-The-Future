@@ -14,13 +14,16 @@ public class HurtManager : MonoBehaviour
 
     public WeaponRunTime currentWeapon = null;
 
-
     public bool isWeaponChanged = false;
     public bool isBulletChanged = false;
     public bool isReloading = false;
+
     public bool isBulletEmpty = false;
+    public bool isFire = false;
 
     public WeaponSocket weaponSocket;
+
+    float nextFireTime = 0;
 
     private void Awake()
     {
@@ -45,6 +48,7 @@ public class HurtManager : MonoBehaviour
             {
                 ID = weapon.ID,
                 attack = weapon.attack,
+                fireInterval = (float)60 / weapon.fireRate,
                 maxBullet = weapon.maxBullet,
                 armStat = weapon.armStat,
                 bulletNumber = weapon.maxBullet,
@@ -52,6 +56,17 @@ public class HurtManager : MonoBehaviour
 
             weaponRunDictionary[i + 2] = weaponRun;
 
+        }
+
+    }
+
+    private void Update()
+    {
+        if (isFire)
+        {
+            if (nextFireTime <= 0)
+                WeaponFire();
+            else nextFireTime -= Time.deltaTime;
         }
 
     }
@@ -104,15 +119,31 @@ public class HurtManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 设置开火状态，并归零下一次开火的间隔；
+    /// </summary>
+    /// <param name="fireing"></param>
+    public void SetFire(bool fireing)
+    {
+        isFire = fireing;
+        nextFireTime = 0;
+    }
+
+
+    /// <summary>
     /// 武器开火
     /// </summary>
     public void WeaponFire()
     {
         currentWeapon.bulletNumber--;
+        nextFireTime = currentWeapon.fireInterval;
 
         if (currentWeapon.bulletNumber < 1)
+        {
             isBulletEmpty = true;
+            SetFire(false);
+        }
 
+        //Debug.Log(nextFireTime);
         isBulletChanged = true;
     }
 
@@ -151,6 +182,11 @@ public class WeaponRunTime
     public string ID;
 
     public float attack;
+
+    /// <summary>
+    /// 开火之间的间隔；
+    /// </summary>
+    public float fireInterval;
 
     public int maxBullet;
 

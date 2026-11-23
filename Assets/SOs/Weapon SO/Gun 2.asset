@@ -15,5 +15,6 @@ MonoBehaviour:
   ID: "\u7206\u5F39\u67AA"
   prefab: {fileID: 271667109001807197, guid: 413d763899007be4587739f590caab11, type: 3}
   attack: 20
-  maxBullet: 2
+  fireRate: 600
+  maxBullet: 20
   armStat: 1

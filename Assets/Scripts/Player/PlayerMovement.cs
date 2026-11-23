@@ -12,7 +12,9 @@ public class PlayerMovement : MonoBehaviour,ISaveable
     public string saveName = "move";
 
     public MultiAimConstraint multiRig;
+    public CinemachineFreeLook virtualCamera;
     public float fadeTime;
+    public float aimRate;
 
     [HideInInspector]public Vector3 targetDirection;   //记忆值，角色会永远朝向这个方向，
     [HideInInspector]public Vector3 inputDirection;     //当前值，不键入方向时为零；
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour,ISaveable
     Vector2 moveInput;
     bool isRunning;
     bool isFireing;
+    bool isAiming;
     bool isLockBody;
 
     public ArmStats currentArmStat;
@@ -71,11 +74,12 @@ public class PlayerMovement : MonoBehaviour,ISaveable
 
         CaculateGravity();
 
-        if (HurtManager.Instance.isBulletEmpty)    //弹夹为空，返回；
-        {
-            anim.SetBool("Fire", false);
-            return;
-        }
+        if(isFireing)
+            if (HurtManager.Instance.isBulletEmpty)    //弹夹为空，返回；
+            {
+                anim.SetBool("Fire", false);
+                return;
+            }
 
     }
 
@@ -97,7 +101,11 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         isRunning = ctx.ReadValueAsButton();
 
         if (isFireing)
+        {
             anim.SetBool("Fire", !isRunning);
+            HurtManager.Instance.SetFire(!isRunning);
+        }
+
     }
 
     /// <summary>
@@ -128,21 +136,42 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         if (currentArmStat != ArmStats.Aim)        //非瞄准状态，返回；
             return;
 
+        if (!isFireing && HurtManager.Instance.isBulletEmpty)
+            return;
+
         isFireing = ctx.ReadValueAsButton();
 
         if (!isRunning)
+        {
             anim.SetBool("Fire", isFireing);
-        else anim.SetBool("Fire", false);
+            HurtManager.Instance.SetFire(isFireing);
+        }
+        else 
+        {
+            anim.SetBool("Fire", false);
+            HurtManager.Instance.SetFire(false);
+        }
+
     }
+
+    public void GetAimInput(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed)
+            return;
+
+        if (currentArmStat != ArmStats.Aim)
+            return;
+
+        isAiming = !isAiming;
+
+       StartCoroutine(SetFovAndAxis());
+
+    }
+
 
     public void EndReload()
     {
         HurtManager.Instance.EndReload();
-    }
-
-    public void EndFire()
-    {
-        HurtManager.Instance.WeaponFire();
     }
 
     /// <summary>
@@ -218,10 +247,17 @@ public class PlayerMovement : MonoBehaviour,ISaveable
     /// </summary>
     void SetArmStat()
     {
-        if(currentArmStat == ArmStats.Normal)
+        if (isAiming)
+        {
+            isAiming = false;
+            StartCoroutine(SetFovAndAxis());
+        }
+
+        isLockBody = false;
+
+        if (currentArmStat == ArmStats.Normal)
         {
             anim.SetBool("Aim", false);
-            isLockBody = false;
             StartCoroutine(SetRigWeight(0));
         }
         else if(currentArmStat == ArmStats.Aim)
@@ -231,6 +267,7 @@ public class PlayerMovement : MonoBehaviour,ISaveable
             isLockBody = true;
             StartCoroutine(SetRigWeight(0.6f));
         }
+
     }
 
     /// <summary>
@@ -316,6 +353,39 @@ public class PlayerMovement : MonoBehaviour,ISaveable
 
     }
 
+    IEnumerator SetFovAndAxis()
+    {
+        float fov = virtualCamera.m_Lens.FieldOfView;
+        float xSpeed = virtualCamera.m_XAxis.m_MaxSpeed;
+        float ySpeed = virtualCamera.m_YAxis.m_MaxSpeed;
+
+        float newFov;
+        float newXSpeed;
+        float newYSpeed;
+
+        if (isAiming)
+        {
+            newFov = fov * aimRate;
+            newXSpeed = xSpeed * aimRate;
+            newYSpeed = ySpeed * aimRate;
+        }
+        else
+        {
+            newFov = fov / aimRate;
+            newXSpeed = xSpeed / aimRate;
+            newYSpeed = ySpeed / aimRate;
+        }
+
+        for (float t = 0; t < 0.1f; t += Time.deltaTime)
+        {
+            virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(fov, newFov, t / 0.1f);
+            virtualCamera.m_XAxis.m_MaxSpeed = Mathf.Lerp(xSpeed, newXSpeed, t / 0.1f);
+            virtualCamera.m_YAxis.m_MaxSpeed = Mathf.Lerp(ySpeed, newYSpeed, t / 0.1f);
+
+            yield return null;
+        }
+
+    }
 
     public Data GetSaveData()
     {
