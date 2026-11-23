@@ -414,8 +414,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16889314}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.011932256, y: 0.85863745, z: 0.020008607, w: 0.5120537}
-  m_LocalPosition: {x: 45.039867, y: 54.77912, z: -38.783936}
+  m_LocalRotation: {x: -0.011932255, y: 0.85863745, z: 0.020008605, w: 0.5120537}
+  m_LocalPosition: {x: 44.816566, y: 54.769806, z: -38.77696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1367,6 +1367,9 @@ MonoBehaviour:
   isBulletEmpty: 0
   isFire: 0
   weaponSocket: {fileID: 919132147919475509}
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &141938770
 GameObject:
   m_ObjectHideFlags: 0
@@ -22341,7 +22344,7 @@ MonoBehaviour:
       m_Item7:
         transform: {fileID: 0}
         weight: 0
-    m_Offset: {x: 0, y: 0, z: 0.2}
+    m_Offset: {x: 0, y: 25, z: 0}
     m_MinLimit: -60
     m_MaxLimit: 45
     m_AimAxis: 4
@@ -26289,7 +26292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Offset: {x: 0.25, y: 0.05, z: 0.4}
+  m_Offset: {x: 0.35, y: 0.05, z: 0.2}
   m_ApplyAfter: 1
   m_PreserveComposition: 0
 --- !u!1 &1394778358
@@ -32239,7 +32242,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1121743350905613942}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Thumb2_L
   m_TagString: Untagged
@@ -32360,7 +32363,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 567902442731505703}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_14_2
   m_TagString: Untagged
@@ -32707,7 +32710,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2295216629162881298}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: ButtUpper_R
   m_TagString: Untagged
@@ -32871,7 +32874,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3873115942086599400}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairB_01
   m_TagString: Untagged
@@ -32888,7 +32891,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8788578489022480518}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_7
   m_TagString: Untagged
@@ -33001,7 +33004,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7067842911082369058}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: UpperBody1
   m_TagString: Untagged
@@ -33035,7 +33038,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3391616286616290944}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_27
   m_TagString: Untagged
@@ -33069,7 +33072,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7357036550452213960}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_05_3
   m_TagString: Untagged
@@ -33118,7 +33121,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7161855455780586426}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairB_05
   m_TagString: Untagged
@@ -33218,7 +33221,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 733087210582247242}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: IndexFinger2_R
   m_TagString: Untagged
@@ -33299,7 +33302,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8517439667222873638}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_R_Ste_001
   m_TagString: Untagged
@@ -33316,7 +33319,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7568139391390561486}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_F_HairC_01
   m_TagString: Untagged
@@ -33350,7 +33353,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3664077902861662206}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_BowTie_011
   m_TagString: Untagged
@@ -33384,7 +33387,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 888897511895846688}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_06_1
   m_TagString: Untagged
@@ -33465,7 +33468,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3588747644121387486}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_03_1
   m_TagString: Untagged
@@ -33482,7 +33485,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3124007978961557199}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_11
   m_TagString: Untagged
@@ -33565,7 +33568,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5150261544606083377}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Neck
   m_TagString: Untagged
@@ -33599,7 +33602,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6618038984448856050}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: MiddleFinger1_L
   m_TagString: Untagged
@@ -33616,7 +33619,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5205197525514204490}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_13
   m_TagString: Untagged
@@ -33650,7 +33653,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8840467665757950763}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_05_2
   m_TagString: Untagged
@@ -33701,7 +33704,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4738785733776513360}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Left arm
   m_TagString: Untagged
@@ -33799,7 +33802,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4713613620512501947}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_23_1
   m_TagString: Untagged
@@ -33966,7 +33969,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4031219114886101873}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_04_1
   m_TagString: Untagged
@@ -33983,7 +33986,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2238303085760630353}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_09_2
   m_TagString: Untagged
@@ -34034,7 +34037,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2452243738685790291}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Thumb0_L
   m_TagString: Untagged
@@ -34116,7 +34119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4167280743471585404}
   - component: {fileID: 1630794972583841556}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Body
   m_TagString: Untagged
@@ -34151,7 +34154,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6956758634330814310}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: RingFinger3_R
   m_TagString: Untagged
@@ -34202,7 +34205,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1807916578020669252}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: LegD2_R
   m_TagString: Untagged
@@ -34431,7 +34434,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8071240990208913235}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_23_2
   m_TagString: Untagged
@@ -34482,7 +34485,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6429969904929803156}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_12
   m_TagString: Untagged
@@ -34516,7 +34519,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6311727863872786544}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_02_1
   m_TagString: Untagged
@@ -34567,7 +34570,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 858899256428988877}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_T_Hair_01
   m_TagString: Untagged
@@ -34601,7 +34604,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6698386511068278656}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_Wings_05
   m_TagString: Untagged
@@ -34652,7 +34655,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3742407835679655648}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Hips
   m_TagString: Untagged
@@ -34701,7 +34704,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5548539868458337440}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairC_03
   m_TagString: Untagged
@@ -34859,7 +34862,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3729875729256514664}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_1
   m_TagString: Untagged
@@ -34925,7 +34928,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8756017000011457899}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Left knee
   m_TagString: Untagged
@@ -35011,7 +35014,7 @@ MonoBehaviour:
   multiRig: {fileID: 1273496298}
   virtualCamera: {fileID: 1390038844}
   fadeTime: 5.5
-  aimRate: 0
+  aimRate: 0.6
   targetDirection: {x: 0, y: 0, z: 0}
   inputDirection: {x: 0, y: 0, z: 0}
   currentArmStat: 0
@@ -35084,10 +35087,10 @@ GameObject:
   - component: {fileID: 5866666021836566488}
   - component: {fileID: 5866666021836566489}
   - component: {fileID: 5866666021836566490}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: "\u83F2\u6B27\u5C3C_\u767D"
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35101,7 +35104,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3463869326562118154}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_01_1
   m_TagString: Untagged
@@ -35231,7 +35234,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5869168111784895667}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_L_Shoe
   m_TagString: Untagged
@@ -35344,7 +35347,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6306630145632429226}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Right wrist
   m_TagString: Untagged
@@ -35361,7 +35364,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 778866196438062540}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Breast_R
   m_TagString: Untagged
@@ -35459,7 +35462,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8800656594773267382}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_10_2
   m_TagString: Untagged
@@ -35604,7 +35607,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8214995231701582373}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Left toe
   m_TagString: Untagged
@@ -35621,7 +35624,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5137641834621982659}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_1
   m_TagString: Untagged
@@ -35734,7 +35737,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1233857245594456025}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_L_Ste_001
   m_TagString: Untagged
@@ -35832,7 +35835,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7309643901142113633}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Thumb0_R
   m_TagString: Untagged
@@ -36094,7 +36097,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6289505710174313350}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_32
   m_TagString: Untagged
@@ -36147,7 +36150,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2484480554497627184}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_BowTie_003
   m_TagString: Untagged
@@ -36198,7 +36201,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2207976947969403218}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_Wings_02
   m_TagString: Untagged
@@ -36232,7 +36235,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8592763831352184798}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_25
   m_TagString: Untagged
@@ -36266,7 +36269,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 516694149891981987}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: RingFinger3_L
   m_TagString: Untagged
@@ -36300,7 +36303,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 13954041736238146}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: zHandTwist_L
   m_TagString: Untagged
@@ -36317,7 +36320,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4168386297856945002}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_19_1
   m_TagString: Untagged
@@ -36398,7 +36401,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2645870050638118581}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_Wings_03
   m_TagString: Untagged
@@ -36466,7 +36469,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5743141267322244530}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_Wings_05
   m_TagString: Untagged
@@ -36500,7 +36503,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5033707746087338358}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_03_2
   m_TagString: Untagged
@@ -36517,7 +36520,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1663195096316887208}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_F_HairA_04
   m_TagString: Untagged
@@ -36600,7 +36603,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3963529732726955074}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_01_1
   m_TagString: Untagged
@@ -37662,7 +37665,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8626826242591181199}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_8
   m_TagString: Untagged
@@ -37758,7 +37761,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6757101354085800339}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_2
   m_TagString: Untagged
@@ -37775,7 +37778,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1059699313150286555}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_02_1
   m_TagString: Untagged
@@ -37809,7 +37812,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1681526437180167954}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_T_Hair_02
   m_TagString: Untagged
@@ -37843,7 +37846,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6127040327475479737}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_04
   m_TagString: Untagged
@@ -37894,7 +37897,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5594159960584141391}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairB_02
   m_TagString: Untagged
@@ -37983,7 +37986,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3456983289050865580}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_20_2
   m_TagString: Untagged
@@ -38017,7 +38020,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6752550730587592224}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_15
   m_TagString: Untagged
@@ -38614,7 +38617,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1011968292355573242}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_03_1
   m_TagString: Untagged
@@ -38648,7 +38651,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8431146328724594917}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_L_Wings_Root
   m_TagString: Untagged
@@ -38886,7 +38889,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1278412148788272075}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_01_3
   m_TagString: Untagged
@@ -38903,7 +38906,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4925888624799248974}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_T_Hair_03
   m_TagString: Untagged
@@ -38954,7 +38957,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6645269801436906812}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_15
   m_TagString: Untagged
@@ -38971,7 +38974,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6748109636374647306}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_Wings_06
   m_TagString: Untagged
@@ -39052,7 +39055,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2464141981941070189}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Thumb1_L
   m_TagString: Untagged
@@ -39086,7 +39089,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5306457900892371805}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_R_Chest_Cj_02
   m_TagString: Untagged
@@ -39184,7 +39187,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5471886042769540226}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Breast_L
   m_TagString: Untagged
@@ -39201,7 +39204,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7684878604710563764}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_02_3
   m_TagString: Untagged
@@ -39437,7 +39440,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6564941289168677786}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_4
   m_TagString: Untagged
@@ -39507,7 +39510,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5774960202590427746}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_17
   m_TagString: Untagged
@@ -39579,7 +39582,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 883458883738848368}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_R_Shoe
   m_TagString: Untagged
@@ -39613,7 +39616,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4645244036968388649}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_9
   m_TagString: Untagged
@@ -39743,7 +39746,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5038534903514967101}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_18
   m_TagString: Untagged
@@ -39794,7 +39797,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6111608934716296009}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Eye_L
   m_TagString: Untagged
@@ -39843,7 +39846,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 528622471373399661}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_02_2
   m_TagString: Untagged
@@ -39928,7 +39931,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4969589339832072770}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: RingFinger1_R
   m_TagString: Untagged
@@ -39945,7 +39948,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3542482859979479082}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_07_1
   m_TagString: Untagged
@@ -40043,7 +40046,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4374357907894068489}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_01_2
   m_TagString: Untagged
@@ -40109,7 +40112,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2097597118412065347}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_27
   m_TagString: Untagged
@@ -40190,7 +40193,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7048012043933134364}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_13
   m_TagString: Untagged
@@ -40320,7 +40323,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8004850628437941857}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_14_1
   m_TagString: Untagged
@@ -40354,7 +40357,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8495037148775496545}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_03
   m_TagString: Untagged
@@ -40435,7 +40438,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8018214238371092314}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_04_2
   m_TagString: Untagged
@@ -40533,7 +40536,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7945281442179851187}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_04
   m_TagString: Untagged
@@ -40584,7 +40587,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7187944010755598085}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_10
   m_TagString: Untagged
@@ -40837,7 +40840,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8466576224577542107}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_M_Shawl
   m_TagString: Untagged
@@ -40871,7 +40874,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7063557323557087406}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_Wings_02
   m_TagString: Untagged
@@ -41003,7 +41006,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8494418429892894750}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_03_2
   m_TagString: Untagged
@@ -41037,7 +41040,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3617480921311622502}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_BowTie_007
   m_TagString: Untagged
@@ -41133,7 +41136,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1219730512526960560}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_04_3
   m_TagString: Untagged
@@ -41184,7 +41187,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4140881994282606280}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_19_2
   m_TagString: Untagged
@@ -41201,7 +41204,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7156565878986739556}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_02_3
   m_TagString: Untagged
@@ -41301,7 +41304,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 9199208806287688757}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_5
   m_TagString: Untagged
@@ -41472,7 +41475,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2626665892282911202}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_03_1
   m_TagString: Untagged
@@ -41630,7 +41633,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6379215865029000538}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_08_2
   m_TagString: Untagged
@@ -41664,7 +41667,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8188415922263297217}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_14
   m_TagString: Untagged
@@ -41698,7 +41701,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3921343858393734100}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Right knee
   m_TagString: Untagged
@@ -41768,7 +41771,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 983483107125478669}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Up_Teeth
   m_TagString: Untagged
@@ -41817,7 +41820,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5261488640563047243}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_12
   m_TagString: Untagged
@@ -41868,7 +41871,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5862913368019163277}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairC_01
   m_TagString: Untagged
@@ -41885,7 +41888,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5240015969981762239}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_9
   m_TagString: Untagged
@@ -41919,7 +41922,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 9015500887846465088}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_L_Chest_Cj_03
   m_TagString: Untagged
@@ -41970,7 +41973,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8483255441169595067}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_R_Wings_Root
   m_TagString: Untagged
@@ -42036,7 +42039,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6496322890421629210}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: IndexFinger1_R
   m_TagString: Untagged
@@ -42118,7 +42121,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7403645172900991288}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_19_1
   m_TagString: Untagged
@@ -42135,7 +42138,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5412493597041526357}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: LegD2_L
   m_TagString: Untagged
@@ -42218,7 +42221,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3212665653042542155}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_03_2
   m_TagString: Untagged
@@ -42252,7 +42255,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 291690009661689287}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_06_1
   m_TagString: Untagged
@@ -42269,7 +42272,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 729786261130443819}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_24_2
   m_TagString: Untagged
@@ -42320,7 +42323,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 9112509144071908335}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_03
   m_TagString: Untagged
@@ -42337,7 +42340,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 9063973668678385648}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_L_Chest_Cj_02
   m_TagString: Untagged
@@ -42403,7 +42406,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2969787096642513910}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Right shoulder
   m_TagString: Untagged
@@ -42488,7 +42491,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2832753031941819475}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_9
   m_TagString: Untagged
@@ -42505,7 +42508,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4148142459671565151}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_07
   m_TagString: Untagged
@@ -42539,7 +42542,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5233819417947859479}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_L_Ste_002
   m_TagString: Untagged
@@ -42637,7 +42640,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8738927999110604570}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Left wrist
   m_TagString: Untagged
@@ -42671,7 +42674,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5678002754290365956}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_06
   m_TagString: Untagged
@@ -42737,7 +42740,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6436929826020115926}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: IndexFinger3_L
   m_TagString: Untagged
@@ -42869,7 +42872,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2217310499343100033}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_08_1
   m_TagString: Untagged
@@ -42920,7 +42923,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6968870100605704798}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_Wings_04
   m_TagString: Untagged
@@ -43096,7 +43099,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4341595402890011883}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_8
   m_TagString: Untagged
@@ -43245,7 +43248,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4387302081787346552}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_01_3
   m_TagString: Untagged
@@ -43279,7 +43282,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7867300183313657543}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_R_Chest_Cj_03
   m_TagString: Untagged
@@ -43379,7 +43382,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4768219545045321423}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_01_1
   m_TagString: Untagged
@@ -43430,7 +43433,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4706992581898323147}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_02
   m_TagString: Untagged
@@ -43640,7 +43643,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7061851011742911949}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_F_HairA_03
   m_TagString: Untagged
@@ -43657,7 +43660,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8828178449425100624}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_13
   m_TagString: Untagged
@@ -43740,7 +43743,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 101863518906767091}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_11
   m_TagString: Untagged
@@ -44030,7 +44033,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 747969231682332919}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Head
   m_TagString: Untagged
@@ -44064,7 +44067,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6551998016456905164}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_3
   m_TagString: Untagged
@@ -44098,7 +44101,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 9070799099446289239}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_09_2
   m_TagString: Untagged
@@ -44181,7 +44184,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 444719245863567818}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_07
   m_TagString: Untagged
@@ -44198,7 +44201,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1518607778574290717}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_01_3
   m_TagString: Untagged
@@ -44296,7 +44299,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7119019484482378733}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: MiddleFinger3_L
   m_TagString: Untagged
@@ -44397,7 +44400,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 947290645078884647}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: MiddleFinger2_L
   m_TagString: Untagged
@@ -44431,7 +44434,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4433644321347085018}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_09
   m_TagString: Untagged
@@ -44495,7 +44498,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8017157587203087747}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_07_2
   m_TagString: Untagged
@@ -44529,7 +44532,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5262294889941117671}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_30
   m_TagString: Untagged
@@ -44846,7 +44849,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6456203492003314156}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_Wings_03
   m_TagString: Untagged
@@ -44880,7 +44883,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5890807183326136922}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_04_2
   m_TagString: Untagged
@@ -45012,7 +45015,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5960200958704809682}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Down_Teeth
   m_TagString: Untagged
@@ -45046,7 +45049,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3262222345502197558}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_15
   m_TagString: Untagged
@@ -45097,7 +45100,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6478565805699865419}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: IndexFinger2_L
   m_TagString: Untagged
@@ -45114,7 +45117,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5351862233562044437}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_6
   m_TagString: Untagged
@@ -45229,7 +45232,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8490766254908417346}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_03_3
   m_TagString: Untagged
@@ -45368,7 +45371,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4424590252573393141}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_05_1
   m_TagString: Untagged
@@ -45618,7 +45621,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6008743522436622926}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_10
   m_TagString: Untagged
@@ -45686,7 +45689,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5606962706156245751}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_12
   m_TagString: Untagged
@@ -45769,7 +45772,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5446438816615371026}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_05_2
   m_TagString: Untagged
@@ -45803,7 +45806,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7721226519535089548}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_14_1
   m_TagString: Untagged
@@ -45837,7 +45840,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3854868109048000033}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_L_Chest_Cj_01
   m_TagString: Untagged
@@ -45854,7 +45857,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1047059787691734232}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_12
   m_TagString: Untagged
@@ -45918,7 +45921,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8760173094528175464}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_05_1
   m_TagString: Untagged
@@ -46001,7 +46004,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3465449068959446935}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_23_2
   m_TagString: Untagged
@@ -46018,7 +46021,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4760225900783387555}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_BowTie_006
   m_TagString: Untagged
@@ -46052,7 +46055,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3052363973686684767}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_09_1
   m_TagString: Untagged
@@ -46137,7 +46140,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4213095128599118143}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: MiddleFinger2_R
   m_TagString: Untagged
@@ -46188,7 +46191,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3707483433206086507}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_Wings_01
   m_TagString: Untagged
@@ -46222,7 +46225,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4155040950150752307}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_R_Chest_Cj_04
   m_TagString: Untagged
@@ -46273,7 +46276,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1466708960296975778}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_L_Clavicle
   m_TagString: Untagged
@@ -46399,7 +46402,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 542144524446062543}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_30
   m_TagString: Untagged
@@ -46463,7 +46466,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4028451904868190911}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_01_2
   m_TagString: Untagged
@@ -46497,7 +46500,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2530942632420548871}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_25_2
   m_TagString: Untagged
@@ -46514,7 +46517,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3635160947217232103}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_05_1
   m_TagString: Untagged
@@ -46548,7 +46551,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6294042457438282223}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairB_03
   m_TagString: Untagged
@@ -46599,7 +46602,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8315412855373544247}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_06
   m_TagString: Untagged
@@ -46695,7 +46698,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6436172767248161365}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: AnkleAux_L
   m_TagString: Untagged
@@ -46744,7 +46747,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6862865536132974527}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_15
   m_TagString: Untagged
@@ -46795,7 +46798,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1109733448970483041}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_R_Chest_Cj_01
   m_TagString: Untagged
@@ -46812,7 +46815,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5591553593301206110}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_07_1
   m_TagString: Untagged
@@ -46893,7 +46896,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7615212000307454038}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_14_2
   m_TagString: Untagged
@@ -46910,7 +46913,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1931034070879670046}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_R_LegRing
   m_TagString: Untagged
@@ -47027,7 +47030,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8790603781137425853}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_09
   m_TagString: Untagged
@@ -47343,7 +47346,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5585039810177934826}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_BowTie_001
   m_TagString: Untagged
@@ -47360,7 +47363,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4256823957748829647}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_15_2
   m_TagString: Untagged
@@ -47394,7 +47397,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 197976962986568727}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_0
   m_TagString: Untagged
@@ -47445,7 +47448,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2659811431954147649}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_5
   m_TagString: Untagged
@@ -47526,7 +47529,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8058786276381790122}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_Wings_06
   m_TagString: Untagged
@@ -47590,7 +47593,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1065207286642503141}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: RingFinger1_L
   m_TagString: Untagged
@@ -47656,7 +47659,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8600294560421856803}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_02_1
   m_TagString: Untagged
@@ -47690,7 +47693,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8348917148491003147}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_11
   m_TagString: Untagged
@@ -47773,7 +47776,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6940156712099947084}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: MiddleFinger1_R
   m_TagString: Untagged
@@ -47790,7 +47793,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4611153260514070234}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_Mon
   m_TagString: Untagged
@@ -47854,7 +47857,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8684801680397019827}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_7
   m_TagString: Untagged
@@ -47952,7 +47955,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4624740946776913792}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: LittleFinger2_L
   m_TagString: Untagged
@@ -48035,7 +48038,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 632288081005856755}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Bust_Support_R
   m_TagString: Untagged
@@ -48082,7 +48085,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6479504176021131914}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_16
   m_TagString: Untagged
@@ -48167,7 +48170,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6719243266689307589}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairC_01
   m_TagString: Untagged
@@ -48201,7 +48204,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6196147477500576817}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_03_2
   m_TagString: Untagged
@@ -48267,7 +48270,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2272170546292645451}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_06_2
   m_TagString: Untagged
@@ -48284,7 +48287,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4434677653341081718}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_L_Ste
   m_TagString: Untagged
@@ -48397,7 +48400,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8197400620606512416}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_12
   m_TagString: Untagged
@@ -48431,7 +48434,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2494718207443544745}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_07_2
   m_TagString: Untagged
@@ -48593,7 +48596,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8406483562714647395}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_20_1
   m_TagString: Untagged
@@ -48627,7 +48630,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4239591152874447495}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_3
   m_TagString: Untagged
@@ -48725,7 +48728,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6029672566182466693}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_L_Shawl
   m_TagString: Untagged
@@ -48759,7 +48762,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5998903329945190381}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_04_1
   m_TagString: Untagged
@@ -48808,7 +48811,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1587612045036252740}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_09_1
   m_TagString: Untagged
@@ -48859,7 +48862,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4133550982743199823}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_F_HairC_04
   m_TagString: Untagged
@@ -48876,7 +48879,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1321115606087039032}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Mouth_R
   m_TagString: Untagged
@@ -48910,7 +48913,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3804113925984751429}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_R_Shawl
   m_TagString: Untagged
@@ -48993,7 +48996,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3474247239375221002}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_08_1
   m_TagString: Untagged
@@ -49059,7 +49062,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1989709106501259533}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_06
   m_TagString: Untagged
@@ -49076,7 +49079,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 848321398990975635}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_09_1
   m_TagString: Untagged
@@ -49252,7 +49255,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 9177299393851110215}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: LittleFinger1_L
   m_TagString: Untagged
@@ -49286,7 +49289,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2679448817940536339}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_08_2
   m_TagString: Untagged
@@ -49337,7 +49340,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2480231731631598397}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: IndexFinger3_R
   m_TagString: Untagged
@@ -49418,7 +49421,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 60887288438550219}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Spine
   m_TagString: Untagged
@@ -49588,7 +49591,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2182741631352981834}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_13
   m_TagString: Untagged
@@ -49639,7 +49642,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 861683619625570361}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: MouthMiddle
   m_TagString: Untagged
@@ -49688,7 +49691,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6107437398000457434}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairB_05
   m_TagString: Untagged
@@ -49784,7 +49787,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4360179473615844688}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_R_Ste_003
   m_TagString: Untagged
@@ -49927,7 +49930,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5667766517785239700}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: zArmTwist_L
   m_TagString: Untagged
@@ -50075,7 +50078,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 40320938636589080}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_L_Chest_Cj_04
   m_TagString: Untagged
@@ -50124,7 +50127,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6758042492762108189}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_6
   m_TagString: Untagged
@@ -50205,7 +50208,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4278793057655908700}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_03_1
   m_TagString: Untagged
@@ -50343,7 +50346,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6322150287465978677}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_F_HairA_02
   m_TagString: Untagged
@@ -50441,7 +50444,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2303716518001546976}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_15_2
   m_TagString: Untagged
@@ -50492,7 +50495,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8568519981680799800}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_F_HairC_03
   m_TagString: Untagged
@@ -50509,7 +50512,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 9037470304292114228}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_01_3
   m_TagString: Untagged
@@ -50770,7 +50773,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8921297621167570830}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_19_2
   m_TagString: Untagged
@@ -50838,7 +50841,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8941273839022635087}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_01_2
   m_TagString: Untagged
@@ -50885,7 +50888,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5092326631836435050}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_7
   m_TagString: Untagged
@@ -50966,7 +50969,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6382633027872201875}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_20
   m_TagString: Untagged
@@ -51030,7 +51033,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5736546073579229420}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_T_Hair_04
   m_TagString: Untagged
@@ -51141,7 +51144,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2721017500080914873}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: LittleFinger1_R
   m_TagString: Untagged
@@ -51175,7 +51178,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 51653493594499233}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Left shoulder
   m_TagString: Untagged
@@ -51209,7 +51212,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4768619537402375768}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_14
   m_TagString: Untagged
@@ -51817,7 +51820,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5013694350424230954}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_L_LegRing
   m_TagString: Untagged
@@ -51851,7 +51854,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7312778725895734424}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_04_1
   m_TagString: Untagged
@@ -51986,7 +51989,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4948471740222102349}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_10
   m_TagString: Untagged
@@ -52052,7 +52055,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7406860839810437471}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_F_HairC_02
   m_TagString: Untagged
@@ -52118,7 +52121,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7604284638156530150}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Left leg
   m_TagString: Untagged
@@ -52267,7 +52270,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3146305765301598443}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_02_2
   m_TagString: Untagged
@@ -52284,7 +52287,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3511732866617055431}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_02_3
   m_TagString: Untagged
@@ -52335,7 +52338,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6002505820632098617}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Right ankle
   m_TagString: Untagged
@@ -52461,7 +52464,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8101057199303127003}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Chest
   m_TagString: Untagged
@@ -52478,7 +52481,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8995098255141270424}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_Wings_01
   m_TagString: Untagged
@@ -52689,7 +52692,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1818953758336719127}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_06_2
   m_TagString: Untagged
@@ -52723,7 +52726,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2809821345765543667}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_18
   m_TagString: Untagged
@@ -52757,7 +52760,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 132928084703679862}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_15
   m_TagString: Untagged
@@ -52821,7 +52824,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8309725672127857951}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: LittleFinger2_R
   m_TagString: Untagged
@@ -52855,7 +52858,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8593878353128285448}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Leg2_R
   m_TagString: Untagged
@@ -52889,7 +52892,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3387349707800501040}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_05_3
   m_TagString: Untagged
@@ -52938,7 +52941,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 827632493135573914}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_16
   m_TagString: Untagged
@@ -53021,7 +53024,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 228462609079865210}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_L_Collar
   m_TagString: Untagged
@@ -53038,7 +53041,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 323421351490648562}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Mouth_L
   m_TagString: Untagged
@@ -53256,7 +53259,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2551745102804814508}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_2
   m_TagString: Untagged
@@ -53484,7 +53487,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1062598154485489013}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_13
   m_TagString: Untagged
@@ -53518,7 +53521,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6709438463941368830}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Left ankle
   m_TagString: Untagged
@@ -53674,7 +53677,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 756692904720806161}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_10
   m_TagString: Untagged
@@ -53708,7 +53711,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2853834810736054273}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_24_1
   m_TagString: Untagged
@@ -53759,7 +53762,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2753027623400850857}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_04_3
   m_TagString: Untagged
@@ -53793,7 +53796,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6060087970057165973}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Right toe
   m_TagString: Untagged
@@ -53844,7 +53847,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1238865357236296990}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_8
   m_TagString: Untagged
@@ -54009,7 +54012,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 235288746544140036}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_17
   m_TagString: Untagged
@@ -54043,7 +54046,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8651064096724319945}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: ButtUpper_L
   m_TagString: Untagged
@@ -54077,7 +54080,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5807351201626632851}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: ButtLower_R
   m_TagString: Untagged
@@ -54173,7 +54176,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 263682917355025443}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_BowTie_004
   m_TagString: Untagged
@@ -54254,7 +54257,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5455463727207381875}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: AnkleAux_R
   m_TagString: Untagged
@@ -54288,7 +54291,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5675867064924271465}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_11
   m_TagString: Untagged
@@ -54339,7 +54342,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7451529319261426087}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairC_02
   m_TagString: Untagged
@@ -54356,7 +54359,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8879528566660408627}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Armature
   m_TagString: Untagged
@@ -54390,7 +54393,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 146551292679587996}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_24_2
   m_TagString: Untagged
@@ -54631,7 +54634,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 801203446403698223}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_09_2
   m_TagString: Untagged
@@ -54648,7 +54651,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2385309785901049686}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_4
   m_TagString: Untagged
@@ -54682,7 +54685,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 290706435228791543}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_01_2
   m_TagString: Untagged
@@ -54797,7 +54800,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8912295396591720785}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_R_Ste_002
   m_TagString: Untagged
@@ -54863,7 +54866,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8630220594132258930}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Bust_Support_L
   m_TagString: Untagged
@@ -54897,7 +54900,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2485138624365011084}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_R_Clavicle
   m_TagString: Untagged
@@ -54914,7 +54917,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 9042571159518446242}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_25_1
   m_TagString: Untagged
@@ -54948,7 +54951,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6394428739884149628}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: LittleFinger3_R
   m_TagString: Untagged
@@ -54999,7 +55002,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5302062573792232850}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_20_1
   m_TagString: Untagged
@@ -55033,7 +55036,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 954688460473593599}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_05_2
   m_TagString: Untagged
@@ -55210,7 +55213,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 549548858941917473}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: RingFinger2_R
   m_TagString: Untagged
@@ -55244,7 +55247,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7956713783873841124}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_15
   m_TagString: Untagged
@@ -55278,7 +55281,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5395705561531121128}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_09_1
   m_TagString: Untagged
@@ -55312,7 +55315,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5177013324862213341}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_15_1
   m_TagString: Untagged
@@ -55363,7 +55366,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7041368120460972654}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: LittleFinger3_L
   m_TagString: Untagged
@@ -55412,7 +55415,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6698710307514014855}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_12
   m_TagString: Untagged
@@ -55446,7 +55449,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5439941668790644223}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_R_Ste
   m_TagString: Untagged
@@ -55480,7 +55483,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5205314366045658521}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_2
   m_TagString: Untagged
@@ -55531,7 +55534,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3363307057282164641}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skn_Ill_Wings_New
   m_TagString: Untagged
@@ -55610,7 +55613,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8231494269882037167}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Leg2_L
   m_TagString: Untagged
@@ -55644,7 +55647,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2755462993273845021}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_F_HairA_01
   m_TagString: Untagged
@@ -55678,7 +55681,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1231405268626350199}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Thumb2_R
   m_TagString: Untagged
@@ -55761,7 +55764,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8432582863985026816}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairC_03
   m_TagString: Untagged
@@ -55778,7 +55781,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5010296459745446119}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Thumb1_R
   m_TagString: Untagged
@@ -55829,7 +55832,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8702441681328971937}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_21
   m_TagString: Untagged
@@ -55933,7 +55936,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2793261408252871435}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_02_3
   m_TagString: Untagged
@@ -55988,7 +55991,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4046946678873137933}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: zArmTwist_R
   m_TagString: Untagged
@@ -56137,7 +56140,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2683368610595028311}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairB_03
   m_TagString: Untagged
@@ -56186,7 +56189,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1180253340927244644}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_5
   m_TagString: Untagged
@@ -56220,7 +56223,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7693005630469451969}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: IndexFinger1_L
   m_TagString: Untagged
@@ -56271,7 +56274,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7687158522024326654}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: zHandTwist_R
   m_TagString: Untagged
@@ -56354,7 +56357,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5548803013789449201}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_0
   m_TagString: Untagged
@@ -56405,7 +56408,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5983179571474645909}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_03_3
   m_TagString: Untagged
@@ -56452,7 +56455,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2303421428533199679}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_20_2
   m_TagString: Untagged
@@ -56503,7 +56506,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8210766957003385958}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_24_1
   m_TagString: Untagged
@@ -56537,7 +56540,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3324008411604095778}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: ButtLower_L
   m_TagString: Untagged
@@ -56554,7 +56557,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2473453930962478675}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: RingFinger2_L
   m_TagString: Untagged
@@ -56650,7 +56653,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3650605511831740620}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_19
   m_TagString: Untagged
@@ -56701,7 +56704,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1977994705919543982}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Eye_R
   m_TagString: Untagged
@@ -56815,7 +56818,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1317669486353499974}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Right leg
   m_TagString: Untagged
@@ -56930,7 +56933,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7852870572478719473}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Right elbow
   m_TagString: Untagged
@@ -57089,7 +57092,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3949925070064558359}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Right arm
   m_TagString: Untagged
@@ -57123,7 +57126,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8571756226445207737}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_09_2
   m_TagString: Untagged
@@ -57140,7 +57143,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7534095910486477091}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_15
   m_TagString: Untagged
@@ -57478,7 +57481,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2579713847204852352}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_05_1
   m_TagString: Untagged
@@ -57544,7 +57547,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4804574654964564531}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_01
   m_TagString: Untagged
@@ -57595,7 +57598,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3420872596505997468}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_L_HairA_05
   m_TagString: Untagged
@@ -57612,7 +57615,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 5752310203796895609}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_10
   m_TagString: Untagged
@@ -57695,7 +57698,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2384998707685157854}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_15_1
   m_TagString: Untagged
@@ -57744,7 +57747,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 959094473802643342}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_F_HairB_01
   m_TagString: Untagged
@@ -57808,7 +57811,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6995980579255991962}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_03_3
   m_TagString: Untagged
@@ -57859,7 +57862,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7622672554523448039}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_05_2
   m_TagString: Untagged
@@ -57927,7 +57930,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2540957920553752223}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairC_02
   m_TagString: Untagged
@@ -57993,7 +57996,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6672953567061886868}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_23_1
   m_TagString: Untagged
@@ -58059,7 +58062,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3281321016435798812}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_04_2
   m_TagString: Untagged
@@ -58170,7 +58173,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 414124673585341713}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_Wings_04
   m_TagString: Untagged
@@ -58370,7 +58373,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8449859799153120072}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_6
   m_TagString: Untagged
@@ -58566,7 +58569,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3564450560858522703}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_10
   m_TagString: Untagged
@@ -58617,7 +58620,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2697759659596493010}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: MiddleFinger3_R
   m_TagString: Untagged
@@ -58651,7 +58654,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6710446633529152759}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_02_2
   m_TagString: Untagged
@@ -58809,7 +58812,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4483567622179900534}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_14
   m_TagString: Untagged
@@ -58843,7 +58846,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8496473914750908096}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_03_3
   m_TagString: Untagged
@@ -58877,7 +58880,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1370940920333067160}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairA_04_2
   m_TagString: Untagged
@@ -58943,7 +58946,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 159582351668172123}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_01
   m_TagString: Untagged
@@ -59009,7 +59012,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8625886005215344541}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_L_Ste_003
   m_TagString: Untagged
@@ -59149,7 +59152,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4675831829938639435}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_Ill_BowTie_009
   m_TagString: Untagged
@@ -59326,7 +59329,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7845504306788305306}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_10
   m_TagString: Untagged
@@ -59377,7 +59380,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6476556287865502710}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Left elbow
   m_TagString: Untagged
@@ -59394,7 +59397,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2807572788778950765}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_12
   m_TagString: Untagged
@@ -59428,7 +59431,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 7519898190400730856}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_01_1
   m_TagString: Untagged
@@ -59511,7 +59514,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 616068011804041077}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_02_2
   m_TagString: Untagged
@@ -59528,7 +59531,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2841380576685160146}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_02
   m_TagString: Untagged
@@ -59628,7 +59631,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1162617157946333956}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairA_16
   m_TagString: Untagged
@@ -59679,7 +59682,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 1173270603941493555}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_0
   m_TagString: Untagged
@@ -59781,7 +59784,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 6700407987895888752}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_04_1
   m_TagString: Untagged
@@ -59815,7 +59818,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3249920156862510484}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_32
   m_TagString: Untagged
@@ -59894,7 +59897,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2188454779531839344}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_1_1
   m_TagString: Untagged
@@ -59928,7 +59931,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3729165640106953615}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_2_4
   m_TagString: Untagged
@@ -60045,7 +60048,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3883207299773914020}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairA_10_1
   m_TagString: Untagged
@@ -60356,7 +60359,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4223245195418905133}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Skirt_0_3
   m_TagString: Untagged
@@ -60441,7 +60444,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 8974185171889940868}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairB_02
   m_TagString: Untagged
@@ -60475,7 +60478,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 4920695223642009719}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_R_HairB_16
   m_TagString: Untagged
@@ -60509,7 +60512,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 2623864085697326294}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_R_HairB_01
   m_TagString: Untagged
@@ -60543,7 +60546,7 @@ GameObject:
   serializedVersion: 7
   m_Component:
   - component: {fileID: 3518123347627318397}
-  m_Layer: 0
+  m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: Ctr_B_L_HairB_02_1
   m_TagString: Untagged

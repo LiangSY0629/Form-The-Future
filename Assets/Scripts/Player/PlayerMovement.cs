@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour,ISaveable
 
     readonly float gravity = -9.8f;
     float verticalVelocity;
+    float yawVelocity;
 
     private void Start()
     {
@@ -305,9 +306,12 @@ public class PlayerMovement : MonoBehaviour,ISaveable
         if (inputDirection == Vector3.zero)
             return;
 
-        Quaternion finTarget = Quaternion.LookRotation(inputDirection, Vector3.up);
+        float target = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
 
-        playerTransform.rotation = Quaternion.RotateTowards(playerTransform.rotation, finTarget, 240 * Time.deltaTime);
+        float yaw = Mathf.SmoothDampAngle(playerTransform.eulerAngles.y, target, ref yawVelocity, 0.06f);
+
+        playerTransform.rotation = Quaternion.Euler(0, yaw, 0);
+
     }
 
 

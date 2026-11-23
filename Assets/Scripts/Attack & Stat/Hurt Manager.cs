@@ -12,18 +12,20 @@ public class HurtManager : MonoBehaviour
     public Dictionary<string, WeaponSO> weaponSoDictionary;
     public Dictionary<int, WeaponRunTime> weaponRunDictionary;
 
-    public WeaponRunTime currentWeapon = null;
+    [HideInInspector] public WeaponRunTime currentWeapon = null;
 
-    public bool isWeaponChanged = false;
-    public bool isBulletChanged = false;
-    public bool isReloading = false;
+    [HideInInspector] public bool isWeaponChanged = false;
+    [HideInInspector] public bool isBulletChanged = false;
+    [HideInInspector] public bool isReloading = false;
 
-    public bool isBulletEmpty = false;
-    public bool isFire = false;
+    [HideInInspector] public bool isBulletEmpty = false;
+    [HideInInspector] public bool isFire = false;
 
     public WeaponSocket weaponSocket;
+    public LayerMask hitMask;
 
     float nextFireTime = 0;
+    Transform shootPosition;
 
     private void Awake()
     {
@@ -50,6 +52,7 @@ public class HurtManager : MonoBehaviour
                 attack = weapon.attack,
                 fireInterval = (float)60 / weapon.fireRate,
                 maxBullet = weapon.maxBullet,
+                maxDirection = weapon.maxDirection,
                 armStat = weapon.armStat,
                 bulletNumber = weapon.maxBullet,
             };
@@ -58,6 +61,11 @@ public class HurtManager : MonoBehaviour
 
         }
 
+    }
+
+    private void Start()
+    {
+        shootPosition = Camera.main.transform;
     }
 
     private void Update()
@@ -134,6 +142,21 @@ public class HurtManager : MonoBehaviour
     /// </summary>
     public void WeaponFire()
     {
+        RaycastHit hit;
+        Vector3 shootDirection = shootPosition.forward;
+
+        Physics.Raycast(shootPosition.position, shootDirection, out hit, currentWeapon.maxDirection, hitMask);
+
+        if (hit.transform != null && hit.transform.CompareTag("Enemy"))
+        {
+            Debug.Log("yes");
+            Enemy enemy = hit.transform.GetComponent<Enemy>();
+
+            float damage = StatManager.Instance.statRunDictionary[StatTypes.Attack].finalValue * currentWeapon.attack;
+
+            enemy.SufferDamage(damage);
+        }
+
         currentWeapon.bulletNumber--;
         nextFireTime = currentWeapon.fireInterval;
 
@@ -191,6 +214,8 @@ public class WeaponRunTime
     public int maxBullet;
 
     public int bulletNumber;
+
+    public float maxDirection;
 
     public ArmStats armStat;
 }

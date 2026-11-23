@@ -13,6 +13,8 @@ public class WeaponSO : ScriptableObject
 
     public int maxBullet;
 
+    public float maxDirection;
+
     public ArmStats armStat;
 
 }

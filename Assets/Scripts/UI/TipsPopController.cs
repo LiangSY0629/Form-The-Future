@@ -61,7 +61,7 @@ public class TipsPopController : MonoBehaviour
 
         Vector3 position = tips.transform.position;
 
-        Vector3 finPosition = new (position.x, position.y + 80, position.z);
+        //Vector3 finPosition = new (position.x, position.y + 80, position.z);
 
         for(float t = 0; t < popupTime; t += Time.deltaTime)
         {
