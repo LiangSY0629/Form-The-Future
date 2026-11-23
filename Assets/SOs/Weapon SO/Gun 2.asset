@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: "\u7206\u5F39\u67AA"
   prefab: {fileID: 271667109001807197, guid: 413d763899007be4587739f590caab11, type: 3}
-  attack: 80
+  attack: 0.8
   fireRate: 600
   maxBullet: 20
+  maxDirection: 100
   armStat: 1

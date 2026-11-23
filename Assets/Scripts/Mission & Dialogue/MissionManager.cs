@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -237,6 +238,9 @@ public class MissioneManager : MonoBehaviour,ISaveable
 
         currentSession = session;
 
+        if (!missionRun.Group.isSubtitle)
+            EventManager.OnTriggerDialogue(false);
+
         currentSession.view.OpenView();
         SetLine();
 
@@ -345,6 +349,7 @@ public class MissioneManager : MonoBehaviour,ISaveable
             //如果是日常对话，就关闭面板并返回；
             if(currentSession.missionRun.mission.missionType == MissionTypes.Daily)
             {
+                EventManager.OnTriggerDialogue(true);
                 currentSession.view.Close();
                 currentSession = null;
                 return;
@@ -392,6 +397,8 @@ public class MissioneManager : MonoBehaviour,ISaveable
 
             //EventManager.OnTriggerMissionChanged(currentSession.missionRun.missionID);
 
+            EventManager.OnTriggerDialogue(true);
+
             if (trickMission == currentSession.missionRun)
                 trickMission = null;
 
@@ -415,11 +422,18 @@ public class MissioneManager : MonoBehaviour,ISaveable
             currentSession.paragraphIndex = 0;
             currentSession.lineIndex = 0;
 
+            if (!currentSession.group.isSubtitle)
+                EventManager.OnTriggerDialogue(false);
+            else 
+                EventManager.OnTriggerDialogue(true);
+
             currentSession.view.OpenView();
             SetLine();
         }
         else
         {
+            EventManager.OnTriggerDialogue(true);
+
             CloseView();
             currentSession = null;
         }

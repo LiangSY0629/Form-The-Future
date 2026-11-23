@@ -17561,6 +17561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955e56a32b638ce4b9cf6b360bc6deff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  views:
+  - {fileID: 1672525892}
+  - {fileID: 704938362}
   characterViews:
   - {fileID: 1596331128}
   - {fileID: 860865629}
@@ -35087,6 +35090,7 @@ GameObject:
   - component: {fileID: 5866666021836566488}
   - component: {fileID: 5866666021836566489}
   - component: {fileID: 5866666021836566490}
+  - component: {fileID: 5866666021836566492}
   m_Layer: 6
   m_HasEditorInfo: 1
   m_Name: "\u83F2\u6B27\u5C3C_\u767D"
@@ -50337,6 +50341,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5866666021836566492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149232283415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b4e5e79df8da6458315e535c612440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 
 --- !u!1 &5867421165588998121
 GameObject:
   m_ObjectHideFlags: 0

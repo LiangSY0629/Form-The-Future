@@ -22,6 +22,14 @@ public class EventManager : MonoBehaviour
     public static void OnTriggerConditionChange(string conditionID, float value) => OnConditionChange?.Invoke(conditionID, value);
 
 
+    public static event Action<bool> OnDialogue;
+
+    /// <summary>
+    /// 当对话需要隐藏或显示ui层时；
+    /// </summary>
+    /// <param name="active"></param>
+    public static void OnTriggerDialogue(bool active) => OnDialogue?.Invoke(active);
+
     public static event Action OnStatChanged;
 
     /// <summary>
